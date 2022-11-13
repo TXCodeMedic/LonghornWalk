@@ -18,6 +18,7 @@
 		A24E4087292167BD004717B2 /* RankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24E4086292167BD004717B2 /* RankingViewController.swift */; };
 		A24E4089292167C8004717B2 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24E4088292167C8004717B2 /* LocationViewController.swift */; };
 		A24E408B292167D6004717B2 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24E408A292167D6004717B2 /* UserProfileViewController.swift */; };
+		A24E408D29218917004717B2 /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24E408C29218917004717B2 /* HomeScreenViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		A24E4086292167BD004717B2 /* RankingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingViewController.swift; sourceTree = "<group>"; };
 		A24E4088292167C8004717B2 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		A24E408A292167D6004717B2 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		A24E408C29218917004717B2 /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 			children = (
 				A24E406B29216238004717B2 /* AppDelegate.swift */,
 				A24E40822921677E004717B2 /* LoginAndRegistrationViewController.swift */,
+				A24E408C29218917004717B2 /* HomeScreenViewController.swift */,
 				A24E406F29216238004717B2 /* ViewController.swift */,
 				A24E4086292167BD004717B2 /* RankingViewController.swift */,
 				A24E4088292167C8004717B2 /* LocationViewController.swift */,
@@ -158,6 +161,7 @@
 				A24E406C29216238004717B2 /* AppDelegate.swift in Sources */,
 				A24E4087292167BD004717B2 /* RankingViewController.swift in Sources */,
 				A24E406E29216238004717B2 /* SceneDelegate.swift in Sources */,
+				A24E408D29218917004717B2 /* HomeScreenViewController.swift in Sources */,
 				A24E407629216238004717B2 /* LonghornWalk.xcdatamodeld in Sources */,
 				A24E408B292167D6004717B2 /* UserProfileViewController.swift in Sources */,
 				A24E4089292167C8004717B2 /* LocationViewController.swift in Sources */,
