@@ -13,6 +13,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         print("Test for M for github")
+        print("Test for Y for github")
         print("Look for number")
     }
 
