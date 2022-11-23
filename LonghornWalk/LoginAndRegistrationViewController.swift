@@ -1,6 +1,7 @@
 import UIKit
 import FirebaseFirestore
 import FirebaseAuth
+import CoreData
 
 class LoginAndRegistrationViewController: UIViewController {
     
@@ -124,17 +125,32 @@ class LoginAndRegistrationViewController: UIViewController {
                         
                         //MARK: FIRESTORE USER INIT
                         var ref: DocumentReference? = nil
+                        
+                        var joinDate = Date()
+                        var formatter = DateFormatter()
+                        formatter.dateFormat = "dd-MM-yy"
+                        var formattedDate = formatter.string(from: joinDate)
+                        
                         print("username: \(self.usernameTextField.text!)")
                         ref = self.db.collection("users").addDocument(data: [
                             "username": "\(self.usernameTextField.text!)",
                             "email": "\(self.emailTextField.text!)",
-                            "score": 0,])
+                            "score": 0,
+                            "joinDate": formattedDate,
+                            "friendsList": [],
+                            "locationsVisited": [],
+                            "profilePicturePath": "",
+                            "settingsPreferences": ""])
                         {err in
                             if let err = err {
                                 print("Error adding document \(err)\n")
                             } else {
                                 print("Document added with ID: \(ref!.documentID)\n")
-                                //MARK: USER CLASS INIT
+                                
+                            //MARK: USER CLASS INIT
+                               var newUser = User(userEmail: self.emailTextField.text! ,username: self.usernameTextField.text!, password: self.passwordTextField.text!, displayName: ref!.documentID)
+                                
+                            //MARK: STORE USER IN CORE DATA
                                 
                                 // Send user to homeScreen
                                 self.performSegue(withIdentifier: "loginSegue", sender: nil)
