@@ -23,12 +23,12 @@ class User {
     public var settingPreferences: String
     
 
-    init(username: String, password: String, joinDate: String) {
+    init(username: String, password: String, joinDate: String, displayName:String) {
         self.username = username
         self.password = password
         self.joinDate = joinDate
         self.points = 0
-        self.displayName = ""
+        self.displayName = displayName
         self.friendsList = []
         self.locationsVisited = []
         self.profilePic = ""
