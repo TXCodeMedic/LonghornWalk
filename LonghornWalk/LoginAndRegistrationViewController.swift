@@ -135,7 +135,8 @@ class LoginAndRegistrationViewController: UIViewController {
                             } else {
                                 print("Document added with ID: \(ref!.documentID)\n")
                                 //MARK: USER CLASS INIT
-                                User(username: self.usernameTextField.text!, password: passwordTextField.text!, joinDate: NSDate(), displayName: ref!.documentID)
+                                
+                                // Send user to homeScreen
                                 self.performSegue(withIdentifier: "loginSegue", sender: nil)
                             }
                         }}}
