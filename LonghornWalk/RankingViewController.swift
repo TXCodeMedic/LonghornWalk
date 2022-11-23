@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import CoreData
+
 
 class RankingViewController: UIViewController {
 

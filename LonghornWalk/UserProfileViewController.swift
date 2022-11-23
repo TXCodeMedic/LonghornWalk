@@ -7,6 +7,8 @@
 
 import UIKit
 import AVFoundation
+import CoreData
+
 
 class UserProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     

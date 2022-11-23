@@ -1,5 +1,7 @@
 import UIKit
 import CoreLocation
+import CoreData
+
 
 // MARK: UTLOCATION CLASS
 let PCL = UTLocation(name:"Perry-Castañeda Library", address:"101 E 21st St, Austin, TX, 78712", latitude: 30.2826535, longitude: -97.7382112)

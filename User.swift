@@ -9,6 +9,7 @@ import UIKit
 
 class User {
 
+    public var userEmail: String
     public var username: String
     public var password: String
     public var points: Int
@@ -23,13 +24,14 @@ class User {
     public var settingPreferences: String
     
 
-    init(username: String, password: String, displayName:String) {
+    init(userEmail: String, username: String, password: String, displayName:String) {
         
         var joinDate = Date()
         var formatter = DateFormatter()
         formatter.dateFormat = "dd-MM-yy"
         var formattedDate = formatter.string(from: joinDate)
         
+        self.userEmail = userEmail
         self.username = username
         self.password = password
         self.joinDate = formattedDate
