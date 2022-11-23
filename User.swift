@@ -23,10 +23,16 @@ class User {
     public var settingPreferences: String
     
 
-    init(username: String, password: String, joinDate: String, displayName:String) {
+    init(username: String, password: String, displayName:String) {
+        
+        var joinDate = Date()
+        var formatter = DateFormatter()
+        formatter.dateFormat = "dd-MM-yy"
+        var formattedDate = formatter.string(from: joinDate)
+        
         self.username = username
         self.password = password
-        self.joinDate = joinDate
+        self.joinDate = formattedDate
         self.points = 0
         self.displayName = displayName
         self.friendsList = []

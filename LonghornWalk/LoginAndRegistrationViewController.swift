@@ -128,12 +128,14 @@ class LoginAndRegistrationViewController: UIViewController {
                         ref = self.db.collection("users").addDocument(data: [
                             "username": "\(self.usernameTextField.text!)",
                             "email": "\(self.emailTextField.text!)",
-                            "score": 0])
+                            "score": 0,])
                         {err in
                             if let err = err {
                                 print("Error adding document \(err)\n")
                             } else {
                                 print("Document added with ID: \(ref!.documentID)\n")
+                                //MARK: USER CLASS INIT
+                                User(username: self.usernameTextField.text!, password: passwordTextField.text!, joinDate: NSDate(), displayName: ref!.documentID)
                                 self.performSegue(withIdentifier: "loginSegue", sender: nil)
                             }
                         }}}
