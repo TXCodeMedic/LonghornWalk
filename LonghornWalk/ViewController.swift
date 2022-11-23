@@ -15,6 +15,8 @@ class ViewController: UIViewController {
         print("Test for M for github")
         print("Test for Y for github")
         print("Look for number")
+        //
+        print("hi test")
     }
 
     //print("new")
