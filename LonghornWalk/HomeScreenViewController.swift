@@ -27,6 +27,7 @@ class HomeScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let fetchedResults = retrieveUser()
+        // !! this only receives info from the first entity ever created, fetchedResults[0]
         var userEmail = fetchedResults[0].value(forKey: "email")
         var userPassword = fetchedResults[0].value(forKey: "password")
         var userUsername = fetchedResults[0].value(forKey: "username")
@@ -64,7 +65,7 @@ class HomeScreenViewController: UIViewController {
     //retrieve from core data
     func retrieveUser() -> [NSManagedObject] {
         
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "CoreDataUser")
         var fetchedResults:[NSManagedObject]? = nil
         
         do {
