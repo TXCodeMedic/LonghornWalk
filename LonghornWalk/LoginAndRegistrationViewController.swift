@@ -23,6 +23,7 @@ class LoginAndRegistrationViewController: UIViewController {
     
     // Variables
     var screenType:String! = "Login"
+    var currentUser = theUser(userEmail: "", username: "", password: "", displayName: "")
     let db = Firestore.firestore()
     
     override func viewDidLoad() {
@@ -95,9 +96,39 @@ class LoginAndRegistrationViewController: UIViewController {
                     if let error = error as NSError? {
                         print(error.localizedDescription)
                     } else {
+                        // get user info from DB
+                        self.db.collection("users").getDocuments { snapshot, error in
+                            // no error
+                            if error == nil {
+                                // retrieve data from DB
+                                if let snapshot = snapshot{
+                              
+                                    // loop through users in data base
+                                    for doc in snapshot.documents{
+                                        // get data from user that matches currently logged in user
+                                        if doc["username"] as? String == self.usernameTextField.text!{
+                                            // this is our current user that is logged in
+                                            self.currentUser = theUser(
+                                                userEmail: doc["email"] as? String ?? "",
+                                                username: doc["username"] as? String ?? "",
+                                                password: self.passwordTextField.text!,
+                                                displayName: doc.documentID)
+                                            // update score of this user from DB
+                                            self.currentUser.points = doc["score"] as? Int ?? 0
+                                            // !!! should we also update joinDate, friendsList, etc. ?
+                                            
+                                            // this data should already be in core data since we store every new user in core data
+                                        }
+                                    }
+                                    // status
+                                   print("in login path: end of loop through Firestore DB, updated current user to current user that is logged in")
+                                }
+                            }
+                            else{
+                                print("error retrieving from DB")
+                            }
+                        }
                         // successful login -> Segue into Homescreen
-                        // get document ID from DB
-                        // TO DO: re initialize user core data, user class
                         self.performSegue(withIdentifier: "loginSegue", sender: nil)
                     }}
             } else {
@@ -154,11 +185,11 @@ class LoginAndRegistrationViewController: UIViewController {
                                 print("Document added with ID: \(ref!.documentID)\n")
                                 
                             //MARK: USER CLASS INIT
-                               var newUser = User(userEmail: self.emailTextField.text! ,username: self.usernameTextField.text!, password: self.passwordTextField.text!, displayName: ref!.documentID)
+                                self.currentUser = theUser(userEmail: self.emailTextField.text! ,username: self.usernameTextField.text!, password: self.passwordTextField.text!, displayName: ref!.documentID)
                                 
                             //MARK: STORE USER IN CORE DATA
                                 // store to core data
-                                let coreDatenewUser = NSEntityDescription.insertNewObject(forEntityName: "User", into: context)
+                                let coreDatenewUser = NSEntityDescription.insertNewObject(forEntityName: "CoreDataUser", into: context)
                                 
                                 coreDatenewUser.setValue(self.emailTextField.text!, forKey: "email")
                                 coreDatenewUser.setValue(self.usernameTextField.text!, forKey: "username")

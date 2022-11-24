@@ -7,7 +7,7 @@
 
 import UIKit
 
-class User {
+class theUser {
 
     public var userEmail: String
     public var username: String
