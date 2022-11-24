@@ -3,6 +3,10 @@ import FirebaseFirestore
 import FirebaseAuth
 import CoreData
 
+
+let appDelegate = UIApplication.shared.delegate as! AppDelegate
+let context = appDelegate.persistentContainer.viewContext
+
 class LoginAndRegistrationViewController: UIViewController {
     
     // Outlets
@@ -92,6 +96,8 @@ class LoginAndRegistrationViewController: UIViewController {
                         print(error.localizedDescription)
                     } else {
                         // successful login -> Segue into Homescreen
+                        // get document ID from DB
+                        // TO DO: re initialize user core data, user class
                         self.performSegue(withIdentifier: "loginSegue", sender: nil)
                     }}
             } else {
@@ -151,7 +157,17 @@ class LoginAndRegistrationViewController: UIViewController {
                                var newUser = User(userEmail: self.emailTextField.text! ,username: self.usernameTextField.text!, password: self.passwordTextField.text!, displayName: ref!.documentID)
                                 
                             //MARK: STORE USER IN CORE DATA
+                                // store to core data
+                                let coreDatenewUser = NSEntityDescription.insertNewObject(forEntityName: "User", into: context)
                                 
+                                coreDatenewUser.setValue(self.emailTextField.text!, forKey: "email")
+                                coreDatenewUser.setValue(self.usernameTextField.text!, forKey: "username")
+                                coreDatenewUser.setValue(self.passwordTextField.text!, forKey: "password")
+                                coreDatenewUser.setValue(ref!.documentID, forKey: "displayName")
+                                
+                                //commit the changes
+                                self.saveContext()
+                    
                                 // Send user to homeScreen
                                 self.performSegue(withIdentifier: "loginSegue", sender: nil)
                             }
@@ -167,6 +183,18 @@ class LoginAndRegistrationViewController: UIViewController {
                     style: .default))
                 present(alert, animated: true)
             }}
+    }
+    
+    // save to core data
+    func saveContext () {
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                let nserror = error as NSError
+                NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
+        }
     }
     
     //MARK: REGISTRATION PATH
