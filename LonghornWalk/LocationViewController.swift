@@ -39,7 +39,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var imageView: UIImageView!
     
     // Declare variables
-    let locationCount = 4
+    let locationCount = 3
     var locationIndex:Int = 0
     let locationManager = CLLocationManager()
     var userLong:Double = 0
