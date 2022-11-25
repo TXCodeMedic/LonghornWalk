@@ -21,17 +21,47 @@ private let pedometer = CMPedometer()
 
 class HomeScreenViewController: UIViewController {
     
+    //Outlets
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var rankingLabel: UILabel!
+    @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var profileButton: UIButton!
+    @IBOutlet weak var rankingButton: UIButton!
+    @IBOutlet weak var locationButton: UIButton!
+    
+    //Variables
+    var delegate: UIViewController!
+    var user:[theUser] = []
+    
     let queue1 = DispatchQueue(label: "background thread", qos: .background)
-   
-
+        
     override func viewDidLoad() {
+        print("\nhomeScreenVC\n")
         super.viewDidLoad()
+    
         let fetchedResults = retrieveUser()
-        // !! this only receives info from the first entity ever created, fetchedResults[0]
-        var userEmail = fetchedResults[0].value(forKey: "email")
-        var userPassword = fetchedResults[0].value(forKey: "password")
-        var userUsername = fetchedResults[0].value(forKey: "username")
-        var displayName = fetchedResults[0].value(forKey: "displayName")
+        if fetchedResults != [] {
+            let username:String = (fetchedResults[0].value(forKey: "username"))! as! String
+            let displayName:String = (fetchedResults[0].value(forKey: "displayName"))! as! String
+            let email:String = (fetchedResults[0].value(forKey: "email"))! as! String
+            let password:String = (fetchedResults[0].value(forKey: "password"))! as! String
+            
+            print("show user attributes:")
+            print("username: \(username)" )
+            print("displayName: \(displayName)" )
+            print("email: \(email)" )
+            print("password: \(password)" )
+            
+            let currentUser = theUser(userEmail: email, username: username, password: password, displayName: displayName)
+            user.append(currentUser)
+            print("added user to user list")
+            // Change elements on the Screen
+            
+            
+        } else{
+            print("Error retrieving user")
+        }
         
         
         // multithreading
@@ -39,12 +69,16 @@ class HomeScreenViewController: UIViewController {
             while true{
                 // sleep for 5 seconds
                 sleep(5)
+                print("5 seconds passed")
                 // get steps
+                print(CMPedometer.isStepCountingAvailable())
                 if CMPedometer.isStepCountingAvailable() {
                     pedometer.startUpdates(from: Date()) { pedometerData, error in
                         guard let pedometerData = pedometerData, error == nil else { return }
                         // step count
                         var stepCout = pedometerData.numberOfSteps.intValue
+                        print(stepCout)
+                        print(self.user)
                         // TO DO: update user score in class
                         
                         // TO DO: update user score in DB
