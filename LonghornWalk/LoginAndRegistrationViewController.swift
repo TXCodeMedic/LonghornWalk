@@ -145,10 +145,12 @@ class LoginAndRegistrationViewController: UIViewController {
             
         } else {
             // Registration Path
+            print("\nuser is registering")
             if registerCheck(){
-                print("requirements met\n")
+                print("\nregisterCheck is complete")
                 // User has all requirements fulfilled
                 //MARK: FIREBASE AUTH REGISTER
+                print("\nFireBase Auth\n")
                 Auth.auth().createUser(withEmail: self.emailTextField.text!, password: self.passwordTextField.text!) {
                     authResult, error in
                     if let error = error as NSError? {
@@ -168,7 +170,6 @@ class LoginAndRegistrationViewController: UIViewController {
                         formatter.dateFormat = "dd-MM-yy"
                         var formattedDate = formatter.string(from: joinDate)
                         
-                        print("username: \(self.usernameTextField.text!)")
                         ref = self.db.collection("users").addDocument(data: [
                             "username": "\(self.usernameTextField.text!)",
                             "email": "\(self.emailTextField.text!)",
@@ -196,8 +197,12 @@ class LoginAndRegistrationViewController: UIViewController {
                                 coreDatenewUser.setValue(self.passwordTextField.text!, forKey: "password")
                                 coreDatenewUser.setValue(ref!.documentID, forKey: "displayName")
                                 
+                                print()
+                                print(coreDatenewUser)
+                                print()
                                 //commit the changes
                                 self.saveContext()
+                                print("CoreDataUser was saved")
                     
                                 // Send user to homeScreen
                                 self.performSegue(withIdentifier: "loginSegue", sender: nil)
