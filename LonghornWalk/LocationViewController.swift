@@ -51,8 +51,10 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
         super.viewDidLoad()
         locationManager.requestWhenInUseAuthorization()
         var currentLoc: CLLocation!
+        print("Ask for permission")
         if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
            CLLocationManager.authorizationStatus() == .authorizedAlways) {
+            print("All Set")
             currentLoc = locationManager.location
             print("lat \(currentLoc.coordinate.latitude)")
             userLat = currentLoc.coordinate.latitude

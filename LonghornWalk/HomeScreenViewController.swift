@@ -13,7 +13,6 @@ import CoreMotion
 // Provides to create an instance of the CMMotionActivityManager.
 // !!! monitors activity type like walking running or automative
 private let activityManager = CMMotionActivityManager()
-
 // Provides to create an instance of the CMPedometer.
 // !!! gets current step count
 private let pedometer = CMPedometer()
@@ -31,11 +30,11 @@ class HomeScreenViewController: UIViewController {
     @IBOutlet weak var locationButton: UIButton!
     
     //Variables
+    let activityManager = CMMotionActivityManager()
+    let pedometer = CMPedometer()
     var delegate: UIViewController!
     var user:[theUser] = []
-    
-    let queue1 = DispatchQueue(label: "background thread", qos: .background)
-        
+            
     override func viewDidLoad() {
         print("\nhomeScreenVC\n")
         super.viewDidLoad()
@@ -53,6 +52,7 @@ class HomeScreenViewController: UIViewController {
             print("email: \(email)" )
             print("password: \(password)" )
             
+            //MARK: USER CLASS INIT
             let currentUser = theUser(userEmail: email, username: username, password: password, displayName: displayName)
             user.append(currentUser)
             print("added user to user list")
@@ -92,8 +92,28 @@ class HomeScreenViewController: UIViewController {
             }
         }
         
-
-        // Do any additional setup after loading the view.
+        activityManager.startActivityUpdates(to: OperationQueue.main) { (activity: CMMotionActivity?) in
+            guard let activity = activity else { return }
+            print("Inside activity manager")
+            DispatchQueue.main.async {
+                print("Checking activity")
+                if activity.stationary {
+                    print("Stationary")
+                } else if activity.walking {
+                    print("Walking")
+                } else if activity.running {
+                    print("Running")
+                } else if activity.automotive {
+                    print("Automotive")
+                }}}
+        if CMPedometer.isStepCountingAvailable() {
+            pedometer.startUpdates(from: Date()) { pedometerData, error in
+                guard let pedometerData = pedometerData, error == nil else { return }
+                
+                DispatchQueue.main.async {
+                    print(pedometerData.numberOfSteps.intValue)
+                    self.scoreLabel.text = "\(pedometerData.numberOfSteps.intValue)"
+                }}}
     }
     
     //retrieve from core data
