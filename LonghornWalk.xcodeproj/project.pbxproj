@@ -359,11 +359,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8LQVQY95GT;
+				DEVELOPMENT_TEAM = UB7L88227Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LonghornWalk/Info.plist;
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Application wants to know your location";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Application wants to know your location";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "This app wants to know your location";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app wants to know your location";
+				INFOPLIST_KEY_NSMotionUsageDescription = "We are using motion usage in order to track your step count.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -375,7 +376,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Team-10.LonghornWalk1";
+				PRODUCT_BUNDLE_IDENTIFIER = "Team-10.LonghornWalk2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -390,11 +391,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8LQVQY95GT;
+				DEVELOPMENT_TEAM = UB7L88227Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LonghornWalk/Info.plist;
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Application wants to know your location";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Application wants to know your location";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "This app wants to know your location";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app wants to know your location";
+				INFOPLIST_KEY_NSMotionUsageDescription = "We are using motion usage in order to track your step count.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -406,7 +408,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Team-10.LonghornWalk1";
+				PRODUCT_BUNDLE_IDENTIFIER = "Team-10.LonghornWalk2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

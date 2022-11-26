@@ -13,7 +13,6 @@ import CoreMotion
 // Provides to create an instance of the CMMotionActivityManager.
 // !!! monitors activity type like walking running or automative
 private let activityManager = CMMotionActivityManager()
-
 // Provides to create an instance of the CMPedometer.
 // !!! gets current step count
 private let pedometer = CMPedometer()
@@ -31,11 +30,11 @@ class HomeScreenViewController: UIViewController {
     @IBOutlet weak var locationButton: UIButton!
     
     //Variables
+    let activityManager = CMMotionActivityManager()
+    let pedometer = CMPedometer()
     var delegate: UIViewController!
     var user:[theUser] = []
-    
-    let queue1 = DispatchQueue(label: "background thread", qos: .background)
-        
+            
     override func viewDidLoad() {
         print("\nhomeScreenVC\n")
         super.viewDidLoad()
@@ -53,47 +52,38 @@ class HomeScreenViewController: UIViewController {
             print("email: \(email)" )
             print("password: \(password)" )
             
+            //MARK: USER CLASS INIT
             let currentUser = theUser(userEmail: email, username: username, password: password, displayName: displayName)
             user.append(currentUser)
             print("added user to user list")
             // Change elements on the Screen
             
-            
         } else{
             print("Error retrieving user")
         }
         
-        
-        // multithreading
-        queue1.async {
-            while true{
-                // sleep for 5 seconds
-                sleep(5)
-                print("5 seconds passed")
-                // get steps
-                print(CMPedometer.isStepCountingAvailable())
-                if CMPedometer.isStepCountingAvailable() {
-                    pedometer.startUpdates(from: Date()) { pedometerData, error in
-                        guard let pedometerData = pedometerData, error == nil else { return }
-                        // step count
-                        var stepCout = pedometerData.numberOfSteps.intValue
-                        print(stepCout)
-                        print(self.user)
-                        // TO DO: update user score in class
-                        
-                        // TO DO: update user score in DB
-                    }
-                }
-                DispatchQueue.main.sync{
-                    // update UI
-                    // update score label
-                    
-                }
-            }
-        }
-        
-
-        // Do any additional setup after loading the view.
+        activityManager.startActivityUpdates(to: OperationQueue.main) { (activity: CMMotionActivity?) in
+            guard let activity = activity else { return }
+            print("Inside activity manager")
+            DispatchQueue.main.async {
+                print("Checking activity")
+                if activity.stationary {
+                    print("Stationary")
+                } else if activity.walking {
+                    print("Walking")
+                } else if activity.running {
+                    print("Running")
+                } else if activity.automotive {
+                    print("Automotive")
+                }}}
+        if CMPedometer.isStepCountingAvailable() {
+            pedometer.startUpdates(from: Date()) { pedometerData, error in
+                guard let pedometerData = pedometerData, error == nil else { return }
+                
+                DispatchQueue.main.async {
+                    print(pedometerData.numberOfSteps.intValue)
+                    self.scoreLabel.text = "\(pedometerData.numberOfSteps.intValue)"
+                }}}
     }
     
     //retrieve from core data
