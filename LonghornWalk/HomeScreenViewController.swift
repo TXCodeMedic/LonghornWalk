@@ -33,7 +33,7 @@ class HomeScreenViewController: UIViewController {
     let activityManager = CMMotionActivityManager()
     let pedometer = CMPedometer()
     var delegate: UIViewController!
-    var user:[theUser] = []
+    var user:[User] = []
             
     override func viewDidLoad() {
         print("\nhomeScreenVC\n")
@@ -53,7 +53,7 @@ class HomeScreenViewController: UIViewController {
             print("password: \(password)" )
             
             //MARK: USER CLASS INIT
-            let currentUser = theUser(userEmail: email, username: username, password: password, displayName: displayName)
+            currentUser = User(userEmail: email, username: username, password: password, displayName: displayName)
             user.append(currentUser)
             print("added user to user list")
             // Change elements on the Screen

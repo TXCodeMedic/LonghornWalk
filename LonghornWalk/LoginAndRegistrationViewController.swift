@@ -23,7 +23,7 @@ class LoginAndRegistrationViewController: UIViewController {
     
     // Variables
     var screenType:String! = "Login"
-    var currentUser = theUser(userEmail: "", username: "", password: "", displayName: "")
+    var currentUser = User(userEmail: "", username: "", password: "", displayName: "")
     let db = Firestore.firestore()
     
     override func viewDidLoad() {
@@ -108,7 +108,7 @@ class LoginAndRegistrationViewController: UIViewController {
                                         // get data from user that matches currently logged in user
                                         if doc["username"] as? String == self.usernameTextField.text!{
                                             // this is our current user that is logged in
-                                            self.currentUser = theUser(
+                                            self.currentUser = User(
                                                 userEmail: doc["email"] as? String ?? "",
                                                 username: doc["username"] as? String ?? "",
                                                 password: self.passwordTextField.text!,
@@ -186,7 +186,7 @@ class LoginAndRegistrationViewController: UIViewController {
                                 print("Document added with ID: \(ref!.documentID)\n")
                                 
                             //MARK: USER CLASS INIT
-                                self.currentUser = theUser(userEmail: self.emailTextField.text! ,username: self.usernameTextField.text!, password: self.passwordTextField.text!, displayName: ref!.documentID)
+                                self.currentUser = User(userEmail: self.emailTextField.text! ,username: self.usernameTextField.text!, password: self.passwordTextField.text!, displayName: ref!.documentID)
                                 
                             //MARK: STORE USER IN CORE DATA
                                 // store to core data

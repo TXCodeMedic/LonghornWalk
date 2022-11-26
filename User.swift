@@ -7,7 +7,7 @@
 
 import UIKit
 
-class theUser {
+class User {
 
     public var userEmail: String
     public var username: String
@@ -19,7 +19,7 @@ class theUser {
     public var friendsList: [String]
     public var locationsVisited: [String]
     // file path to the image file stored in String format? not sure yet
-    public var profilePic: String
+    public var profilePic: UIImage?
     // store the setting preferences of the user somehow?
     public var settingPreferences: String
     
@@ -39,7 +39,7 @@ class theUser {
         self.displayName = displayName
         self.friendsList = []
         self.locationsVisited = []
-        self.profilePic = ""
+        self.profilePic = nil
         self.settingPreferences = ""
     }
 }
