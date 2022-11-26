@@ -58,38 +58,8 @@ class HomeScreenViewController: UIViewController {
             print("added user to user list")
             // Change elements on the Screen
             
-            
         } else{
             print("Error retrieving user")
-        }
-        
-        
-        // multithreading
-        queue1.async {
-            while true{
-                // sleep for 5 seconds
-                sleep(5)
-                print("5 seconds passed")
-                // get steps
-                print(CMPedometer.isStepCountingAvailable())
-                if CMPedometer.isStepCountingAvailable() {
-                    pedometer.startUpdates(from: Date()) { pedometerData, error in
-                        guard let pedometerData = pedometerData, error == nil else { return }
-                        // step count
-                        var stepCout = pedometerData.numberOfSteps.intValue
-                        print(stepCout)
-                        print(self.user)
-                        // TO DO: update user score in class
-                        
-                        // TO DO: update user score in DB
-                    }
-                }
-                DispatchQueue.main.sync{
-                    // update UI
-                    // update score label
-                    
-                }
-            }
         }
         
         activityManager.startActivityUpdates(to: OperationQueue.main) { (activity: CMMotionActivity?) in
