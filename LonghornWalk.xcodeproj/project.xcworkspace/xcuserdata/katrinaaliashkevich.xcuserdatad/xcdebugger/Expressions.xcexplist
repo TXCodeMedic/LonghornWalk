@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "LoginAndRegistrationViewController.login():LoginAndRegistrationViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "usernameTextField.text">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "UserProfileViewController.viewDidLoad():UserProfileViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "appDelegate.currentUser">
+            </PersistentString>
+            <PersistentString
+               value = "appDelegate.currentUser?">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

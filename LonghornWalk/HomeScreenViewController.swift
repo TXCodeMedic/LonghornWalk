@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import FirebaseAuth
 
 import CoreMotion
 
@@ -33,34 +34,34 @@ class HomeScreenViewController: UIViewController {
     let activityManager = CMMotionActivityManager()
     let pedometer = CMPedometer()
     var delegate: UIViewController!
-    var user:[User] = []
+    var user:[UserProfile] = []
             
     override func viewDidLoad() {
         print("\nhomeScreenVC\n")
         super.viewDidLoad()
     
-        let fetchedResults = retrieveUser()
-        if fetchedResults != [] {
-            let username:String = (fetchedResults[0].value(forKey: "username"))! as! String
-            let displayName:String = (fetchedResults[0].value(forKey: "displayName"))! as! String
-            let email:String = (fetchedResults[0].value(forKey: "email"))! as! String
-            let password:String = (fetchedResults[0].value(forKey: "password"))! as! String
-            
-            print("show user attributes:")
-            print("username: \(username)" )
-            print("displayName: \(displayName)" )
-            print("email: \(email)" )
-            print("password: \(password)" )
-            
-            //MARK: USER CLASS INIT
-            currentUser = User(userEmail: email, username: username, password: password, displayName: displayName)
-            user.append(currentUser)
-            print("added user to user list")
-            // Change elements on the Screen
-            
-        } else{
-            print("Error retrieving user")
-        }
+//        let fetchedResults = retrieveUser()
+//        if fetchedResults != [] {
+//            let username:String = (fetchedResults[0].value(forKey: "username"))! as! String
+//            let displayName:String = (fetchedResults[0].value(forKey: "displayName"))! as! String
+//            let email:String = (fetchedResults[0].value(forKey: "email"))! as! String
+//            let password:String = (fetchedResults[0].value(forKey: "password"))! as! String
+//
+//            print("show user attributes:")
+//            print("username: \(username)" )
+//            print("displayName: \(displayName)" )
+//            print("email: \(email)" )
+//            print("password: \(password)" )
+//
+//            //MARK: USER CLASS INIT
+//            currentUser = UserProfile(userEmail: email, username: username, password: password, displayName: displayName)
+//            user.append(currentUser)
+//            print("added user to user list")
+//            // Change elements on the Screen
+//
+//        } else{
+//            print("Error retrieving user")
+//        }
         
         activityManager.startActivityUpdates(to: OperationQueue.main) { (activity: CMMotionActivity?) in
             guard let activity = activity else { return }
@@ -104,9 +105,14 @@ class HomeScreenViewController: UIViewController {
         return(fetchedResults)!
     }
     
+    @IBAction func onLogoutPressed(_ sender: Any) {
+        do {
+            // sign out of firebase auth
+            try Auth.auth().signOut()
+            self.dismiss(animated: true)
+        } catch {
+            print("Sign Out error")
+        }
+    }
     
-    
-
-    
-
 }

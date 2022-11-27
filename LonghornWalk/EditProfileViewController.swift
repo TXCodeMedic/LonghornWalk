@@ -9,11 +9,18 @@ import UIKit
 import AVFoundation
 import CoreData
 
+
 class EditProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    static var selectedImage: UIImage!
 
     let picker = UIImagePickerController()
     
     @IBOutlet weak var profilePic: UIImageView!
+    
+    @IBOutlet weak var displayNameText: UITextField!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,13 +34,24 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                 print(error.localizedDescription)
             }
         }
+        displayNameText.text = appDelegate.currentUser?.displayName
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let chosenImage = info[.originalImage] as! UIImage
 //        profilePic.contentMode = .scaleAspectFit
         profilePic.image = chosenImage
-        currentUser.profilePic = chosenImage
+        EditProfileViewController.selectedImage = chosenImage
+        appDelegate.currentUser?.profilePic = chosenImage
+        let jpegImageData  = chosenImage.jpegData(compressionQuality: 1.0)
+        let entityName =  NSEntityDescription.entity(forEntityName: "CoreDataUser", in: context)!
+        let image = NSManagedObject(entity: entityName, insertInto: context)
+        image.setValue(jpegImageData, forKeyPath: "profilePic")
+        do {
+          try context.save()
+        } catch let error as NSError {
+          print("Could not save. \(error), \(error.userInfo)")
+        }
         dismiss(animated: true)
     }
     
@@ -104,4 +122,23 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         
         present(controller, animated: true)
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        appDelegate.currentUser?.displayName = displayNameText.text!
+    }
+    
+    @IBAction func saveChangesPressed(_ sender: Any) {
+        if displayNameText.text != "" {
+            appDelegate.currentUser?.displayName = displayNameText.text!
+        }
+    }
+    
+    
+    @IBAction func deleteProfilePressed(_ sender: Any) {
+    }
+    
+    @IBAction func resetPasswordPressed(_ sender: Any) {
+    }
+    
 }
