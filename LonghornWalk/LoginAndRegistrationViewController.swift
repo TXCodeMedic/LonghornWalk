@@ -204,10 +204,10 @@ class LoginAndRegistrationViewController: UIViewController {
                 //MARK: FIRESTORE USER INIT
                 //                    var ref: DocumentReference? = nil
                 
-                var joinDate = Date()
-                var formatter = DateFormatter()
-                formatter.dateFormat = "dd-MM-yy"
-                var formattedDate = formatter.string(from: joinDate)
+//                var joinDate = Date()
+//                var formatter = DateFormatter()
+//                formatter.dateFormat = "dd-MM-yy"
+//                var formattedDate = formatter.string(from: joinDate)
                 
 //                var user = UserProfile(
 //                    userEmail: email,

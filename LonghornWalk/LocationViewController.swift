@@ -103,53 +103,80 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
         locationAddressLabel.text = UTLocationList[index].locationAddress
     }
     
-    //MARK: LOCATION VERIFICATION
-    @IBAction func locationVerification(_ sender: Any) {
+    
+    func checkLocation() -> Bool {
         // Set range of UTLocation Pin +/- 10%
         // Latitude
-        var UTLocationLatitudeMinus = (UTLocationList[locationIndex].locationLatitude - (UTLocationList[locationIndex].locationLatitude * 0.1))
-        
-        var UTLocationLatitudePlus = (UTLocationList[locationIndex].locationLatitude + (UTLocationList[locationIndex].locationLatitude * 0.1))
-        
-        //Longitude
-        var UTLocationLongitudeMinus = (UTLocationList[locationIndex].locationLongitude - (UTLocationList[locationIndex].locationLongitude * 0.1))
-        
-        var UTLocationLongitudePlus = (UTLocationList[locationIndex].locationLongitude + (UTLocationList[locationIndex].locationLongitude * 0.1))
-        
-        print("______________________Long______________________")
-        print("\nlower bound: \(UTLocationLongitudeMinus)")
-        print("user long: \(self.userLong)")
-        print("upper bound: \(UTLocationLongitudePlus)\n")
-        
-        print("______________________Lat______________________")
-        print("\nlower bound: \(UTLocationLatitudeMinus)")
-        print("user lat: \(self.userLat)")
-        print("upper lat: \(UTLocationLatitudePlus)\n")
-        
-        if ((self.userLat >= UTLocationLatitudeMinus) && (self.userLat <= UTLocationLatitudePlus)){
-            print("User is in range of lat")
-            // Made abs to check --> look for other options
-            if ((abs(self.userLong) >= abs(UTLocationLongitudeMinus)) && (abs(self.userLong) <= abs(UTLocationLongitudePlus))){
-                print("User is in range of long")
-                print("User is at the location")
-                
-                // add location to core data and add score
-                
-                let newLocation = UTLocationList[locationIndex]
-                
-                print(newLocation)
-//                let mainVC = delegate as! addtoCoreData
-//                mainVC.storeLocation(location: newLocation)
-                // update the view
-              
-                
-            } else {
-                print("Wrong long")}
-                print("User is NOT at the location")
+        print("checked location you good homie")
+        return true
+//        let UTLocationLatitudeMinus = (UTLocationList[locationIndex].locationLatitude - (UTLocationList[locationIndex].locationLatitude * 0.1))
+//
+//        let UTLocationLatitudePlus = (UTLocationList[locationIndex].locationLatitude + (UTLocationList[locationIndex].locationLatitude * 0.1))
+//
+//        //Longitude
+//        let UTLocationLongitudeMinus = (UTLocationList[locationIndex].locationLongitude - (UTLocationList[locationIndex].locationLongitude * 0.1))
+//
+//        let UTLocationLongitudePlus = (UTLocationList[locationIndex].locationLongitude + (UTLocationList[locationIndex].locationLongitude * 0.1))
+//
+//        print("______________________Long______________________")
+//        print("\nlower bound: \(UTLocationLongitudeMinus)")
+//        print("user long: \(self.userLong)")
+//        print("upper bound: \(UTLocationLongitudePlus)\n")
+//
+//        print("______________________Lat______________________")
+//        print("\nlower bound: \(UTLocationLatitudeMinus)")
+//        print("user lat: \(self.userLat)")
+//        print("upper lat: \(UTLocationLatitudePlus)\n")
+//
+//        if ((self.userLat >= UTLocationLatitudeMinus) && (self.userLat <= UTLocationLatitudePlus)){
+//            print("User is in range of lat")
+//            // Made abs to check --> look for other options
+//            if ((abs(self.userLong) >= abs(UTLocationLongitudeMinus)) && (abs(self.userLong) <= abs(UTLocationLongitudePlus))){
+//                print("User is in range of long")
+//                print("User is at the location")
+//
+//
+//                return true
+//
+//
+//            } else {
+//                print("Wrong long")
+//                return false
+//
+//            }
+//
+//        }
+//        else{
+//            print("Wrong Lat")
+//            print("User is NOT at the location")
+//        }
+//        return false
+    }
+    
+    
+    
+    //MARK: LOCATION VERIFICATION
+    @IBAction func locationVerification(_ sender: Any) {
+        print("location verification button pressed")
+        if checkLocation() == true{
+            //add location to core data
+            let newLocation = UTLocationList[locationIndex]
+            let mainVC = delegate as! addtoCoreData
+            mainVC.storeLocation(location: newLocation)
+            // update the table view
+            mainVC.refreshTable()
+            
+            // add points to userScore in firestore DB
         }
         else{
-            print("Wrong Lat")
-            print("User is NOT at the location")
+            print("ay you you lyin")
+            // user is not at location
+            // show an error message
         }
+                
     }
+        
+    
+    
+    
 }
