@@ -45,6 +45,9 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
     var userLong:Double = 0
     var userLat:Double = 0
     
+    var delegate: UIViewController!
+    
+    
     override func viewDidLoad() {
         showImage(index: locationIndex)
         
@@ -129,6 +132,17 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
             if ((abs(self.userLong) >= abs(UTLocationLongitudeMinus)) && (abs(self.userLong) <= abs(UTLocationLongitudePlus))){
                 print("User is in range of long")
                 print("User is at the location")
+                
+                // add location to core data and add score
+                
+                let newLocation = UTLocationList[locationIndex]
+                
+                print(newLocation)
+//                let mainVC = delegate as! addtoCoreData
+//                mainVC.storeLocation(location: newLocation)
+                // update the view
+              
+                
             } else {
                 print("Wrong long")}
                 print("User is NOT at the location")

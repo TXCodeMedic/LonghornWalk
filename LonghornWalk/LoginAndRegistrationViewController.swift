@@ -1,11 +1,10 @@
 import UIKit
 import FirebaseFirestore
 import FirebaseAuth
-import CoreData
 
 
-let appDelegate = UIApplication.shared.delegate as! AppDelegate
-let context = appDelegate.persistentContainer.viewContext
+
+
 
 class LoginAndRegistrationViewController: UIViewController {
     
@@ -210,17 +209,17 @@ class LoginAndRegistrationViewController: UIViewController {
                 formatter.dateFormat = "dd-MM-yy"
                 var formattedDate = formatter.string(from: joinDate)
                 
-                var user = UserProfile(
-                    userEmail: email,
-                    password: password,
-                    displayName: email,
-                    points: 0,
-                    joinDate: formattedDate
-                )
-                
-                user.addUser()
-                
-                appDelegate.currentUser = user
+//                var user = UserProfile(
+//                    userEmail: email,
+//                    password: password,
+//                    displayName: email,
+//                    points: 0,
+//                    joinDate: formattedDate
+//                )
+//
+//                user.addUser()
+//
+//                appDelegate.currentUser = user
                 
                 //                    ref = self.db.collection("users").addDocument(data: [
                 //                        "email": email,
@@ -266,17 +265,7 @@ class LoginAndRegistrationViewController: UIViewController {
         
     }
     
-    // save to core data
-    func saveContext () {
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch {
-                let nserror = error as NSError
-                NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
-            }
-        }
-    }
+    
     
     //MARK: REGISTRATION PATH
     func registerCheck() -> String?

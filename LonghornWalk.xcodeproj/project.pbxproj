@@ -30,6 +30,7 @@
 		A2534E3F292D5EF700472521 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = A2534E3E292D5EF700472521 /* FirebaseFirestore */; };
 		CE03AA762931DB7D0091783C /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE03AA752931DB7D0091783C /* EditProfileViewController.swift */; };
 		CEAED7D1292DDECF007D87D2 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEAED7D0292DDECE007D87D2 /* UserProfile.swift */; };
+		F34237552935C11A009A477B /* myCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34237542935C11A009A477B /* myCellTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		A24E408E29219BF4004717B2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CE03AA752931DB7D0091783C /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		CEAED7D0292DDECE007D87D2 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		F34237542935C11A009A477B /* myCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myCellTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 				A24E406D29216238004717B2 /* SceneDelegate.swift */,
 				CE03AA752931DB7D0091783C /* EditProfileViewController.swift */,
 				A24E407129216238004717B2 /* Main.storyboard */,
+				F34237542935C11A009A477B /* myCellTableViewCell.swift */,
 				A24E407729216239004717B2 /* Assets.xcassets */,
 				A24E407929216239004717B2 /* LaunchScreen.storyboard */,
 				A24E407C29216239004717B2 /* Info.plist */,
@@ -204,6 +207,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE03AA762931DB7D0091783C /* EditProfileViewController.swift in Sources */,
+				F34237552935C11A009A477B /* myCellTableViewCell.swift in Sources */,
 				A24E40832921677E004717B2 /* LoginAndRegistrationViewController.swift in Sources */,
 				A24E406C29216238004717B2 /* AppDelegate.swift in Sources */,
 				A24E4087292167BD004717B2 /* RankingViewController.swift in Sources */,
