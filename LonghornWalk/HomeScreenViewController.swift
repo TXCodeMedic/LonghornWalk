@@ -89,7 +89,7 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     // clear core data
     func clearCoreData() {
         
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Person")
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Locations")
         var fetchedResults:[NSManagedObject]
         
         do {
@@ -98,7 +98,7 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
             if fetchedResults.count > 0 {
                 for result:AnyObject in fetchedResults {
                     context.delete(result as! NSManagedObject)
-                    print("\(result.value(forKey: "name")!) has been deleted")
+                    print("\(result.value(forKey: "locationName")!) has been deleted")
                 }
             }
             saveContext()
