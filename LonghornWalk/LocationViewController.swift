@@ -17,7 +17,7 @@ let CPE = UTLocation(name: "McKetta Department of Chemical Engineering", address
 let BCR = UTLocation(name: "Bulko's Classroom", address: "GDC 5.302 ", latitude: 30.2864251, longitude: -97.7365888)
 
 
-let UTLocationList = [PCL,ART,MAI,RLM,UNB,GRE,BUR,WEL,RSC,WEL,RSC,CPE,BCR]
+let UTLocationList = [PCL,ART,MAI,RLM,UNB,GRE,BUR,WEL,RSC,CPE,BCR]
 
 class UTLocation {
     var locationName:String
