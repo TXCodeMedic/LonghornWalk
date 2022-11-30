@@ -9,15 +9,15 @@ let ART = UTLocation(name: "Department of Art and Art History", address: "2301 S
 let MAI = UTLocation(name: "The University of Texas at Austin Main Building", address: "110 Inner Campus Drive, Austin, TX, 78712", latitude: 30.2859129, longitude: -97.7393780)
 let RLM = UTLocation(name: "Physics, Math, and Astronomy Building", address: "2515 Speedway, Austin, TX, 78712", latitude:30.2890428, longitude:-97.7366309)
 let UNB = UTLocation(name: "Texas Union", address: "2308 Whitis Ave, Austin, TX 78712", latitude: 30.2866300, longitude: -97.7410396)
-let GRE = UTLocation(name: "Gregory Gym", address: "2101 Speedway, Austin, TX, 787512", latitude: 30.2842791, longitude: -97.7367789)
+let GRE = UTLocation(name: "Gregory Gym", address: "2101 Speedway, Austin, TX, 78712", latitude: 30.2842791, longitude: -97.7367789)
 let BUR = UTLocation(name: "Burdine Hall", address: "2505 University Ave, Austin, TX 78712", latitude: 30.2888324, longitude: -97.7383031)
-let WEL = UTLocation(name: <#T##String#>, address: <#T##String#>, latitude: <#T##CLLocationDegrees#>, longitude: <#T##CLLocationDegrees#>)
-let RSC = UTLocation(name: <#T##String#>, address: <#T##String#>, latitude: <#T##CLLocationDegrees#>, longitude: <#T##CLLocationDegrees#>)
-let CPE = UTLocation(name: <#T##String#>, address: <#T##String#>, latitude: <#T##CLLocationDegrees#>, longitude: <#T##CLLocationDegrees#>)
-let BCR = UTLocation(name: <#T##String#>, address: <#T##String#>, latitude: <#T##CLLocationDegrees#>, longitude: <#T##CLLocationDegrees#>)
+let WEL = UTLocation(name: "Robert A. Welch Hall", address: "105 E 24th St, Austin, TX, 78712", latitude: 30.2870189, longitude: -97.7375652)
+let RSC = UTLocation(name: "Recreational Sports Center", address: "2001 San Jacinto Blvd, Austin, TX, 78712", latitude: 30.2816054, longitude: -97.7327600)
+let CPE = UTLocation(name: "McKetta Department of Chemical Engineering", address: "200 E Dean Keeton St", latitude: 30.2901878, longitude: -97.7364628)
+let BCR = UTLocation(name: "Bulko's Classroom", address: "GDC 5.302 ", latitude: 30.2864251, longitude: -97.7365888)
 
 
-let UTLocationList = [PCL,ART,MAI,RLM]
+let UTLocationList = [PCL,ART,MAI,RLM,UNB,GRE,BUR,WEL,RSC,WEL,RSC,CPE,BCR]
 
 class UTLocation {
     var locationName:String
@@ -44,7 +44,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var imageView: UIImageView!
     
     // Declare variables
-    let locationCount = 4
+    let locationCount = 11
     var locationIndex:Int = 0
     let locationManager = CLLocationManager()
     var userLong:Double = 0
@@ -94,7 +94,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBAction func previousButtonIsPressed(_ sender: Any) {
         if locationIndex == 0{
-            locationIndex = 3
+            locationIndex = 10
         } else {
             locationIndex -= 1
         }
