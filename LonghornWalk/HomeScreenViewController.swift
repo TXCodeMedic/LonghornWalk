@@ -146,6 +146,8 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView.delegate = self
         tableView.dataSource = self
         
+        print("hello")
+        
         clearCoreData()
     
        
