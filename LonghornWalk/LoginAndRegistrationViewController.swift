@@ -30,6 +30,12 @@ class LoginAndRegistrationViewController: UIViewController {
         
         super.viewDidLoad()
         
+        if UserDefaults.standard.bool(forKey: "darkMode") == false {
+            UIApplication.shared.windows.first?.overrideUserInterfaceStyle = .light
+        } else {
+            UIApplication.shared.windows.first?.overrideUserInterfaceStyle = .dark
+        }
+        
         passwordTextField.isSecureTextEntry = true
         confirmPasswordTextField.isSecureTextEntry = true
         

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		46EC9A812936C11D00F50942 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46EC9A802936C11D00F50942 /* SettingsViewController.swift */; };
+		46EC9A832936C15A00F50942 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46EC9A822936C15A00F50942 /* SettingsTableViewCell.swift */; };
+		46EC9A852936C19B00F50942 /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46EC9A842936C19B00F50942 /* SwitchTableViewCell.swift */; };
+		46EC9A872936CAC200F50942 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46EC9A862936CAC200F50942 /* LaunchScreenViewController.swift */; };
 		A24E406C29216238004717B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24E406B29216238004717B2 /* AppDelegate.swift */; };
 		A24E406E29216238004717B2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24E406D29216238004717B2 /* SceneDelegate.swift */; };
 		A24E407329216238004717B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A24E407129216238004717B2 /* Main.storyboard */; };
@@ -34,6 +38,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		46EC9A802936C11D00F50942 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		46EC9A822936C15A00F50942 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
+		46EC9A842936C19B00F50942 /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTableViewCell.swift; sourceTree = "<group>"; };
+		46EC9A862936CAC200F50942 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		A24E406829216238004717B2 /* LonghornWalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LonghornWalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A24E406B29216238004717B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A24E406D29216238004717B2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -103,6 +111,10 @@
 				A24E406D29216238004717B2 /* SceneDelegate.swift */,
 				CE03AA752931DB7D0091783C /* EditProfileViewController.swift */,
 				A24E407129216238004717B2 /* Main.storyboard */,
+				46EC9A862936CAC200F50942 /* LaunchScreenViewController.swift */,
+				46EC9A802936C11D00F50942 /* SettingsViewController.swift */,
+				46EC9A822936C15A00F50942 /* SettingsTableViewCell.swift */,
+				46EC9A842936C19B00F50942 /* SwitchTableViewCell.swift */,
 				F34237542935C11A009A477B /* myCellTableViewCell.swift */,
 				A24E407729216239004717B2 /* Assets.xcassets */,
 				A24E407929216239004717B2 /* LaunchScreen.storyboard */,
@@ -211,12 +223,16 @@
 				A24E40832921677E004717B2 /* LoginAndRegistrationViewController.swift in Sources */,
 				A24E406C29216238004717B2 /* AppDelegate.swift in Sources */,
 				A24E4087292167BD004717B2 /* RankingViewController.swift in Sources */,
+				46EC9A832936C15A00F50942 /* SettingsTableViewCell.swift in Sources */,
 				A24E406E29216238004717B2 /* SceneDelegate.swift in Sources */,
 				A24E408D29218917004717B2 /* HomeScreenViewController.swift in Sources */,
 				A24E407629216238004717B2 /* LonghornWalk.xcdatamodeld in Sources */,
+				46EC9A852936C19B00F50942 /* SwitchTableViewCell.swift in Sources */,
 				A24E408B292167D6004717B2 /* UserProfileViewController.swift in Sources */,
 				CEAED7D1292DDECF007D87D2 /* UserProfile.swift in Sources */,
 				A24E4089292167C8004717B2 /* LocationViewController.swift in Sources */,
+				46EC9A872936CAC200F50942 /* LaunchScreenViewController.swift in Sources */,
+				46EC9A812936C11D00F50942 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
