@@ -57,17 +57,41 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
         showImage(index: locationIndex)
         
         super.viewDidLoad()
+        
+        // send a notification
+        let content = UNMutableNotificationContent()
+        content.title = "Hey Longhorn!"
+        content.subtitle = "Wanna explore?"
+        content.body = "Check out this new location!"
+        content.sound = UNNotificationSound.default
+        // create trigger
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
+
+        // combine into a request
+        let request = UNNotificationRequest(identifier: "myNotification", content: content, trigger: trigger)
+        // send request
+        UNUserNotificationCenter.current().add(request)
+        print("sent request")
+        
+        
         locationManager.requestWhenInUseAuthorization()
         var currentLoc: CLLocation!
         print("Ask for permission")
         if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
            CLLocationManager.authorizationStatus() == .authorizedAlways) {
             print("All Set")
-            currentLoc = locationManager.location
-            print("lat \(currentLoc.coordinate.latitude)")
-            userLat = currentLoc.coordinate.latitude
-            print("long \(currentLoc.coordinate.longitude)\n\n\n\n")
-            userLong = currentLoc.coordinate.longitude
+            
+            if locationManager.location != nil{
+                currentLoc = locationManager.location
+                print("lat \(currentLoc.coordinate.latitude)")
+                userLat = currentLoc.coordinate.latitude
+                print("long \(currentLoc.coordinate.longitude)\n\n\n\n")
+                userLong = currentLoc.coordinate.longitude
+            }else{
+                // TO DO: debug why is locationManager.location nil?
+                print("ERROR with LocationManager permissions")
+            }
+            
         }
     }
     
@@ -155,18 +179,28 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
     @IBAction func locationVerification(_ sender: Any) {
         print("location verification button pressed")
         if checkLocation() == true{
-            //add location to core data
             let newLocation = UTLocationList[locationIndex]
             let mainVC = delegate as! addtoCoreData
-            mainVC.storeLocation(location: newLocation)
-            // update the table view
-            mainVC.refreshTable()
+            // check if location is already in table view
+            if mainVC.isRepeatingLocation(location: newLocation) != true{
+                //add location to core data
+                mainVC.storeLocation(location: newLocation)
+                // update the table view
+                mainVC.refreshTable()
+                
+                // TO DO: add points to userScore in firestore DB
+                
+            } else{
+                print("is repeating location, will not be adding to table view")
+            }
             
-            // add points to userScore in firestore DB
+          
         } else {
-            print("ay you you lyin")
+            
             // user is not at location
             // show an error message
+            print("user is not at location")
+            
         }
     }
         

@@ -9,40 +9,79 @@ import UIKit
 import CoreData
 import CoreMedia
 import FirebaseAuth
+import UserNotifications
 
 
 let appDelegate = UIApplication.shared.delegate as! AppDelegate
 let context = appDelegate.persistentContainer.viewContext
+
 // identifier for a cell from tableView
 let textCellIdentifier = "textCellIdentifier"
 
 // segue identifier for Location VC
 let locationSegue = "locationVCsegue"
 
-
-
 public class Location{
-   
     var locationName:String
-
-
     init(){
         
         locationName = ""
       
     }
-    
 }
-
-
 
 protocol addtoCoreData{
     func storeLocation(location:UTLocation)
     
     func refreshTable()
+    
+    func isRepeatingLocation(location:UTLocation)-> Bool
+    
 }
 
 class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, addtoCoreData {
+    
+    //Outlets
+    @IBOutlet weak var usernameLabel: UILabel!
+
+    @IBOutlet weak var scoreLabel: UILabel!
+    
+    @IBOutlet weak var levelLabel: UILabel!
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    
+    @IBOutlet weak var profileButton: UIButton!
+  
+    @IBOutlet weak var locationButton: UIButton!
+    
+    //Variables
+
+    var delegate: UIViewController!
+    
+   
+
+            
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        // ask for permission for local notifications
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]){
+            granted, error in
+            if granted{
+                print("all set!")
+            }else if let error = error{
+                print(error.localizedDescription)
+            }
+        }
+    
+       
+    }
+    
+    // CORE DATA:
     
     // store location in core data
     func storeLocation(location: UTLocation) {
@@ -50,9 +89,27 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         let newLoc = NSEntityDescription.insertNewObject(forEntityName: "Locations", into: context)
     
         newLoc.setValue(location.locationName, forKey: "locationName")
-        newLoc.setValue(location.locationAddress, forKey: "locationAddress")
+//        newLoc.setValue(location.locationAddress, forKey: "locationAddress")
         //commit the changes
         saveContext()
+    }
+    // refresh table view
+    func refreshTable() {
+        self.tableView.reloadData()
+    }
+    
+    // check if location is already in tableview
+    func isRepeatingLocation(location: UTLocation) -> Bool {
+        let fetchedResults = retrieveLocation()
+        var itemIsRepeated = false
+        
+        for item in fetchedResults {
+            if item.value(forKey: "locationName") as! String == location.locationName{
+                itemIsRepeated = true
+            }
+        }
+        print("item is repeated = \(itemIsRepeated)")
+        return itemIsRepeated
     }
     
     // save to core data
@@ -112,51 +169,12 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         
     }
     
-    func refreshTable() {
-        self.tableView.reloadData()
-    }
-    
-    
 
-    
-    
-    //Outlets
-    @IBOutlet weak var usernameLabel: UILabel!
-    @IBOutlet weak var rankingLabel: UILabel!
-    @IBOutlet weak var scoreLabel: UILabel!
-    
-    
-    @IBOutlet weak var tableView: UITableView!
-    
-    
-    @IBOutlet weak var profileButton: UIButton!
-    @IBOutlet weak var rankingButton: UIButton!
-    @IBOutlet weak var locationButton: UIButton!
-    
-    //Variables
-
-    var delegate: UIViewController!
-    
-   
-
-            
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
-        
-        print("hello")
-        
-        clearCoreData()
-    
-       
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == locationSegue,
            let nextVC = segue.destination as? LocationViewController{
-            // PizzaCreation VC's delegate points here
+            
             nextVC.delegate = self
             
         }
@@ -171,6 +189,7 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     
 
     
+    
     // display of the cell contents
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let fetchedResults = retrieveLocation()
@@ -179,7 +198,7 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         let cell = tableView.dequeueReusableCell(withIdentifier: textCellIdentifier, for: indexPath) as! myCellTableViewCell
     
        
-        cell.locationName.text = "Location: \(fetchedResults[row].value(forKey: "locationName")!)"
+        cell.locationName.text = "\(fetchedResults[row].value(forKey: "locationName")!)"
         return cell
     }
     
@@ -188,10 +207,10 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     
     
     
-    
     @IBAction func onLogoutPressed(_ sender: Any) {
         do {
-            
+            // clear this user's locations visited
+            clearCoreData()
             // sign out of firebase auth
             try Auth.auth().signOut()
             self.dismiss(animated: true)
@@ -199,5 +218,9 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
             print("Sign Out error")
         }
     }
+    
+    
+    
+    
     
 }
