@@ -179,17 +179,22 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
     @IBAction func locationVerification(_ sender: Any) {
         print("location verification button pressed")
         if checkLocation() == true{
-            
-            // !!! TO DO: check if location is already in table view
-            
-            //add location to core data
             let newLocation = UTLocationList[locationIndex]
             let mainVC = delegate as! addtoCoreData
-            mainVC.storeLocation(location: newLocation)
-            // update the table view
-            mainVC.refreshTable()
+            // check if location is already in table view
+            if mainVC.isRepeatingLocation(location: newLocation) != true{
+                //add location to core data
+                mainVC.storeLocation(location: newLocation)
+                // update the table view
+                mainVC.refreshTable()
+                
+                // TO DO: add points to userScore in firestore DB
+                
+            } else{
+                print("is repeating location, will not be adding to table view")
+            }
             
-            // add points to userScore in firestore DB
+          
         } else {
             
             // user is not at location

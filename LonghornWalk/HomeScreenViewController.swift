@@ -34,6 +34,9 @@ protocol addtoCoreData{
     func storeLocation(location:UTLocation)
     
     func refreshTable()
+    
+    func isRepeatingLocation(location:UTLocation)-> Bool
+    
 }
 
 class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, addtoCoreData {
@@ -86,13 +89,27 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         let newLoc = NSEntityDescription.insertNewObject(forEntityName: "Locations", into: context)
     
         newLoc.setValue(location.locationName, forKey: "locationName")
-        newLoc.setValue(location.locationAddress, forKey: "locationAddress")
+//        newLoc.setValue(location.locationAddress, forKey: "locationAddress")
         //commit the changes
         saveContext()
     }
     // refresh table view
     func refreshTable() {
         self.tableView.reloadData()
+    }
+    
+    // check if location is already in tableview
+    func isRepeatingLocation(location: UTLocation) -> Bool {
+        let fetchedResults = retrieveLocation()
+        var itemIsRepeated = false
+        
+        for item in fetchedResults {
+            if item.value(forKey: "locationName") as! String == location.locationName{
+                itemIsRepeated = true
+            }
+        }
+        print("item is repeated = \(itemIsRepeated)")
+        return itemIsRepeated
     }
     
     // save to core data
@@ -171,6 +188,7 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
 
+    
     
     // display of the cell contents
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
