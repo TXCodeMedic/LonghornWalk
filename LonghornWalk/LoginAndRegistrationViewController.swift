@@ -134,7 +134,17 @@ class LoginAndRegistrationViewController: UIViewController {
                 (authResult, error) in
 
                 if let error = error as NSError? {
-                    self.statusLabel.text = "\(error.localizedDescription)"
+                    //send alert to user for fail login
+                    let alert = UIAlertController(
+                        title: "Failed Login",
+                        message: error.localizedDescription,
+                        preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(
+                        title: "OK",
+                        style: .default))
+                    self.present(alert, animated: true)
+                    return
+                    
                 } else {
                     self.statusLabel.text = ""
                     UserProfile.loadUser(
@@ -291,7 +301,6 @@ class LoginAndRegistrationViewController: UIViewController {
             return "Email must be a UT email"
         }
         
-        
         // User does not meet requirements for entry. Send error alert
         return nil
     }
@@ -317,29 +326,6 @@ class LoginAndRegistrationViewController: UIViewController {
         // Make sure password entries are the same and fulfill FireBase standards
         return ( (passwordField1 == passwordField2) && (passwordField1.count >= 6) && (passwordField2.count >= 6) )
     }
-
-//    func checkUsernameRequirements(usernameRequest:String!) -> Bool{
-//        // Check for string size of username entry
-//        return ( (usernameRequest.count >= 6) && (usernameRequest.count <= 15) )
-//    }
-
-//    func checkForUniqueUsername(usernameEntry: String!) -> Bool{
-        // CHECK BACK ON THIS LATER
-//        // Look at users and make sure username entry is unique
-//        print("\nUnique Username Check\n")
-//        let db = Firestore.firestore()
-//        db.collection("users").getDocuments() { (querySnapshot, err) in
-//            if let err = err {
-//                print("Error getting documents: \(err)")
-//            } else {
-//                for document in querySnapshot!.documents {
-//                    print("\(document.documentID) => \(document.data())")
-//                }
-//            }
-//        }
-//        return true
-//
-//    }
 
     func checkForFilledFields(textFields: UITextField...) -> Bool{
         // Make sure all entry boxes are filled out
