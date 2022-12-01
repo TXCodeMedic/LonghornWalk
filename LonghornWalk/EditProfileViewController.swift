@@ -136,6 +136,9 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         appDelegate.currentUser?.saveUser()
     }
     
+    func uploadPhoto() {
+        // this function will upload the chosen profile picture to Firebase Storage /profilePictures
+    }
     
     
     @IBAction func deleteProfilePressed(_ sender: Any) {

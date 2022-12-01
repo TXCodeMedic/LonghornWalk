@@ -77,6 +77,9 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
                 print(error.localizedDescription)
             }
         }
+        // Check to see if a new day has passed
+        // If passed clear CoreData to refresh Locations
+        
     
        
     }
@@ -124,6 +127,11 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
+    func checkDate(){
+        // if date is different on Firestore, clear CoreData
+        
+    }
+    
     //retrieve from core data
     func retrieveLocation() -> [NSManagedObject] {
         
@@ -138,6 +146,7 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
             NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
             abort()
         }
+        print("fetchedResults")
         print((fetchedResults)!)
         
         return(fetchedResults)!

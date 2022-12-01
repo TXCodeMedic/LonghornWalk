@@ -41,8 +41,10 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var locationNameLabel: UILabel!
     @IBOutlet weak var locationAddressLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var hereButton: UIButton!
     
     // Declare variables
+    var recentlyVisitedLocations:[String] = []
     let locationCount = 11
     var locationIndex:Int = 0
     let locationManager = CLLocationManager()
@@ -119,7 +121,6 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
     //MARK: ShowImage()
     func showImage(index:Int){
         imageView.image = UIImage(named: "Image\(index)")
-        print(index)
         
         locationNameLabel.text = UTLocationList[index].locationName
         locationAddressLabel.text = UTLocationList[index].locationAddress
@@ -129,7 +130,6 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
     func checkLocation() -> Bool {
         // Set range of UTLocation Pin
         // Latitude
-        
         let UTLocationLatitudeMinus = (UTLocationList[locationIndex].locationLatitude - (UTLocationList[locationIndex].locationLatitude - 0.000000000000200))
 
         let UTLocationLatitudePlus = (UTLocationList[locationIndex].locationLatitude + (UTLocationList[locationIndex].locationLatitude + 0.000000000000200))
@@ -181,9 +181,12 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
                 // update the table view
                 mainVC.refreshTable()
                 
-                // TO DO: add points to userScore in firestore DB
+              // add points User object and then saveUser()
+                appDelegate.currentUser?.points += 10
+                appDelegate.currentUser?.saveUser()
                 
             } else{
+                // ADD ALERT SAYING ALREADY VISITED
                 print("is repeating location, will not be adding to table view")
             }
         } else {

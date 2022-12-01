@@ -207,6 +207,8 @@ class LoginAndRegistrationViewController: UIViewController {
                 print("No errors")
                 // Update user in Firestore
                 print("\nTEST ADDING NEW ENTRIES\n")
+                
+                
                 self.emailTextField.text = nil
                 self.passwordTextField.text = nil
                 self.confirmPasswordTextField.text = nil
