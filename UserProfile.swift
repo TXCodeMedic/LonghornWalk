@@ -46,37 +46,6 @@ class UserProfile {
         // https://console.firebase.google.com/u/1/project/longhornwalk-4abea/firestore/data/~2Fusers
         let db = Firestore.firestore()
         // get user info from DB
-        
-//        Task
-//        {
-//            do
-//            {
-//                userDocs = try await db.collection("users").getDocuments();
-//                semaphore.signal()
-//            }
-//            catch
-//            {
-//                print(error)
-//            }
-//        }
-//
-//        semaphore.wait()
-//
-//        for doc in userDocs!.documents
-//        {
-//            if (
-//                doc["email"] as? String == email
-//            ) {
-//                // this is our current user that is logged in
-//                user = UserProfile(
-//                    userEmail: doc["email"] as? String ?? "",
-//                    password: doc["password"] as? String ?? "",
-//                    displayName: doc["displayName"] as? String ?? "",
-//                    points: doc["score"] as? Int ?? 0,
-//                    joinDate: doc["joinDate"] as? String ?? ""
-//                )
-//           }
-//        }
 
         
         db.collection("users").getDocuments { snapshot, error in
@@ -118,36 +87,40 @@ class UserProfile {
         }
     }
     
-    
-    func addUser() {
-        //MARK: FIRESTORE USER INIT
+    func saveUser() {
+        // https://console.firebase.google.com/u/1/project/longhornwalk-4abea/firestore/data/~2Fusers
         let db = Firestore.firestore()
-        var ref: DocumentReference? = nil
+        // get user info from DB
+
         
-        var joinDate = Date()
-        var formatter = DateFormatter()
-        formatter.dateFormat = "dd-MM-yy"
-        var formattedDate = formatter.string(from: joinDate)
-        
-        ref = db.collection("users").addDocument(data: [
-            "email": "\(userEmail)",
-            "score": points,
-            "joinDate": formattedDate,
-            "friendsList": [],
-            "locationsVisited": [],
-            "profilePicturePath": "",
-            "settingsPreferences": ""])
-        {err in
-            if let err = err {
-                print("Error adding document \(err)\n")
-            } else {
-                print("Document added with ID: \(ref!.documentID)\n")
+        db.collection("users").getDocuments { snapshot, error in
+            // no error
+            if error == nil {
+                // retrieve data from DB
+                if let snapshot = snapshot{
+
+                    // loop through users in data base
+                    for doc in snapshot.documents{
+                        // get data from user that matches currently logged in user
+                        if (
+                            doc["email"] as? String == self.userEmail
+                        ) {
+                            doc.reference.updateData(["displayName": self.displayName, "score": self.points])
+    
+                            break
+                        }
+                    }
+                    // status
+                    print("in login path: end of loop through Firestore DB, updated current user to current user that is logged in")
+                }
+            }
+            else{
+                print("error retrieving from DB")
             }
         }
     }
     
-    // CHANGE addDocument to updateDocument somehow so it's not adding a new entry everytime for updating information
-    func saveUser() {
+    func addUser() {
         //MARK: FIRESTORE USER INIT
         let db = Firestore.firestore()
         var ref: DocumentReference? = nil

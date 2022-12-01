@@ -12,7 +12,6 @@ import CoreData
 
 class EditProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    static var selectedImage: UIImage!
 
     let picker = UIImagePickerController()
     
@@ -34,24 +33,28 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                 print(error.localizedDescription)
             }
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        profilePic.image = appDelegate.currentUser?.profilePic
         displayNameText.text = appDelegate.currentUser?.displayName
+        
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let chosenImage = info[.originalImage] as! UIImage
 //        profilePic.contentMode = .scaleAspectFit
         profilePic.image = chosenImage
-        EditProfileViewController.selectedImage = chosenImage
         appDelegate.currentUser?.profilePic = chosenImage
-        let jpegImageData  = chosenImage.jpegData(compressionQuality: 1.0)
-        let entityName =  NSEntityDescription.entity(forEntityName: "CoreDataUser", in: context)!
-        let image = NSManagedObject(entity: entityName, insertInto: context)
-        image.setValue(jpegImageData, forKeyPath: "profilePic")
-        do {
-          try context.save()
-        } catch let error as NSError {
-          print("Could not save. \(error), \(error.userInfo)")
-        }
+//        let jpegImageData  = chosenImage.jpegData(compressionQuality: 1.0)
+//        let entityName =  NSEntityDescription.entity(forEntityName: "CoreDataUser", in: context)!
+//        let image = NSManagedObject(entity: entityName, insertInto: context)
+//        image.setValue(jpegImageData, forKeyPath: "profilePic")
+//        do {
+//          try context.save()
+//        } catch let error as NSError {
+//          print("Could not save. \(error), \(error.userInfo)")
+//        }
         dismiss(animated: true)
     }
     
@@ -129,9 +132,8 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     }
     
     @IBAction func saveChangesPressed(_ sender: Any) {
-        if displayNameText.text != "" {
-            appDelegate.currentUser?.displayName = displayNameText.text!
-        }
+        appDelegate.currentUser?.displayName = displayNameText.text!
+        appDelegate.currentUser?.saveUser()
     }
     
     
