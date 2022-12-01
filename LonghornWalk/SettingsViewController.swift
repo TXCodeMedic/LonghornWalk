@@ -15,6 +15,7 @@ struct Section {
 enum SettingsOptionType {
     case staticCell(model: SettingsOption)
     case switchCell(model: SettingsSwitchOption)
+    case soundSwitchCell(model: SettingsSwitchOption)
 }
 
 struct SettingsSwitchOption {
@@ -38,6 +39,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         let table = UITableView(frame: .zero, style: .grouped)
         table.register(SettingsTableViewCell.self, forCellReuseIdentifier: SettingsTableViewCell.self.identifier)
         table.register(SwitchTableViewCell.self, forCellReuseIdentifier: SwitchTableViewCell.self.identifier)
+        table.register(SoundSwitchTableViewCell.self, forCellReuseIdentifier: SoundSwitchTableViewCell.self.identifier)
+
 
         return table
     }()
@@ -59,6 +62,11 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             .switchCell(model: SettingsSwitchOption(title: "Dark Mode", icon: (UIImage(systemName: "moon.circle")), iconBackgroundColor: .systemIndigo, handler: {
                 print("Switch")
             }, isOn: UserDefaults.standard.bool(forKey: "darkMode"))),
+            
+            .soundSwitchCell(model: SettingsSwitchOption(title: "Sound", icon: (UIImage(systemName: "speaker.wave.3.fill")), iconBackgroundColor: .systemPink, handler: {
+                print("Switch")
+            }, isOn: UserDefaults.standard.bool(forKey: "sound")))
+            
         ]))
         
         models.append(Section(title: "Fonts", options: [
@@ -71,26 +79,31 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                     title: "System",
                     style: .default,
                     handler: {_ in UILabel.appearance(whenContainedInInstancesOf: [UIViewController.self]).font = UIFont.init(name: "San Francisco", size: 14)
+                        UserDefaults.standard.set("system", forKey: "font")
                     }))
                 controller.addAction(UIAlertAction(
                     title: "Courier",
                     style: .default,
                     handler: {_ in UILabel.appearance(whenContainedInInstancesOf: [UIViewController.self]).font = UIFont.init(name: "Courier", size: 14)
+                        UserDefaults.standard.set("courier", forKey: "font")
                     }))
                 controller.addAction(UIAlertAction(
                     title: "Futura",
                     style: .default,
                     handler: {_ in UILabel.appearance(whenContainedInInstancesOf: [UIViewController.self]).font = UIFont.init(name: "Futura", size: 14)
+                        UserDefaults.standard.set("futura", forKey: "font")
                     }))
                 controller.addAction(UIAlertAction(
                     title: "Papyrus",
                     style: .default,
                     handler: {_ in UILabel.appearance(whenContainedInInstancesOf: [UIViewController.self]).font = UIFont.init(name: "Papyrus", size: 14)
+                        UserDefaults.standard.set("papyrus", forKey: "font")
                     }))
                 controller.addAction(UIAlertAction(
                     title: "Times New Roman",
                     style: .default,
                     handler: {_ in UILabel.appearance(whenContainedInInstancesOf: [UIViewController.self]).font = UIFont.init(name: "Times New Roman", size: 14)
+                        UserDefaults.standard.set("timesNewRoman", forKey: "font")
                     }))
                 
                 self.present(controller, animated: true)
@@ -174,6 +187,12 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             }
             cell.configure(with: model)
             return cell
+        case .soundSwitchCell(model: let model):
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: SoundSwitchTableViewCell.identifier, for: indexPath) as? SoundSwitchTableViewCell else {
+                return UITableViewCell()
+            }
+            cell.configure(with: model)
+            return cell
         }
     }
     
@@ -184,6 +203,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         case .staticCell(let model):
             model.handler()
         case .switchCell(let model):
+            model.handler()
+        case .soundSwitchCell(model: let model):
             model.handler()
         }
     }
