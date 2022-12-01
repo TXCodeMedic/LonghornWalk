@@ -91,8 +91,6 @@ class UserProfile {
         // https://console.firebase.google.com/u/1/project/longhornwalk-4abea/firestore/data/~2Fusers
         let db = Firestore.firestore()
         // get user info from DB
-
-        
         db.collection("users").getDocuments { snapshot, error in
             // no error
             if error == nil {

@@ -8,6 +8,7 @@
 import UIKit
 import AVFoundation
 import CoreData
+import FirebaseAuth
 
 
 class EditProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -139,6 +140,15 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     
     
     @IBAction func deleteProfilePressed(_ sender: Any) {
+        let user = Auth.auth().currentUser
+
+        user?.delete { error in
+          if let error = error {
+            // An error happened.
+          } else {
+            // Account deleted.
+          }
+        }
     }
     
     @IBAction func resetPasswordPressed(_ sender: Any) {
