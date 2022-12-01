@@ -67,21 +67,6 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
         swipeRightRecognizer.direction = UISwipeGestureRecognizer.Direction.right
         self.view.addGestureRecognizer(swipeRightRecognizer)
         
-        // send a notification
-        let content = UNMutableNotificationContent()
-        content.title = "Hey Longhorn!"
-        content.subtitle = "Wanna explore?"
-        content.body = "Check out this new location!"
-        content.sound = UNNotificationSound.default
-        // create trigger
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
-        
-        // combine into a request
-        let request = UNNotificationRequest(identifier: "myNotification", content: content, trigger: trigger)
-        // send request
-        UNUserNotificationCenter.current().add(request)
-        print("sent request")
-        
         
         locationManager.requestWhenInUseAuthorization()
         var currentLoc: CLLocation!
