@@ -68,20 +68,24 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView.delegate = self
         tableView.dataSource = self
         
-        // ask for permission for local notifications
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]){
-            granted, error in
-            if granted{
-                print("all set!")
-            }else if let error = error{
-                print(error.localizedDescription)
-            }
-        }
-        // Check to see if a new day has passed
-        // If passed clear CoreData to refresh Locations
         
+        
+//        // ask for permission for local notifications
+//        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]){
+//            granted, error in
+//            if granted{
+//                print("all set!")
+//            }else if let error = error{
+//                print(error.localizedDescription)
+//            }
+//        }
+    }
     
-       
+    override func viewWillAppear(_ animated: Bool) {
+        
+        scoreLabel.text = "\(String(describing: appDelegate.currentUser?.points))"
+        print("\nlook here")
+        
     }
     
     // CORE DATA:

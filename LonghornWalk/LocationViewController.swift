@@ -182,8 +182,10 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
                 mainVC.refreshTable()
                 
               // add points User object and then saveUser()
-                appDelegate.currentUser?.points += 10
+                appDelegate.currentUser?.points += 25
                 appDelegate.currentUser?.saveUser()
+                
+                
                 
             } else{
                 // ADD ALERT SAYING ALREADY VISITED
