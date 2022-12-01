@@ -3,7 +3,7 @@ import CoreLocation
 import CoreData
 
 
-// MARK: UTLOCATION CLASS
+// MARK: UTLocation Class
 class UTLocation {
     var locationName:String
     var locationAddress:String
@@ -18,6 +18,7 @@ class UTLocation {
     }
 }
 
+//MARK: UT Locations
 let PCL = UTLocation(name:"Perry-Castañeda Library", address:"101 E 21st St, Austin, TX, 78712", latitude: 30.2826535, longitude: -97.7382112)
 let ART = UTLocation(name: "Department of Art and Art History", address: "2301 San Jacinto Blvd, Austin, TX, 78705", latitude: 30.2856605, longitude: -97.7334386)
 let MAI = UTLocation(name: "The University of Texas at Austin Main Building", address: "110 Inner Campus Drive, Austin, TX, 78712", latitude: 30.2859129, longitude: -97.7393780)
@@ -32,7 +33,7 @@ let BCR = UTLocation(name: "Bulko's Classroom", address: "GDC 5.302 ", latitude:
 
 let UTLocationList = [PCL,ART,MAI,RLM,UNB,GRE,BUR,WEL,RSC,CPE,BCR]
 
-// MARK: VIEWCONTROLLER CLASS
+// MARK: ViewController Class
 class LocationViewController: UIViewController, CLLocationManagerDelegate {
     
     // Outlets
@@ -50,11 +51,21 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
     
     var delegate: UIViewController!
     
+    //MARK: ViewDidLoad()
     override func viewDidLoad() {
         print("Inside LocationVC")
         showImage(index: locationIndex)
         
         super.viewDidLoad()
+        // swipe left
+        let swipeLeftRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(recognizeSwipeGesture(recognizer:)))
+        swipeLeftRecognizer.direction = UISwipeGestureRecognizer.Direction.left
+        self.view.addGestureRecognizer(swipeLeftRecognizer)
+        
+        // swipe right
+        let swipeRightRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(recognizeSwipeGesture(recognizer:)))
+        swipeRightRecognizer.direction = UISwipeGestureRecognizer.Direction.right
+        self.view.addGestureRecognizer(swipeRightRecognizer)
         
         // send a notification
         let content = UNMutableNotificationContent()
@@ -64,7 +75,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
         content.sound = UNNotificationSound.default
         // create trigger
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
-
+        
         // combine into a request
         let request = UNNotificationRequest(identifier: "myNotification", content: content, trigger: trigger)
         // send request
@@ -89,10 +100,10 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
                 // TO DO: debug why is locationManager.location nil?
                 print("ERROR with LocationManager permissions")
             }
-            
         }
     }
     
+    //MARK: LocationManager Update Locations
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
         print("locations = \(locValue.latitude) \(locValue.longitude)")
@@ -104,33 +115,32 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
         super.viewDidAppear(animated)
     }
     
-    // Location Change Button Functions
-    
-    // MARK: IMAGEVIEW FUNCTIONS
-    
-    @IBAction func nextButtonIsPressed(_ sender: Any) {
-        locationIndex = (locationIndex + 1) % locationCount
-        showImage(index: locationIndex)
-    }
-    
-    
-    @IBAction func previousButtonIsPressed(_ sender: Any) {
-        if locationIndex == 0{
-            locationIndex = 10
-        } else {
-            locationIndex -= 1
+    // MARK: Indexing / Gestures
+    @IBAction func recognizeSwipeGesture(recognizer: UISwipeGestureRecognizer){
+        if recognizer.direction == .right {
+            if locationIndex == 0{
+                locationIndex = 10
+            } else {
+                locationIndex -= 1
+            }
+            showImage(index: locationIndex)
         }
-        showImage(index: locationIndex)
+        if recognizer.direction == .left {
+            locationIndex = (locationIndex + 1) % locationCount
+            showImage(index: locationIndex)
+        }
     }
     
+    //MARK: ShowImage()
     func showImage(index:Int){
         imageView.image = UIImage(named: "Image\(index)")
+        print(index)
         
         locationNameLabel.text = UTLocationList[index].locationName
         locationAddressLabel.text = UTLocationList[index].locationAddress
     }
     
-    
+    //MARK: checkLocation()
     func checkLocation() -> Bool {
         // Set range of UTLocation Pin
         // Latitude
@@ -173,7 +183,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
         return false
     }
     
-    //MARK: LOCATION VERIFICATION
+    //MARK: Location Verification
     @IBAction func locationVerification(_ sender: Any) {
         print("location verification button pressed")
         if checkLocation() == true{
@@ -191,18 +201,10 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
             } else{
                 print("is repeating location, will not be adding to table view")
             }
-            
-          
         } else {
-            
             // user is not at location
             // show an error message
             print("user is not at location")
-            
         }
     }
-        
-    
-    
-    
 }
