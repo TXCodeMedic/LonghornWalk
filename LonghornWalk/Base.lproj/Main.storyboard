@@ -414,6 +414,7 @@
                         <outlet property="joinDateLabel" destination="PLD-AL-lzg" id="Zga-GF-N4m"/>
                         <outlet property="pointsLabel" destination="YeY-L7-rdf" id="Wfy-g1-5Gi"/>
                         <outlet property="profilePhoto" destination="aaV-8v-OU7" id="Ucb-Lu-y3c"/>
+                        <segue destination="8gE-AJ-gvo" kind="show" id="tzT-R2-VKA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DRP-KP-wbM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -487,7 +488,6 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Save Changes"/>
                                 <connections>
                                     <action selector="saveChangesPressed:" destination="8gE-AJ-gvo" eventType="touchUpInside" id="dom-SS-ds2"/>
-                                    <segue destination="fyf-51-3yb" kind="presentation" identifier="backToProfile" modalPresentationStyle="fullScreen" id="lDD-tz-xD4"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -534,14 +534,33 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="zn2-cR-Mmf"/>
+                    <connections>
+                        <segue destination="okQ-yk-kJQ" kind="show" id="xwM-MG-JrV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jcs-3Y-oPc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3181" y="-28"/>
+            <point key="canvasLocation" x="3021" y="3"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="bBp-2c-CcT">
+            <objects>
+                <viewController id="okQ-yk-kJQ" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ssa-gP-6fG">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="FoC-ZH-rUe"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="SJL-ah-K2r"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OKm-F1-ba5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4204" y="-117"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="lDD-tz-xD4"/>
+        <segue reference="tzT-R2-VKA"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="map" catalog="system" width="128" height="112"/>
