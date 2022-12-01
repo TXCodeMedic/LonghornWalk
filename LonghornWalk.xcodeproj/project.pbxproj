@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		461D70542938338400FB62FB /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461D70532938338400FB62FB /* LaunchScreenViewController.swift */; };
+		461D705629393C6B00FB62FB /* launchSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 461D705529393C6A00FB62FB /* launchSound.wav */; };
+		461D70582939412800FB62FB /* SoundSwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461D70572939412800FB62FB /* SoundSwitchTableViewCell.swift */; };
 		46777E9B29380018005C0BF9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46777E9A29380018005C0BF9 /* SettingsViewController.swift */; };
 		46777E9D2938006A005C0BF9 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46777E9C2938006A005C0BF9 /* SettingsTableViewCell.swift */; };
 		46777E9F29380073005C0BF9 /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46777E9E29380073005C0BF9 /* SwitchTableViewCell.swift */; };
@@ -37,6 +40,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		461D70532938338400FB62FB /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
+		461D705529393C6A00FB62FB /* launchSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = launchSound.wav; sourceTree = "<group>"; };
+		461D70572939412800FB62FB /* SoundSwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundSwitchTableViewCell.swift; sourceTree = "<group>"; };
 		46777E9A29380018005C0BF9 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		46777E9C2938006A005C0BF9 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		46777E9E29380073005C0BF9 /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchTableViewCell.swift; sourceTree = "<group>"; };
@@ -100,6 +106,7 @@
 		A24E406A29216238004717B2 /* LonghornWalk */ = {
 			isa = PBXGroup;
 			children = (
+				461D705529393C6A00FB62FB /* launchSound.wav */,
 				A24E406B29216238004717B2 /* AppDelegate.swift */,
 				A24E40822921677E004717B2 /* LoginAndRegistrationViewController.swift */,
 				A24E408C29218917004717B2 /* HomeScreenViewController.swift */,
@@ -112,9 +119,11 @@
 				46777E9A29380018005C0BF9 /* SettingsViewController.swift */,
 				46777E9C2938006A005C0BF9 /* SettingsTableViewCell.swift */,
 				46777E9E29380073005C0BF9 /* SwitchTableViewCell.swift */,
+				461D70572939412800FB62FB /* SoundSwitchTableViewCell.swift */,
 				F34237542935C11A009A477B /* myCellTableViewCell.swift */,
 				A24E407729216239004717B2 /* Assets.xcassets */,
 				A24E407929216239004717B2 /* LaunchScreen.storyboard */,
+				461D70532938338400FB62FB /* LaunchScreenViewController.swift */,
 				A24E407C29216239004717B2 /* Info.plist */,
 				A24E407429216238004717B2 /* LonghornWalk.xcdatamodeld */,
 				A24E408E29219BF4004717B2 /* GoogleService-Info.plist */,
@@ -205,6 +214,7 @@
 				A24E408F29219BF5004717B2 /* GoogleService-Info.plist in Resources */,
 				A24E407829216239004717B2 /* Assets.xcassets in Resources */,
 				A24E407329216238004717B2 /* Main.storyboard in Resources */,
+				461D705629393C6B00FB62FB /* launchSound.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,12 +232,14 @@
 				A24E4087292167BD004717B2 /* RankingViewController.swift in Sources */,
 				46777E9D2938006A005C0BF9 /* SettingsTableViewCell.swift in Sources */,
 				A24E406E29216238004717B2 /* SceneDelegate.swift in Sources */,
+				461D70582939412800FB62FB /* SoundSwitchTableViewCell.swift in Sources */,
 				A24E408D29218917004717B2 /* HomeScreenViewController.swift in Sources */,
 				A24E407629216238004717B2 /* LonghornWalk.xcdatamodeld in Sources */,
 				46777E9F29380073005C0BF9 /* SwitchTableViewCell.swift in Sources */,
 				A24E408B292167D6004717B2 /* UserProfileViewController.swift in Sources */,
 				CEAED7D1292DDECF007D87D2 /* UserProfile.swift in Sources */,
 				A24E4089292167C8004717B2 /* LocationViewController.swift in Sources */,
+				461D70542938338400FB62FB /* LaunchScreenViewController.swift in Sources */,
 				46777E9B29380018005C0BF9 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
