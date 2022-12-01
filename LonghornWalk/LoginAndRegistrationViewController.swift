@@ -13,9 +13,6 @@ class LoginAndRegistrationViewController: UIViewController {
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var passwordLabel: UILabel!
     @IBOutlet weak var confirmPasswordLabel: UILabel!
-    
-    @IBOutlet weak var statusLabel: UILabel!
-    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
@@ -146,7 +143,6 @@ class LoginAndRegistrationViewController: UIViewController {
                     return
                     
                 } else {
-                    self.statusLabel.text = ""
                     UserProfile.loadUser(
                         email: email
                     )
@@ -206,13 +202,11 @@ class LoginAndRegistrationViewController: UIViewController {
             
             if let error = error as NSError? {
                 print("\nThere are errors for Registration\n")
-                self.statusLabel.text = "\(error.localizedDescription)"
             } else {
                 // This is successful login
                 print("No errors")
                 // Update user in Firestore
                 print("\nTEST ADDING NEW ENTRIES\n")
-                self.statusLabel.text = ""
                 self.emailTextField.text = nil
                 self.passwordTextField.text = nil
                 self.confirmPasswordTextField.text = nil
