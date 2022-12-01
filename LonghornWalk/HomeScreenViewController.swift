@@ -86,6 +86,7 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         scoreLabel.text = "\(String(describing: appDelegate.currentUser?.points))"
         print("\nlook here")
         
+        
     }
     
     // CORE DATA:
