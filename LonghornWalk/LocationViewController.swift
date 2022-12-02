@@ -55,12 +55,6 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
     
     //MARK: ViewDidLoad()
     override func viewDidLoad() {
-        print("Inside LocationVC")
-        print("\nlook here")
-        print("\nUser:\(appDelegate.currentUser)")
-        print("email:\(appDelegate.currentUser?.userEmail)")
-        print("displayName:\(appDelegate.currentUser?.displayName)")
-        print("score:\(appDelegate.currentUser?.points)")
         showImage(index: locationIndex)
         
         super.viewDidLoad()
@@ -136,6 +130,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
     func checkLocation() -> Bool {
         // Set range of UTLocation Pin
         // Latitude
+        return true
         let UTLocationLatitudeMinus = (UTLocationList[locationIndex].locationLatitude - (UTLocationList[locationIndex].locationLatitude - 0.000000000000200))
 
         let UTLocationLatitudePlus = (UTLocationList[locationIndex].locationLatitude + (UTLocationList[locationIndex].locationLatitude + 0.000000000000200))
@@ -190,17 +185,41 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
               // add points User object and then saveUser()
                 appDelegate.currentUser?.points += 25
                 appDelegate.currentUser?.saveUser()
-                
+                // ADD ALERT
+                let alert = UIAlertController(
+                    title: "Location Added!",
+                    message: "+25 points!\nWe will document your visit!",
+                    preferredStyle: .alert)
+                alert.addAction(UIAlertAction(
+                    title: "OK",
+                    style: .default))
+                self.present(alert, animated: true)
                 
                 
             } else{
                 // ADD ALERT SAYING ALREADY VISITED
-                print("is repeating location, will not be adding to table view")
+                let alert = UIAlertController(
+                    title: "Too Soon",
+                    message: "You already visited this location today.\nCome back again tomorrow.",
+                    preferredStyle: .alert)
+                alert.addAction(UIAlertAction(
+                    title: "OK",
+                    style: .default))
+                self.present(alert, animated: true)
+                // ADD ALERT
             }
         } else {
             // user is not at location
             // show an error message
-            print("user is not at location")
+            // ADD ALERT
+            let alert = UIAlertController(
+                title: "Not at the Location",
+                message: "You are not at the location.\nRefer to the address on the screen.",
+                preferredStyle: .alert)
+            alert.addAction(UIAlertAction(
+                title: "OK",
+                style: .default))
+            self.present(alert, animated: true)
         }
     }
 }

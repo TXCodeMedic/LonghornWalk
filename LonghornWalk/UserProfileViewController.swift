@@ -61,7 +61,10 @@ class UserProfileViewController: UIViewController, UIImagePickerControllerDelega
         displayNameLabel.text = appDelegate.currentUser?.displayName
         joinDateLabel.text = appDelegate.currentUser?.joinDate
         emailLabel.text = appDelegate.currentUser?.userEmail
-        pointsLabel.text = "\(String(describing: appDelegate.currentUser?.points))"
+        
+        var score = appDelegate.currentUser?.points
+        score = Int(score!)
+        pointsLabel.text = "Score: \(score!)"
     }
     
 
