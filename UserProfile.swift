@@ -68,7 +68,7 @@ class UserProfile {
                                 points: doc["score"] as? Int ?? 0,
                                 joinDate: doc["joinDate"] as? String ?? ""
                             )
-                            
+                            appDelegate.userProtocol?.userLoaded()
                             break
                             // update score of this user from DB
                             //self.currentUser.points = doc["score"] as? Int ?? 0

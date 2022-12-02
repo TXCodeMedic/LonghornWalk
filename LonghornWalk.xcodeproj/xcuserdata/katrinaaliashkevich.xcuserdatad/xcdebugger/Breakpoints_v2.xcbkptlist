@@ -16,7 +16,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "306"
             endingLineNumber = "306"
-            landmarkName = "loginCheck()"
+            landmarkName = "checkForFilledFields(textFields:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

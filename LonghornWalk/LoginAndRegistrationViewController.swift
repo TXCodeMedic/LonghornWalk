@@ -3,10 +3,13 @@ import FirebaseFirestore
 import FirebaseAuth
 
 
+protocol UserLoadProtocol {
+    func userLoaded()
+}
 
 
 
-class LoginAndRegistrationViewController: UIViewController {
+class LoginAndRegistrationViewController: UIViewController, UserLoadProtocol {
     
     // Outlets
     @IBOutlet weak var loginOrRegistration: UISegmentedControl!
@@ -42,6 +45,7 @@ class LoginAndRegistrationViewController: UIViewController {
         confirmPasswordLabel.isHidden = true
         
         loginOrSignupButton.setTitle("Login", for: .normal)
+        appDelegate.userProtocol = self
         
 //        Auth.auth().addStateDidChangeListener() {
 //            auth, user in
@@ -105,6 +109,11 @@ class LoginAndRegistrationViewController: UIViewController {
         }
     }
     
+    func userLoaded() {
+        // successful user load -> Segue into Homescreen
+        self.performSegue(withIdentifier: "loginSegue", sender: nil)
+    }
+    
     func login()
     {
         // Login Path
@@ -151,7 +160,6 @@ class LoginAndRegistrationViewController: UIViewController {
                     self.passwordTextField.text = nil
                     self.confirmPasswordTextField.text = nil
                     // successful login -> Segue into Homescreen
-                    self.performSegue(withIdentifier: "loginSegue", sender: nil)
                 }
             }
         } else {
@@ -166,6 +174,7 @@ class LoginAndRegistrationViewController: UIViewController {
             present(alert, animated: true)
         }
     }
+    
     
     func signUp()  {
         // Registration Path
@@ -236,7 +245,6 @@ class LoginAndRegistrationViewController: UIViewController {
                         UserProfile.loadUser(
                             email: email
                         )
-                        self.performSegue(withIdentifier: "loginSegue", sender: nil)
                     }
                 }
             }

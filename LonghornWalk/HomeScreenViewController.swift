@@ -96,7 +96,7 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         print("\nlook here")
         print("\nUser:\(appDelegate.currentUser)")
         
-        scoreLabel.text = "\(String(describing: appDelegate.currentUser?.points))"
+        scoreLabel.text = "\(appDelegate.currentUser?.points)"
         
         
     }
