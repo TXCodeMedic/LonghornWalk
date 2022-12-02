@@ -99,6 +99,12 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        var score = appDelegate.currentUser?.points
+        var displayName = appDelegate.currentUser?.displayName
+        var userStatus = setStatus(score: score!)
+        scoreLabel.text = "Score: \(score!)"
+        
+        levelLabel.text = "Status Level: \(userStatus)"
     }
     
     // CORE DATA:

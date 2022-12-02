@@ -184,6 +184,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
               // add points User object and then saveUser()
                 appDelegate.currentUser?.points += 25
                 appDelegate.currentUser?.saveUser()
+                print(appDelegate.currentUser?.points)
                 // ADD ALERT
                 let alert = UIAlertController(
                     title: "Location Added!",
