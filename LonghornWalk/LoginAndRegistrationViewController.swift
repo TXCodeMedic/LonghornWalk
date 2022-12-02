@@ -140,6 +140,7 @@ class LoginAndRegistrationViewController: UIViewController {
                         title: "OK",
                         style: .default))
                     self.present(alert, animated: true)
+                    print("bad login")
                     return
                     
                 } else {
@@ -166,7 +167,7 @@ class LoginAndRegistrationViewController: UIViewController {
         }
     }
     
-    func signUp() {
+    func signUp()  {
         // Registration Path
         print("\nuser is registering")
         var errorMessage = registerCheck()
@@ -202,6 +203,7 @@ class LoginAndRegistrationViewController: UIViewController {
             
             if let error = error as NSError? {
                 print("\nThere are errors for Registration\n")
+                print()
             } else {
                 // This is successful login
                 print("No errors")
@@ -212,66 +214,31 @@ class LoginAndRegistrationViewController: UIViewController {
                 self.emailTextField.text = nil
                 self.passwordTextField.text = nil
                 self.confirmPasswordTextField.text = nil
-                self.performSegue(withIdentifier: "loginSegue", sender: nil)
                 //MARK: FIRESTORE USER INIT
-                //                    var ref: DocumentReference? = nil
+                var ref: DocumentReference? = nil
                 
-//                var joinDate = Date()
-//                var formatter = DateFormatter()
-//                formatter.dateFormat = "dd-MM-yy"
-//                var formattedDate = formatter.string(from: joinDate)
+                var joinDate = Date()
+                var formatter = DateFormatter()
+                formatter.dateFormat = "dd-MM-yy"
+                var formattedDate = formatter.string(from: joinDate)
                 
-//                var user = UserProfile(
-//                    userEmail: email,
-//                    password: password,
-//                    displayName: email,
-//                    points: 0,
-//                    joinDate: formattedDate
-//                )
-//
-//                user.addUser()
-//
-//                appDelegate.currentUser = user
-                
-                //                    ref = self.db.collection("users").addDocument(data: [
-                //                        "email": email,
-                //                        "score": 0,
-                //                        "joinDate": formattedDate,
-                //                        "friendsList": [],
-                //                        "locationsVisited": [],
-                //                        "profilePicturePath": "",
-                //                        "settingsPreferences": ""])
-                //                    {err in
-                //                        if let err = err {
-                //                            print("Error adding document \(err)\n")
-                //                        } else {
-                //                            print("Document added with ID: \(ref!.documentID)\n")
-                //
-                //                        //MARK: USER CLASS INIT
-                //                            self.currentUser = UserProfile(userEmail: self.emailTextField.text! ,username: self.usernameTextField.text!, password: self.passwordTextField.text!, displayName: ref!.documentID)
-                //
-                //                            AppDelegate.currentUser?.userEmail = self.emailTextField.text!
-                //
-                ////                        //MARK: STORE USER IN CORE DATA
-                ////                            // store to core data
-                ////                            let coreDatenewUser = NSEntityDescription.insertNewObject(forEntityName: "CoreDataUser", into: context)
-                ////
-                ////                            coreDatenewUser.setValue(self.emailTextField.text!, forKey: "email")
-                ////                            coreDatenewUser.setValue(self.usernameTextField.text!, forKey: "username")
-                ////                            coreDatenewUser.setValue(self.passwordTextField.text!, forKey: "password")
-                ////                            coreDatenewUser.setValue(ref!.documentID, forKey: "displayName")
-                ////
-                ////                            print()
-                ////                            print(coreDatenewUser)
-                ////                            print()
-                ////                            //commit the changes
-                ////                            self.saveContext()
-                ////                            print("CoreDataUser was saved")
-                //
-                //                            // Send user to homeScreen
-                //                            self.performSegue(withIdentifier: "loginSegue", sender: nil)
-                //                        }
-                //                    }
+                ref = self.db.collection("users").addDocument(data: [
+                    "email": email,
+                    "displayName": email,
+                    "score": 0,
+                    "joinDate": formattedDate,
+                    "profilePicturePath": ""])
+                {err in
+                    if let err = err {
+                        print("Error adding document \(err)\n")
+                    } else {
+                        print("Document added with ID: \(ref!.documentID)\n")
+                        UserProfile.loadUser(
+                            email: email
+                        )
+                        self.performSegue(withIdentifier: "loginSegue", sender: nil)
+                    }
+                }
             }
         }
         
@@ -285,7 +252,7 @@ class LoginAndRegistrationViewController: UIViewController {
         // Check for filled fields
         if (!checkForFilledFields(textFields: emailTextField, passwordTextField, confirmPasswordTextField)) {
             // Check for same passwords
-            return "Text field cannot be empty"
+            return "Text fields cannot be empty"
         }
         
         if (!checkForSamePassword(passwordField1: passwordTextField.text!, passwordField2: confirmPasswordTextField.text!)){
