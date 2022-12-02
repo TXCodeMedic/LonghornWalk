@@ -92,10 +92,8 @@ class SoundSwitchTableViewCell: UITableViewCell {
         // let appDelegate = UIApplication.shared.windows.first
         if sender.isOn {
             UserDefaults.standard.set(true, forKey: "sound")
-            player?.volume = 0.0
         } else {
             UserDefaults.standard.set(false, forKey: "sound")
-            player?.volume = 0.0
         }
     }
 }

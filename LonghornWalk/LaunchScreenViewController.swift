@@ -49,11 +49,8 @@ class LaunchScreenViewController: UIViewController {
         if UserDefaults.standard.bool(forKey: "sound") == false {
             player?.volume = 0.0
         } else {
-            player?.volume = 0.0
+            playSound()
         }
-        
-
-        playSound()
         
         view.addSubview(imageView)
         DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
@@ -99,7 +96,6 @@ class LaunchScreenViewController: UIViewController {
             guard let player = player else { return }
 
             player.play()
-            print("PIZZAAAKJDASHLKJASHLKASHD")
 
         } catch let error {
             print(error.localizedDescription)

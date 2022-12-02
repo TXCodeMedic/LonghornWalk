@@ -134,15 +134,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 self.present(controller, animated: true)
             }),
             .staticCell(model:SettingsOption(title: "Course Website", icon: (UIImage(systemName: "desktopcomputer")), iconBackgroundColor: .systemGreen) {
-                let controller = UIAlertController(
-                    title: "Course Website",
-                    message: "blah blah blah",
-                    preferredStyle: .alert)
-                controller.addAction(UIAlertAction(
-                    title: "Dismiss",
-                    style: .cancel))
-                
-                self.present(controller, animated: true)
+                guard let url = URL(string: "https://www.cs.utexas.edu/~bulko/2022fall/329E.html") else { return }
+                UIApplication.shared.open(url)
             }),
             .staticCell(model:SettingsOption(title: "Learn More", icon: (UIImage(systemName: "graduationcap.fill")), iconBackgroundColor: .systemOrange) {
                 let controller = UIAlertController(
