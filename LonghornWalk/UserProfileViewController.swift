@@ -31,15 +31,6 @@ class UserProfileViewController: UIViewController, UIImagePickerControllerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        // request authorization from the user for our app to send notifications
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) {
-            granted, error in
-            if granted {
-                print("All set!")
-            } else if let error = error {
-                print(error.localizedDescription)
-            }
-        }
 //        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "CoreDataUser")
 //        do {
 //          result = try context.fetch(fetchRequest)
