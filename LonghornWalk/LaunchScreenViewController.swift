@@ -14,9 +14,9 @@ class LaunchScreenViewController: UIViewController {
     
     var imageView: UIImageView = {
         let imageView = UIImageView(frame: CGRect(x: 20,
-                                                  y: 247,
-                                                  width: 350,
-                                                  height: 350))
+                                                  y: 259,
+                                                  width: 390,
+                                                  height: 414))
         imageView.image = UIImage(named: "logo")
         return imageView
     }()

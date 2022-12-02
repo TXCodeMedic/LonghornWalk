@@ -29,7 +29,7 @@ class LoginAndRegistrationViewController: UIViewController, UserLoadProtocol {
         print("\n\n WE ARE ON THE LOGIN SCREEN\n\n")
         
         super.viewDidLoad()
-        
+                
         if UserDefaults.standard.bool(forKey: "darkMode") == false {
             UIApplication.shared.windows.first?.overrideUserInterfaceStyle = .light
         } else {

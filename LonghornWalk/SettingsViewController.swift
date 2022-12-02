@@ -105,6 +105,9 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                     handler: {_ in UILabel.appearance(whenContainedInInstancesOf: [UIViewController.self]).font = UIFont.init(name: "Times New Roman", size: 14)
                         UserDefaults.standard.set("timesNewRoman", forKey: "font")
                     }))
+                controller.addAction(UIAlertAction(
+                title: "Cancel",
+                style: .cancel, handler: nil))
                 
                 self.present(controller, animated: true)
             })
