@@ -25,14 +25,6 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         picker.delegate = self
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) {
-            granted, error in
-            if granted {
-                print("All set!")
-            } else if let error = error {
-                print(error.localizedDescription)
-            }
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

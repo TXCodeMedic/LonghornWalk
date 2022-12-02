@@ -9,7 +9,6 @@ import UIKit
 import CoreData
 import CoreMedia
 import FirebaseAuth
-import UserNotifications
 
 
 let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -86,16 +85,7 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         scoreLabel.text = "Score: \(score!)"
         usernameLabel.text = "\(displayName!)"
         levelLabel.text = "Status Level: \(userStatus)"
-        
-//        // ask for permission for local notifications
-//        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]){
-//            granted, error in
-//            if granted{
-//                print("all set!")
-//            }else if let error = error{
-//                print(error.localizedDescription)
-//            }
-//        }
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
