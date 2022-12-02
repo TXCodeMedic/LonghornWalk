@@ -51,9 +51,11 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var tableView: UITableView!
     
     
-    @IBOutlet weak var profileButton: UIButton!
+    @IBOutlet weak var profileButton: UIBarButtonItem!
+
   
-    @IBOutlet weak var locationButton: UIButton!
+    @IBOutlet weak var locationButton: UIBarButtonItem!
+
     
     //Variables
 
