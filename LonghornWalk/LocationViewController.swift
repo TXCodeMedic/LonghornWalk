@@ -130,7 +130,6 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
     func checkLocation() -> Bool {
         // Set range of UTLocation Pin
         // Latitude
-        return true
         let UTLocationLatitudeMinus = (UTLocationList[locationIndex].locationLatitude - (UTLocationList[locationIndex].locationLatitude - 0.000000000000200))
 
         let UTLocationLatitudePlus = (UTLocationList[locationIndex].locationLatitude + (UTLocationList[locationIndex].locationLatitude + 0.000000000000200))
