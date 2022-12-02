@@ -56,7 +56,7 @@ class LaunchScreenViewController: UIViewController {
         playSound()
         
         view.addSubview(imageView)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 8) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
             self.performSegue(withIdentifier: "launchSegue", sender: self)
         }
     }
@@ -64,7 +64,7 @@ class LaunchScreenViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         imageView.center = view.center
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
             self.animation()
         }
     }
