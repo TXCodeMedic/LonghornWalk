@@ -68,7 +68,18 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView.delegate = self
         tableView.dataSource = self
         
+        print("\nlook here")
+        print("\nUser:\(appDelegate.currentUser)")
+        print("email:\(appDelegate.currentUser?.userEmail)")
+        print("displayName:\(appDelegate.currentUser?.displayName)")
+        print("score:\(appDelegate.currentUser?.points)")
         
+        
+        
+        var score = appDelegate.currentUser?.points
+        var displayName = appDelegate.currentUser?.displayName
+        scoreLabel.text = "\(score)"
+        usernameLabel.text = "\(displayName)"
         
 //        // ask for permission for local notifications
 //        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]){
@@ -82,11 +93,10 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        print("\nlook here")
         print("\nUser:\(appDelegate.currentUser)")
         
         scoreLabel.text = "\(String(describing: appDelegate.currentUser?.points))"
-        print("\nlook here")
         
         
     }

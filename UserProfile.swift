@@ -120,31 +120,31 @@ class UserProfile {
         }
     }
     
-    func addUser() {
-        //MARK: FIRESTORE USER INIT
-        let db = Firestore.firestore()
-        var ref: DocumentReference? = nil
-        
-        var joinDate = Date()
-        var formatter = DateFormatter()
-        formatter.dateFormat = "dd-MM-yy"
-        var formattedDate = formatter.string(from: joinDate)
-        
-        ref = db.collection("users").addDocument(data: [
-            "email": "\(userEmail)",
-            "score": points,
-            "joinDate": formattedDate,
-            "friendsList": [],
-            "locationsVisited": [],
-            "profilePicturePath": "",
-            "settingsPreferences": ""])
-        {err in
-            if let err = err {
-                print("Error adding document \(err)\n")
-            } else {
-                print("Document added with ID: \(ref!.documentID)\n")
-            }
-        }
-    }
+//    func addUser() {
+//        //MARK: FIRESTORE USER INIT
+//        let db = Firestore.firestore()
+//        var ref: DocumentReference? = nil
+//
+//        var joinDate = Date()
+//        var formatter = DateFormatter()
+//        formatter.dateFormat = "dd-MM-yy"
+//        var formattedDate = formatter.string(from: joinDate)
+//
+//        ref = db.collection("users").addDocument(data: [
+//            "email": "\(userEmail)",
+//            "score": points,
+//            "joinDate": formattedDate,
+//            "friendsList": [],
+//            "locationsVisited": [],
+//            "profilePicturePath": "",
+//            "settingsPreferences": ""])
+//        {err in
+//            if let err = err {
+//                print("Error adding document \(err)\n")
+//            } else {
+//                print("Document added with ID: \(ref!.documentID)\n")
+//            }
+//        }
+//    }
     
 }

@@ -56,9 +56,15 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
     //MARK: ViewDidLoad()
     override func viewDidLoad() {
         print("Inside LocationVC")
+        print("\nlook here")
+        print("\nUser:\(appDelegate.currentUser)")
+        print("email:\(appDelegate.currentUser?.userEmail)")
+        print("displayName:\(appDelegate.currentUser?.displayName)")
+        print("score:\(appDelegate.currentUser?.points)")
         showImage(index: locationIndex)
         
         super.viewDidLoad()
+        print("\(String(describing: appDelegate.currentUser?.points))")
         // swipe left
         let swipeLeftRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(recognizeSwipeGesture(recognizer:)))
         swipeLeftRecognizer.direction = UISwipeGestureRecognizer.Direction.left
