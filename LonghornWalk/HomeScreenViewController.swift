@@ -78,8 +78,12 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         
         var score = appDelegate.currentUser?.points
         var displayName = appDelegate.currentUser?.displayName
-        scoreLabel.text = "\(score)"
-        usernameLabel.text = "\(displayName)"
+        var userStatus = setStatus(score: score!)
+        score = Int(score!)
+        print(score)
+        scoreLabel.text = "Score: \(score!)"
+        usernameLabel.text = "\(displayName!)"
+        levelLabel.text = "Status Level: \(userStatus)"
         
 //        // ask for permission for local notifications
 //        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]){
@@ -93,12 +97,6 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("\nlook here")
-        print("\nUser:\(appDelegate.currentUser)")
-        
-        scoreLabel.text = "\(appDelegate.currentUser?.points)"
-        
-        
     }
     
     // CORE DATA:
@@ -195,6 +193,26 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         
     }
     
+    //MARK: Set Status
+    func setStatus(score:Int) -> String{
+        // set status
+        if score >= 0 && score < 50 {
+            return "Bevo Beginner"
+        }
+        else if score >= 50 && score < 100 {
+            return "Owen Wilson"
+        }
+        else if score >= 100 && score < 150 {
+            return "Wes Anderson"
+        }
+        else if score >= 150 && score < 200 {
+            return "Neil deGrasse Tyson"
+        }
+        else if score >= 200 {
+            return "Matthew McConaughey"
+        }
+        return ""
+    }
 
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
