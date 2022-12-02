@@ -83,6 +83,8 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewWillAppear(_ animated: Bool) {
         
+        print("\nUser:\(appDelegate.currentUser)")
+        
         scoreLabel.text = "\(String(describing: appDelegate.currentUser?.points))"
         print("\nlook here")
         
@@ -151,8 +153,8 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
             NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
             abort()
         }
-        print("fetchedResults")
-        print((fetchedResults)!)
+//        print("fetchedResults")
+//        print((fetchedResults)!)
         
         return(fetchedResults)!
     }
