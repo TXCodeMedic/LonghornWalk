@@ -41,7 +41,7 @@ protocol addtoCoreData{
 class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, addtoCoreData {
     
     //Outlets
-    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var displayNameLabel: UILabel!
 
     @IBOutlet weak var scoreLabel: UILabel!
     
@@ -83,7 +83,7 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         score = Int(score!)
         print(score)
         scoreLabel.text = "Score: \(score!)"
-        usernameLabel.text = "\(displayName!)"
+        displayNameLabel.text = "\(displayName!)"
         levelLabel.text = "Status Level: \(userStatus)"
 
     }
@@ -93,7 +93,7 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         var displayName = appDelegate.currentUser?.displayName
         var userStatus = setStatus(score: score!)
         scoreLabel.text = "Score: \(score!)"
-        
+        displayNameLabel.text = "\(displayName!)"
         levelLabel.text = "Status Level: \(userStatus)"
     }
     
