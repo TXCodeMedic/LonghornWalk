@@ -54,6 +54,11 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
 
   
     @IBOutlet weak var locationButton: UIBarButtonItem!
+    
+    struct utLocations {
+        let location: String
+        let imageName: String
+    }
 
     
     //Variables

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		46197514293AB233001E23AC /* launchSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 46197513293AB233001E23AC /* launchSound.wav */; };
+		46197516293C0111001E23AC /* launchSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 46197515293C0110001E23AC /* launchSound.wav */; };
 		465AC2362939587000FF2649 /* SoundSwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465AC2352939587000FF2649 /* SoundSwitchTableViewCell.swift */; };
 		465AC23A2939594800FF2649 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465AC2392939594800FF2649 /* LaunchScreenViewController.swift */; };
 		46777E9B29380018005C0BF9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46777E9A29380018005C0BF9 /* SettingsViewController.swift */; };
@@ -40,7 +40,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		46197513293AB233001E23AC /* launchSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = launchSound.wav; sourceTree = "<group>"; };
+		46197515293C0110001E23AC /* launchSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = launchSound.wav; sourceTree = "<group>"; };
 		465AC2352939587000FF2649 /* SoundSwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundSwitchTableViewCell.swift; sourceTree = "<group>"; };
 		465AC2392939594800FF2649 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		46777E9A29380018005C0BF9 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -106,7 +106,7 @@
 		A24E406A29216238004717B2 /* LonghornWalk */ = {
 			isa = PBXGroup;
 			children = (
-				46197513293AB233001E23AC /* launchSound.wav */,
+				46197515293C0110001E23AC /* launchSound.wav */,
 				A24E406B29216238004717B2 /* AppDelegate.swift */,
 				A24E40822921677E004717B2 /* LoginAndRegistrationViewController.swift */,
 				A24E408C29218917004717B2 /* HomeScreenViewController.swift */,
@@ -214,7 +214,7 @@
 				A24E408F29219BF5004717B2 /* GoogleService-Info.plist in Resources */,
 				A24E407829216239004717B2 /* Assets.xcassets in Resources */,
 				A24E407329216238004717B2 /* Main.storyboard in Resources */,
-				46197514293AB233001E23AC /* launchSound.wav in Resources */,
+				46197516293C0111001E23AC /* launchSound.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
