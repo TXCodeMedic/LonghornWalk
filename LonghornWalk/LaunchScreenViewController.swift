@@ -10,6 +10,18 @@ import AVFoundation
 
 var player: AVAudioPlayer?
 
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
+
 class LaunchScreenViewController: UIViewController {
     
     var imageView: UIImageView = {
@@ -23,6 +35,7 @@ class LaunchScreenViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         
         if UserDefaults.standard.bool(forKey: "darkMode") == false {
             UIApplication.shared.windows.first?.overrideUserInterfaceStyle = .light

@@ -29,6 +29,8 @@ class LoginAndRegistrationViewController: UIViewController, UserLoadProtocol {
         print("\n\n WE ARE ON THE LOGIN SCREEN\n\n")
         
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
+
                 
         if UserDefaults.standard.bool(forKey: "darkMode") == false {
             UIApplication.shared.windows.first?.overrideUserInterfaceStyle = .light

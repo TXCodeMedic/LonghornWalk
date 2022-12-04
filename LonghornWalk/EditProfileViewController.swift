@@ -25,6 +25,8 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.hideKeyboardWhenTappedAround()
+
         profilePic.backgroundColor = .systemGray6
         profilePic.layer.borderWidth = 1
         profilePic.layer.masksToBounds = false

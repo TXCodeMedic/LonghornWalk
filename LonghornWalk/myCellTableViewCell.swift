@@ -11,5 +11,5 @@ class myCellTableViewCell: UITableViewCell {
 
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var locationName: UILabel!
-
+    
 }

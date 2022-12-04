@@ -20,11 +20,13 @@ let textCellIdentifier = "textCellIdentifier"
 // segue identifier for Location VC
 let locationSegue = "locationVCsegue"
 
-public class Location{
-    var locationName:String
+public class Location {
+    var locationName: String
+    var locationImage: String
     init(){
         
         locationName = ""
+        locationImage = ""
       
     }
 }
@@ -54,11 +56,6 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
 
   
     @IBOutlet weak var locationButton: UIBarButtonItem!
-    
-    struct utLocations {
-        let location: String
-        let imageName: String
-    }
 
     
     //Variables
@@ -246,6 +243,7 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     
        
         cell.locationName.text = "\(fetchedResults[row].value(forKey: "locationName")!)"
+        cell.iconImageView.image = UIImage(named: "\(fetchedResults[row].value(forKey: "locationName")!)")
         return cell
     }
     

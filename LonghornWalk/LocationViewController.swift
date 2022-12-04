@@ -120,7 +120,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
     
     //MARK: ShowImage()
     func showImage(index:Int){
-        imageView.image = UIImage(named: "Image\(index)")
+        imageView.image = UIImage(named: UTLocationList[index].locationName)
         
         locationNameLabel.text = UTLocationList[index].locationName
         locationAddressLabel.text = UTLocationList[index].locationAddress
