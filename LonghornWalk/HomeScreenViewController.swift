@@ -22,12 +22,10 @@ let locationSegue = "locationVCsegue"
 
 public class Location {
     var locationName: String
-    var locationImage: String
     init(){
         
         locationName = ""
-        locationImage = ""
-      
+        
     }
 }
 
@@ -240,12 +238,13 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         
         let row = indexPath.row
         let cell = tableView.dequeueReusableCell(withIdentifier: textCellIdentifier, for: indexPath) as! myCellTableViewCell
-    
-       
+        
+        
         cell.locationName.text = "\(fetchedResults[row].value(forKey: "locationName")!)"
         cell.iconImageView.image = UIImage(named: "\(fetchedResults[row].value(forKey: "locationName")!)")
         return cell
     }
+    
     
     
     
