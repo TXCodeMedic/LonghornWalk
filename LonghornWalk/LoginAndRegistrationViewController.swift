@@ -236,7 +236,7 @@ class LoginAndRegistrationViewController: UIViewController, UserLoadProtocol {
                     "displayName": email,
                     "score": 0,
                     "joinDate": formattedDate,
-                    "profilePicturePath": ""])
+                    "profilePicturePath": "profilePictures/defaultProfilePicture.jpeg"])
                 {err in
                     if let err = err {
                         print("Error adding document \(err)\n")

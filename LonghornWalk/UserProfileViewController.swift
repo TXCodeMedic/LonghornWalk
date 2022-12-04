@@ -37,7 +37,7 @@ class UserProfileViewController: UIViewController, UIImagePickerControllerDelega
         profilePhoto.layer.borderColor = UIColor.black.cgColor
         profilePhoto.layer.cornerRadius = profilePhoto.frame.height/2
         profilePhoto.clipsToBounds = true
-        appDelegate.currentUser?.profilePic = .init(systemName: "person.fill")
+//        appDelegate.currentUser?.profilePic = .init(systemName: "person.fill")
         // Do any additional setup after loading the view.
         // request authorization from the user for our app to send notifications
 //        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "CoreDataUser")
