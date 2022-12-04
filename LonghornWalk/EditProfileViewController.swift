@@ -141,7 +141,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     @IBAction func saveChangesPressed(_ sender: Any) {
         appDelegate.currentUser?.displayName = displayNameText.text!
         appDelegate.currentUser?.profilePic = chosenImage
-        uploadPhoto(image: chosenImage!)
+        uploadPhoto(image: chosenImage as! UIImage)
         appDelegate.currentUser?.saveUser()
         let alert = UIAlertController(
             title: "Success",

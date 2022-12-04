@@ -214,8 +214,8 @@ class LoginAndRegistrationViewController: UIViewController, UserLoadProtocol {
             
             if let error = error as NSError? {
                 print("\nThere are errors for Registration\n")
-                print(error)
-                self.sameUserFound()
+                var errorCode = error.code
+                self.sameUserFound(errorCode: errorCode )
                 return
             } else {
                 // This is successful login
