@@ -97,6 +97,10 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         levelLabel.text = "Status Level: \(userStatus)"
     }
     
+    @IBAction func unwindHome(_ segue: UIStoryboardSegue) {
+        // this is intentionally blank
+    }
+    
     // CORE DATA:
     
     // store location in core data
@@ -246,7 +250,17 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //Change the selected background view of the cell.
+        let fetchedResults = retrieveLocation()
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "popupLocationViewController") as? popupLocationViewController {
+            vc.image = UIImage(named: "\(fetchedResults[indexPath.row].value(forKey: "locationName")!)")!
+            vc.name = "\(fetchedResults[indexPath.row].value(forKey: "locationName")!)"
+            //self.navigationController?.pushViewController(vc, animated: true)
+            show(vc, sender: self)
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+    }
     
     @IBAction func onLogoutPressed(_ sender: Any) {
         do {

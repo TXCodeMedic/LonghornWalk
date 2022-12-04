@@ -13,6 +13,7 @@
 		46777E9B29380018005C0BF9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46777E9A29380018005C0BF9 /* SettingsViewController.swift */; };
 		46777E9D2938006A005C0BF9 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46777E9C2938006A005C0BF9 /* SettingsTableViewCell.swift */; };
 		46777E9F29380073005C0BF9 /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46777E9E29380073005C0BF9 /* SwitchTableViewCell.swift */; };
+		467F3796293C8DE20087F8A4 /* popupLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467F3795293C8DE20087F8A4 /* popupLocationViewController.swift */; };
 		A24E406C29216238004717B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24E406B29216238004717B2 /* AppDelegate.swift */; };
 		A24E406E29216238004717B2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24E406D29216238004717B2 /* SceneDelegate.swift */; };
 		A24E407329216238004717B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A24E407129216238004717B2 /* Main.storyboard */; };
@@ -46,6 +47,7 @@
 		46777E9A29380018005C0BF9 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		46777E9C2938006A005C0BF9 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		46777E9E29380073005C0BF9 /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchTableViewCell.swift; sourceTree = "<group>"; };
+		467F3795293C8DE20087F8A4 /* popupLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = popupLocationViewController.swift; sourceTree = "<group>"; };
 		A24E406829216238004717B2 /* LonghornWalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LonghornWalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A24E406B29216238004717B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A24E406D29216238004717B2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				465AC2392939594800FF2649 /* LaunchScreenViewController.swift */,
 				A24E407929216239004717B2 /* LaunchScreen.storyboard */,
 				A24E407129216238004717B2 /* Main.storyboard */,
+				467F3795293C8DE20087F8A4 /* popupLocationViewController.swift */,
 				A24E407729216239004717B2 /* Assets.xcassets */,
 				A24E407C29216239004717B2 /* Info.plist */,
 				A24E407429216238004717B2 /* LonghornWalk.xcdatamodeld */,
@@ -231,6 +234,7 @@
 				A24E406C29216238004717B2 /* AppDelegate.swift in Sources */,
 				A24E4087292167BD004717B2 /* RankingViewController.swift in Sources */,
 				46777E9D2938006A005C0BF9 /* SettingsTableViewCell.swift in Sources */,
+				467F3796293C8DE20087F8A4 /* popupLocationViewController.swift in Sources */,
 				A24E406E29216238004717B2 /* SceneDelegate.swift in Sources */,
 				A24E408D29218917004717B2 /* HomeScreenViewController.swift in Sources */,
 				A24E407629216238004717B2 /* LonghornWalk.xcdatamodeld in Sources */,
