@@ -49,10 +49,10 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var profilePic: UIImageView!
     
     @IBOutlet weak var profileButton: UIBarButtonItem!
 
-  
     @IBOutlet weak var locationButton: UIBarButtonItem!
 
     
@@ -60,9 +60,6 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
 
     var delegate: UIViewController!
     
-   
-
-            
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -85,6 +82,7 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         scoreLabel.text = "Score: \(score!)"
         displayNameLabel.text = "\(displayName!)"
         levelLabel.text = "Status Level: \(userStatus)"
+        profilePic.image = appDelegate.currentUser?.profilePic
 
     }
     
@@ -95,6 +93,7 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         scoreLabel.text = "Score: \(score!)"
         displayNameLabel.text = "\(displayName!)"
         levelLabel.text = "Status Level: \(userStatus)"
+        profilePic.image = appDelegate.currentUser?.profilePic
     }
     
     // CORE DATA:

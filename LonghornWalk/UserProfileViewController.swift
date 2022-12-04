@@ -28,6 +28,9 @@ class UserProfileViewController: UIViewController, UIImagePickerControllerDelega
     
     @IBOutlet weak var pointsLabel: UILabel!
     
+    @IBOutlet weak var statusLabel: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -65,8 +68,31 @@ class UserProfileViewController: UIViewController, UIImagePickerControllerDelega
         var score = appDelegate.currentUser?.points
         score = Int(score!)
         pointsLabel.text = "Score: \(score!)"
+        var userStatus = setStatus(score: score!)
+        statusLabel.text = userStatus
+        
     }
     
+    //MARK: Set Status
+    func setStatus(score:Int) -> String{
+        // set status
+        if score >= 0 && score < 50 {
+            return "Bevo Beginner"
+        }
+        else if score >= 50 && score < 100 {
+            return "Owen Wilson"
+        }
+        else if score >= 100 && score < 150 {
+            return "Wes Anderson"
+        }
+        else if score >= 150 && score < 200 {
+            return "Neil deGrasse Tyson"
+        }
+        else if score >= 200 {
+            return "Matthew McConaughey"
+        }
+        return ""
+    }
 
     @IBAction func editProfile(_ sender: Any) {
     }

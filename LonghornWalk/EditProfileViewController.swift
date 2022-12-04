@@ -11,12 +11,17 @@ import CoreData
 import FirebaseAuth
 import FirebaseCore
 import FirebaseStorage
+import FirebaseFirestore
 
 
 class EditProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
 
     let picker = UIImagePickerController()
+    
+    let db = Firestore.firestore()
+    
+    var chosenImage: UIImage? = nil
     
     @IBOutlet weak var profilePic: UIImageView!
     
@@ -35,33 +40,28 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         profilePic.layer.borderColor = UIColor.black.cgColor
         profilePic.layer.cornerRadius = profilePic.frame.height/2
         profilePic.clipsToBounds = true
-        if appDelegate.currentUser?.profilePic != nil {
-            profilePic.image = appDelegate.currentUser?.profilePic
-        }
+        profilePic.image = appDelegate.currentUser?.profilePic
+//        if appDelegate.currentUser?.profilePic != nil {
+//            profilePic.image = appDelegate.currentUser?.profilePic
+//        }
         picker.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        profilePic.image = appDelegate.currentUser?.profilePic
+//        profilePic.image = appDelegate.currentUser?.profilePic
         displayNameText.text = appDelegate.currentUser?.displayName
         
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        let chosenImage = info[.originalImage] as! UIImage
+        chosenImage = info[.originalImage] as? UIImage
 //        profilePic.contentMode = .scaleAspectFit
         profilePic.image = chosenImage
-        appDelegate.currentUser?.profilePic = chosenImage
-        uploadPhoto(image: chosenImage)
-//        let jpegImageData  = chosenImage.jpegData(compressionQuality: 1.0)
-//        let entityName =  NSEntityDescription.entity(forEntityName: "CoreDataUser", in: context)!
-//        let image = NSManagedObject(entity: entityName, insertInto: context)
-//        image.setValue(jpegImageData, forKeyPath: "profilePic")
-//        do {
-//          try context.save()
-//        } catch let error as NSError {
-//          print("Could not save. \(error), \(error.userInfo)")
-//        }
+        
+//        appDelegate.currentUser?.profilePic = chosenImage
+//        uploadPhoto(image: chosenImage)
+        
+
         dismiss(animated: true)
     }
     
@@ -140,6 +140,8 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     
     @IBAction func saveChangesPressed(_ sender: Any) {
         appDelegate.currentUser?.displayName = displayNameText.text!
+        appDelegate.currentUser?.profilePic = chosenImage
+        uploadPhoto(image: chosenImage!)
         appDelegate.currentUser?.saveUser()
         let alert = UIAlertController(
             title: "Success",
@@ -211,6 +213,16 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                         do {
                             // clear this user's locations visited
                             self.clearCoreData()
+                            self.db.collection("users").whereField("email", isEqualTo: appDelegate.currentUser?.userEmail).getDocuments {
+                                (querySnapshot, error) in
+                                if error != nil {
+                                    print(error)
+                                } else {
+                                    for document in querySnapshot!.documents {
+                                        document.reference.delete()
+                                    }
+                                }
+                            }
                             // sign out of firebase auth
                             try Auth.auth().signOut()
                             self.dismiss(animated: true)
@@ -223,11 +235,6 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         present(controller, animated: true)
     }
     
-    @IBAction func resetPasswordPressed(_ sender: Any) {
-        Auth.auth().sendPasswordReset(withEmail: appDelegate.currentUser!.userEmail) { error in
-          // ...
-        }
-    }
     
     func uploadPhoto(image:UIImage){
         // This method will take the image and upload it to Firebase Storage

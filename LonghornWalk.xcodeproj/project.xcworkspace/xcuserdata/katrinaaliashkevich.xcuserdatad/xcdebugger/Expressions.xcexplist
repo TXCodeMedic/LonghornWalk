@@ -3,6 +3,14 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "EditProfileViewController.imagePickerController(_:didFinishPickingMediaWithInfo:):EditProfileViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "profilePic.image">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "LoginAndRegistrationViewController.login():LoginAndRegistrationViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -18,6 +26,17 @@
             </PersistentString>
             <PersistentString
                value = "appDelegate.currentUser?">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "HomeScreenViewController.viewWillAppear(_:):HomeScreenViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "appDelegate.currentUser?.profilePic">
+            </PersistentString>
+            <PersistentString
+               value = "profilePic">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
