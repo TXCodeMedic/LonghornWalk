@@ -214,7 +214,9 @@ class LoginAndRegistrationViewController: UIViewController, UserLoadProtocol {
             
             if let error = error as NSError? {
                 print("\nThere are errors for Registration\n")
-                print()
+                print(error)
+                self.sameUserFound()
+                return
             } else {
                 // This is successful login
                 print("No errors")
@@ -307,5 +309,29 @@ class LoginAndRegistrationViewController: UIViewController, UserLoadProtocol {
                 return false
             }}
         return true
+    }
+    
+    func sameUserFound(errorCode:Int){
+        if errorCode == 17007{
+            let alert = UIAlertController(
+                title: "User is already registered",
+                message: "Email is alreayd registered to another account",
+                preferredStyle: .alert)
+            alert.addAction(UIAlertAction(
+                title: "OK",
+                style: .default))
+            present(alert, animated: true)
+            return
+        } else {
+            let alert = UIAlertController(
+                title: "Unknown Error",
+                message: "Unknown Error is presented. Email App Development team",
+                preferredStyle: .alert)
+            alert.addAction(UIAlertAction(
+                title: "OK",
+                style: .default))
+            present(alert, animated: true)
+            return
+        }
     }
 }
