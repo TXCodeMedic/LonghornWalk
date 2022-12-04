@@ -52,13 +52,11 @@ class UserProfile {
         let db = Firestore.firestore()
         // get user info from DB
 
-        
         db.collection("users").getDocuments { snapshot, error in
             // no error
             if error == nil {
                 // retrieve data from DB
                 if let snapshot = snapshot{
-
                     // loop through users in data base
                     for doc in snapshot.documents{
                         // get data from user that matches currently logged in user
@@ -84,10 +82,12 @@ class UserProfile {
                                 // Data for "images/island.jpg" is returned
                                 let image = UIImage(data: data!)
                                   appDelegate.currentUser?.profilePic = image
+                                  //appDelegate.userProtocol?.userLoaded()
                               }
+                            appDelegate.userProtocol?.userLoaded()
                             }
                             
-                            appDelegate.userProtocol?.userLoaded()
+                            //appDelegate.userProtocol?.userLoaded()
                             break
                             // update score of this user from DB
                             //self.currentUser.points = doc["score"] as? Int ?? 0
