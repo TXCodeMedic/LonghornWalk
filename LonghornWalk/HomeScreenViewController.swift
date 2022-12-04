@@ -66,6 +66,15 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView.delegate = self
         tableView.dataSource = self
         
+        var currentDate = Date()
+        var formatter = DateFormatter()
+        formatter.dateFormat = "dd-MM-yy"
+        var formattedDate = formatter.string(from: currentDate)
+        
+        if appDelegate.currentUser?.lastUpdate as! String != currentDate as? String {
+            clearCoreData()
+        }
+        
         print("\nlook here")
         print("\nUser:\(appDelegate.currentUser)")
         print("email:\(appDelegate.currentUser?.userEmail)")

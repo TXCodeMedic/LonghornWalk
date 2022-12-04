@@ -240,6 +240,7 @@ class LoginAndRegistrationViewController: UIViewController, UserLoadProtocol {
                     "displayName": email,
                     "score": 0,
                     "joinDate": formattedDate,
+                    "lastUpdate": formattedDate,
                     "profilePicturePath": "profilePictures/defaultProfilePicture.jpeg"])
                 {err in
                     if let err = err {
