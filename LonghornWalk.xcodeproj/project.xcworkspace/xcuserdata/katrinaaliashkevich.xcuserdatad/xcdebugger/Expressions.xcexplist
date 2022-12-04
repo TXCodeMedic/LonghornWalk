@@ -21,5 +21,13 @@
             </PersistentString>
          </PersistentStrings>
       </ContextState>
+      <ContextState
+         contextName = "EditProfileViewController.imagePickerController(_:didFinishPickingMediaWithInfo:):EditProfileViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "profilePic.image">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
    </ContextStates>
 </VariablesViewState>

@@ -11,12 +11,15 @@ import CoreData
 import FirebaseAuth
 import FirebaseCore
 import FirebaseStorage
+import FirebaseFirestore
 
 
 class EditProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
 
     let picker = UIImagePickerController()
+    
+    let db = Firestore.firestore()
     
     @IBOutlet weak var profilePic: UIImageView!
     
@@ -35,9 +38,9 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         profilePic.layer.borderColor = UIColor.black.cgColor
         profilePic.layer.cornerRadius = profilePic.frame.height/2
         profilePic.clipsToBounds = true
-        if appDelegate.currentUser?.profilePic != nil {
-            profilePic.image = appDelegate.currentUser?.profilePic
-        }
+//        if appDelegate.currentUser?.profilePic != nil {
+//            profilePic.image = appDelegate.currentUser?.profilePic
+//        }
         picker.delegate = self
     }
     
@@ -51,8 +54,9 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         let chosenImage = info[.originalImage] as! UIImage
 //        profilePic.contentMode = .scaleAspectFit
         profilePic.image = chosenImage
-        appDelegate.currentUser?.profilePic = chosenImage
-        uploadPhoto(image: chosenImage)
+        
+//        appDelegate.currentUser?.profilePic = chosenImage
+//        uploadPhoto(image: chosenImage)
 //        let jpegImageData  = chosenImage.jpegData(compressionQuality: 1.0)
 //        let entityName =  NSEntityDescription.entity(forEntityName: "CoreDataUser", in: context)!
 //        let image = NSManagedObject(entity: entityName, insertInto: context)
@@ -96,14 +100,12 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                         print("Access denied")
                         return
                     }
-                self.picker.allowsEditing = false
-                self.picker.sourceType = .camera
-                self.picker.cameraCaptureMode = .photo
-                self.present(self.picker, animated: true)
-                
+                    self.picker.allowsEditing = false
+                    self.picker.sourceType = .camera
+                    self.picker.cameraCaptureMode = .photo
+                    self.present(self.picker, animated: true)
                 } else {
-                    // no rear camera is available
-                    
+                    // alert for when no rear camera is available
                     let alertVC = UIAlertController(
                         title: "No camera",
                         message: "Sorry, this device has no rear camera",
@@ -116,8 +118,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                 }
             }
         )
-        
-            controller.addAction(Camera)
+        controller.addAction(Camera)
         // if no cheese option is selected, make that the cheese type of the pizza object
         let Library = UIAlertAction(
             title: "Photo Library",
@@ -139,6 +140,8 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     }
     
     @IBAction func saveChangesPressed(_ sender: Any) {
+        appDelegate.currentUser?.profilePic = profilePic.image
+        uploadPhoto(image: profilePic.image!)
         appDelegate.currentUser?.displayName = displayNameText.text!
         appDelegate.currentUser?.saveUser()
         let alert = UIAlertController(
@@ -211,7 +214,17 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                         do {
                             // clear this user's locations visited
                             self.clearCoreData()
-                            // sign out of firebase auth
+                            
+                            self.db.collection("users").whereField("email", isEqualTo: appDelegate.currentUser?.userEmail).getDocuments { (querySnapshot, error) in
+                                    if error != nil {
+                                        print(error)
+                                    } else {
+                                        for document in querySnapshot!.documents {
+                                            document.reference.delete()
+                                        }
+
+                                    }
+                                }
                             try Auth.auth().signOut()
                             self.dismiss(animated: true)
                         } catch {
