@@ -23,7 +23,7 @@ class UserProfile {
     public var displayName: String
     // YYYY-MM-DD format for join date
     public var joinDate: String
-    public var friendsList: [String]
+    public var lastUpdate:String
     public var locationsVisited: [String]
     // file path to the image file stored in String format? not sure yet
     public var profilePic: UIImage?
@@ -32,14 +32,14 @@ class UserProfile {
     public var settingPreferences: String
     
     
-    init(userEmail: String, password: String, displayName:String, points: Int, joinDate: String, profilePicturePath:String) {
+    init(userEmail: String, password: String, displayName:String, points: Int, joinDate: String, profilePicturePath:String, lastUpdate:String) {
         
         self.userEmail = userEmail
         self.password = password
         self.joinDate = joinDate
+        self.lastUpdate = lastUpdate
         self.points = points
         self.displayName = displayName
-        self.friendsList = []
         self.locationsVisited = []
         self.profilePic = nil
         self.profilePicturePath = profilePicturePath
@@ -70,7 +70,8 @@ class UserProfile {
                                 displayName: doc["displayName"] as? String ?? "",
                                 points: doc["score"] as? Int ?? 0,
                                 joinDate: doc["joinDate"] as? String ?? "",
-                                profilePicturePath: doc["profilePicturePath"] as? String ?? ""
+                                profilePicturePath: doc["profilePicturePath"] as? String ?? "",
+                                lastUpdate: doc["lastUpdate"] as? String ?? ""
                             )
                             // pull picture from storage
                             let storageRef = storage.reference(withPath:appDelegate.currentUser?.profilePicturePath as! String)
@@ -122,7 +123,7 @@ class UserProfile {
                         if (
                             doc["email"] as? String == self.userEmail
                         ) {
-                            doc.reference.updateData(["displayName": self.displayName, "score": self.points, "profilePicturePath": self.profilePicturePath ])
+                            doc.reference.updateData(["displayName": self.displayName, "score": self.points, "profilePicturePath": self.profilePicturePath, "lastUpdate":self.lastUpdate ])
     
                             break
                         }

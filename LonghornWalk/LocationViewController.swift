@@ -182,8 +182,15 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
                 // update the table view
                 mainVC.refreshTable()
                 
+                // get current date
+                var currentDate = Date()
+                var formatter = DateFormatter()
+                formatter.dateFormat = "dd-MM-yy"
+                var formattedDate = formatter.string(from: currentDate)
+                
               // add points User object and then saveUser()
                 appDelegate.currentUser?.points += 25
+                appDelegate.currentUser?.lastUpdate = formattedDate
                 appDelegate.currentUser?.saveUser()
                 print(appDelegate.currentUser?.points)
                 // ADD ALERT
