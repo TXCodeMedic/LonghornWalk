@@ -28,8 +28,6 @@ class UserProfile {
     
     init(userEmail: String, password: String, displayName:String, points: Int, joinDate: String) {
         
-        
-        
         self.userEmail = userEmail
         self.password = password
         self.joinDate = joinDate

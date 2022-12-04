@@ -8,6 +8,7 @@
 import UIKit
 import AVFoundation
 import CoreData
+import FirebaseAuth
 
 
 class EditProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -30,6 +31,9 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         profilePic.layer.borderColor = UIColor.black.cgColor
         profilePic.layer.cornerRadius = profilePic.frame.height/2
         profilePic.clipsToBounds = true
+        if appDelegate.currentUser?.profilePic != nil {
+            profilePic.image = appDelegate.currentUser?.profilePic
+        }
         picker.delegate = self
     }
     
@@ -146,11 +150,82 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         // this function will upload the chosen profile picture to Firebase Storage /profilePictures
     }
     
+    // save to core data
+    func saveContext () {
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                let nserror = error as NSError
+                NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
+        }
+    }
     
+    // clear core data
+    func clearCoreData() {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Locations")
+        var fetchedResults:[NSManagedObject]
+        do {
+            try fetchedResults = context.fetch(request) as! [NSManagedObject]
+            
+            if fetchedResults.count > 0 {
+                for result:AnyObject in fetchedResults {
+                    context.delete(result as! NSManagedObject)
+                    print("\(result.value(forKey: "locationName")!) has been deleted")
+                }
+            }
+            saveContext()
+        } catch {
+            // if an error occurs
+            let nserror = error as NSError
+            NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
+            abort()
+        }
+    }
+    
+    // TODO: remove from firestore too
     @IBAction func deleteProfilePressed(_ sender: Any) {
+        // brings up an Alert where user chooses crust type from 2 buttons
+        let controller = UIAlertController(
+            title: "Are you sure about deleting your account?",
+            message: "This action cannot be undone.",
+            preferredStyle: .alert)
+        // if thin crust button is selected, make that the crust type of the pizza object
+        // if thick crust button is selected, make that the crust type of the pizza object
+        controller.addAction(UIAlertAction(
+            title: "Cancel",
+            style: .default
+        ))
+        controller.addAction(UIAlertAction(
+            title: "Yes",
+            style: .default,
+            handler: {_ in
+                let user = Auth.auth().currentUser
+                user?.delete { error in
+                    if let error = error {
+                        // An error happened.
+                    } else {
+                        // Account deleted.
+                        do {
+                            // clear this user's locations visited
+                            self.clearCoreData()
+                            // sign out of firebase auth
+                            try Auth.auth().signOut()
+                            self.dismiss(animated: true)
+                        } catch {
+                            print("Sign Out error")
+                        }
+                    }
+                }
+            }))
+        present(controller, animated: true)
     }
     
     @IBAction func resetPasswordPressed(_ sender: Any) {
+        Auth.auth().sendPasswordReset(withEmail: appDelegate.currentUser!.userEmail) { error in
+          // ...
+        }
     }
     
 }

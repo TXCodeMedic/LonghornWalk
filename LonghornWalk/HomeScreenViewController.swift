@@ -251,9 +251,6 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     
     
     
-    
-    
-    
     @IBAction func onLogoutPressed(_ sender: Any) {
         do {
             // clear this user's locations visited
@@ -265,9 +262,5 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
             print("Sign Out error")
         }
     }
-    
-    
-    
-    
     
 }
