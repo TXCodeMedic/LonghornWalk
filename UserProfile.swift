@@ -7,8 +7,13 @@
 
 import UIKit
 import FirebaseFirestore
+import FirebaseCore
+import FirebaseAuth
+import FirebaseStorage
 
 var userDocs:QuerySnapshot?
+
+let storage = Storage.storage()
 
 class UserProfile {
     
@@ -22,11 +27,12 @@ class UserProfile {
     public var locationsVisited: [String]
     // file path to the image file stored in String format? not sure yet
     public var profilePic: UIImage?
+    public var profilePicturePath:String
     // store the setting preferences of the user somehow?
     public var settingPreferences: String
     
     
-    init(userEmail: String, password: String, displayName:String, points: Int, joinDate: String) {
+    init(userEmail: String, password: String, displayName:String, points: Int, joinDate: String, profilePicturePath:String) {
         
         self.userEmail = userEmail
         self.password = password
@@ -36,6 +42,7 @@ class UserProfile {
         self.friendsList = []
         self.locationsVisited = []
         self.profilePic = nil
+        self.profilePicturePath = profilePicturePath
         self.settingPreferences = ""
     }
     
@@ -64,8 +71,22 @@ class UserProfile {
                                 password: doc["password"] as? String ?? "",
                                 displayName: doc["displayName"] as? String ?? "",
                                 points: doc["score"] as? Int ?? 0,
-                                joinDate: doc["joinDate"] as? String ?? ""
+                                joinDate: doc["joinDate"] as? String ?? "",
+                                profilePicturePath: doc["profilePicturePath"] as? String ?? ""
                             )
+                            // pull picture from storage
+                            let storageRef = storage.reference(withPath:appDelegate.currentUser?.profilePicturePath as! String)
+                            storageRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
+                              if let error = error {
+                                // Uh-oh, an error occurred!
+                                  print(error)
+                              } else {
+                                // Data for "images/island.jpg" is returned
+                                let image = UIImage(data: data!)
+                                  appDelegate.currentUser?.profilePic = image
+                              }
+                            }
+                            
                             appDelegate.userProtocol?.userLoaded()
                             break
                             // update score of this user from DB
@@ -103,7 +124,7 @@ class UserProfile {
                         if (
                             doc["email"] as? String == self.userEmail
                         ) {
-                            doc.reference.updateData(["displayName": self.displayName, "score": self.points])
+                            doc.reference.updateData(["displayName": self.displayName, "score": self.points, "profilePicturePath": self.profilePicturePath ])
     
                             break
                         }

@@ -9,6 +9,8 @@ import UIKit
 import AVFoundation
 import CoreData
 import FirebaseAuth
+import FirebaseCore
+import FirebaseStorage
 
 
 class EditProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -50,6 +52,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
 //        profilePic.contentMode = .scaleAspectFit
         profilePic.image = chosenImage
         appDelegate.currentUser?.profilePic = chosenImage
+        uploadPhoto(image: chosenImage)
 //        let jpegImageData  = chosenImage.jpegData(compressionQuality: 1.0)
 //        let entityName =  NSEntityDescription.entity(forEntityName: "CoreDataUser", in: context)!
 //        let image = NSManagedObject(entity: entityName, insertInto: context)
@@ -148,10 +151,6 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         present(alert, animated: true)
     }
     
-    func uploadPhoto() {
-        // this function will upload the chosen profile picture to Firebase Storage /profilePictures
-    }
-    
     // save to core data
     func saveContext () {
         if context.hasChanges {
@@ -227,6 +226,33 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     @IBAction func resetPasswordPressed(_ sender: Any) {
         Auth.auth().sendPasswordReset(withEmail: appDelegate.currentUser!.userEmail) { error in
           // ...
+        }
+    }
+    
+    func uploadPhoto(image:UIImage){
+        // This method will take the image and upload it to Firebase Storage
+        print("\nuploadPhoto\n")
+        let storageRef = storage.reference().child("profilePictures\(appDelegate.currentUser?.userEmail as! String).jpg")
+        
+        let resizedImage = image
+        let data = resizedImage.jpegData(compressionQuality: 0.2)
+        
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/jpg"
+        
+        if let data = data {
+                storageRef.putData(data, metadata: metadata) { (metadata, error) in
+                        if let error = error {
+                            print("Error while uploading file: ", error)
+                        }
+
+                        if let metadata = metadata {
+                            print("Metadata: ", metadata)
+                            appDelegate.currentUser?.profilePicturePath = "profilePictures\(appDelegate.currentUser?.userEmail as! String).jpg"
+                            print(appDelegate.currentUser?.profilePicturePath)
+                            appDelegate.currentUser?.saveUser()
+                        }
+                }
         }
     }
     
