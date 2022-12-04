@@ -83,7 +83,7 @@
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="1" green="0.85605629929892557" blue="0.72124067072027587" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
                     <navigationItem key="navigationItem" id="gSl-w5-q2N"/>
                     <connections>
@@ -110,7 +110,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="I1W-qu-Zxm"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.97535544630000004" green="0.85648208859999997" blue="0.72154563670000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
                     <navigationItem key="navigationItem" id="lTg-PT-fhE"/>
                     <connections>
@@ -225,7 +225,7 @@
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="kGg-wZ-wHu"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.97535544630000004" green="0.85648208859999997" blue="0.72154563670000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
                     <navigationItem key="navigationItem" id="3Mc-cF-khx">
                         <barButtonItem key="leftBarButtonItem" title="Item" image="map" catalog="system" id="roG-mL-b96">
@@ -290,7 +290,7 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="qGt-Vy-Cye"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.97535544630000004" green="0.86094824814746385" blue="0.72600095330209957" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
                     <navigationItem key="navigationItem" id="I27-EU-Apu"/>
                     <connections>
@@ -392,7 +392,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="0Fy-5G-IrX"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.97535544630000004" green="0.85648208859999997" blue="0.72154563670000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
                     <navigationItem key="navigationItem" id="PCx-eC-4Yh"/>
                     <connections>
@@ -473,7 +473,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="RxV-Q9-OtR"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.97535544630000004" green="0.85648208859999997" blue="0.72154563670000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
                     <navigationItem key="navigationItem" id="FHs-YY-eW1"/>
                     <connections>
@@ -512,7 +512,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="fqz-c5-fea"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.97535544630000004" green="0.85648208859999997" blue="0.72154563670000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
                     <navigationItem key="navigationItem" id="zn2-cR-Mmf"/>
                     <connections>
@@ -531,7 +531,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="FoC-ZH-rUe"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.97535544630000004" green="0.85648208859999997" blue="0.72154563670000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
                     <navigationItem key="navigationItem" id="SJL-ah-K2r"/>
                 </viewController>
