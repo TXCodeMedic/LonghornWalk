@@ -19,6 +19,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     var directions: [String] = []
     
+    var address = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,7 +29,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         
         getAddress()
 
-        
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
@@ -48,7 +49,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     func getAddress() {
         let geoCoder = CLGeocoder()
-        geoCoder.geocodeAddressString(PCL.locationAddress) { (placemarks, error) in
+        geoCoder.geocodeAddressString(address) { (placemarks, error) in
             guard let placemarks = placemarks, let location = placemarks.first?.location else {
                 print("No Location Found")
                 return

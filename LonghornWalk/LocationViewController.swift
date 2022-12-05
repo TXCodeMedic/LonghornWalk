@@ -30,7 +30,7 @@ let BUR = UTLocation(name: "Burdine Hall", address: "2505 University Ave, Austin
 let WEL = UTLocation(name: "Robert A. Welch Hall", address: "105 E 24th St, Austin, TX, 78712", latitude: 30.2870189, longitude: -97.7375652)
 let RSC = UTLocation(name: "Recreational Sports Center", address: "2001 San Jacinto Blvd, Austin, TX, 78712", latitude: 30.2816054, longitude: -97.7327600)
 let CPE = UTLocation(name: "McKetta Department of Chemical Engineering", address: "200 E Dean Keeton St", latitude: 30.2901878, longitude: -97.7364628)
-let BCR = UTLocation(name: "Bulko's Classroom", address: "GDC 5.302 ", latitude: 30.2864251, longitude: -97.7365888)
+let BCR = UTLocation(name: "Bulko's Classroom", address: "2317 Speedway, Austin, TX 78712", latitude: 30.2864251, longitude: -97.7365888)
 
 let UTLocationList = [PCL,ART,MAI,RLM,UNB,GRE,BUR,WEL,RSC,CPE,BCR]
 
@@ -88,6 +88,13 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
                 // TO DO: debug why is locationManager.location nil?
                 print("ERROR with LocationManager permissions")
             }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is MapViewController {
+            let vc = segue.destination as? MapViewController
+            vc?.address = UTLocationList[locationIndex].locationAddress
         }
     }
     
@@ -230,9 +237,5 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
                 style: .default))
             self.present(alert, animated: true)
         }
-    }
-    
-    @IBSegueAction func swiftUIAction(_ coder: NSCoder) -> UIViewController? {
-        return UIHostingController(coder: coder, rootView: MapSwiftUIView())
     }
 }
