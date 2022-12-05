@@ -20,17 +20,28 @@ class UTLocation {
 }
 
 //MARK: UT Locations
-let PCL = UTLocation(name:"Perry-Castañeda Library", address:"101 E 21st St, Austin, TX, 78712", latitude: 30.2826535, longitude: -97.7382112)
-let ART = UTLocation(name: "Department of Art and Art History", address: "2301 San Jacinto Blvd, Austin, TX, 78705", latitude: 30.2856605, longitude: -97.7334386)
-let MAI = UTLocation(name: "The University of Texas at Austin Main Building", address: "110 Inner Campus Drive, Austin, TX, 78712", latitude: 30.2859129, longitude: -97.7393780)
-let RLM = UTLocation(name: "Physics, Math, and Astronomy Building", address: "2515 Speedway, Austin, TX, 78712", latitude:30.2890428, longitude:-97.7366309)
-let UNB = UTLocation(name: "Texas Union", address: "2308 Whitis Ave, Austin, TX 78712", latitude: 30.2866300, longitude: -97.7410396)
-let GRE = UTLocation(name: "Gregory Gym", address: "2101 Speedway, Austin, TX, 78712", latitude: 30.2842791, longitude: -97.7367789)
-let BUR = UTLocation(name: "Burdine Hall", address: "2505 University Ave, Austin, TX 78712", latitude: 30.2888324, longitude: -97.7383031)
-let WEL = UTLocation(name: "Robert A. Welch Hall", address: "105 E 24th St, Austin, TX, 78712", latitude: 30.2870189, longitude: -97.7375652)
-let RSC = UTLocation(name: "Recreational Sports Center", address: "2001 San Jacinto Blvd, Austin, TX, 78712", latitude: 30.2816054, longitude: -97.7327600)
-let CPE = UTLocation(name: "McKetta Department of Chemical Engineering", address: "200 E Dean Keeton St", latitude: 30.2901878, longitude: -97.7364628)
-let BCR = UTLocation(name: "Bulko's Classroom", address: "2317 Speedway, Austin, TX 78712", latitude: 30.2864251, longitude: -97.7365888)
+let PCL = UTLocation(name:"Perry-Castañeda Library", address:"101 E 21st St, Austin, TX, 78712", latitude: 30.28269313340662, longitude: -97.7381113172094)
+// 30.28269313340662, -97.7381113172094
+let ART = UTLocation(name: "Department of Art and Art History", address: "2301 San Jacinto Blvd, Austin, TX, 78705", latitude: 30.285809118247645, longitude: -97.73290565247262)
+// 30.285809118247645, -97.73290565247262
+let MAI = UTLocation(name: "The University of Texas at Austin Main Building", address: "110 Inner Campus Drive, Austin, TX, 78712", latitude: 30.286344137775412, longitude: -97.73930152606853)
+// 30.286344137775412, -97.73930152606853
+let RLM = UTLocation(name: "Physics, Math, and Astronomy Building", address: "2515 Speedway, Austin, TX, 78712", latitude:30.289039890662803, longitude:-97.73643390244438)
+// 30.289039890662803, -97.73643390244438
+let UNB = UTLocation(name: "Texas Union", address: "2308 Whitis Ave, Austin, TX 78712", latitude: 30.28671079741925, longitude: -97.74116258159587)
+// 30.28671079741925, -97.74116258159587
+let GRE = UTLocation(name: "Gregory Gym", address: "2101 Speedway, Austin, TX, 78712", latitude: 30.284490464141697, longitude: -97.73681183127968)
+// 30.284490464141697, -97.73681183127968
+let BUR = UTLocation(name: "Burdine Hall", address: "2505 University Ave, Austin, TX 78712", latitude: 30.288837784474733, longitude: -97.73820150244435)
+// 30.288837784474733, -97.73820150244435
+let WEL = UTLocation(name: "Robert A. Welch Hall", address: "105 E 24th St, Austin, TX, 78712", latitude: 30.287225312884132, longitude: -97.73779783127964)
+// 30.287225312884132, -97.73779783127964
+let RSC = UTLocation(name: "Recreational Sports Center", address: "2001 San Jacinto Blvd, Austin, TX, 78712", latitude: 30.281511239179437, longitude: -97.73291451533485)
+// 30.281511239179437, -97.73291451533485
+let CPE = UTLocation(name: "McKetta Department of Chemical Engineering", address: "200 E Dean Keeton St", latitude: 30.290818402184424, longitude: -97.73637315538319)
+// 30.290818402184424, -97.73637315538319
+let BCR = UTLocation(name: "Bulko's Classroom", address: "2317 Speedway, Austin, TX 78712", latitude: 30.286420514100342, longitude: -97.73658237360927)
+// 30.286420514100342, -97.73658237360927
 
 let UTLocationList = [PCL,ART,MAI,RLM,UNB,GRE,BUR,WEL,RSC,CPE,BCR]
 
@@ -57,8 +68,9 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
     //MARK: ViewDidLoad()
     override func viewDidLoad() {
         showImage(index: locationIndex)
-        
         super.viewDidLoad()
+        
+        // Gestures
         print("\(String(describing: appDelegate.currentUser?.points))")
         // swipe left
         let swipeLeftRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(recognizeSwipeGesture(recognizer:)))
@@ -70,25 +82,14 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
         swipeRightRecognizer.direction = UISwipeGestureRecognizer.Direction.right
         self.view.addGestureRecognizer(swipeRightRecognizer)
         
-        
-        locationManager.requestWhenInUseAuthorization()
-        var currentLoc: CLLocation!
-        print("Ask for permission")
-        if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
-           CLLocationManager.authorizationStatus() == .authorizedAlways) {
-            print("All Set")
-            
-            if locationManager.location != nil{
-                currentLoc = locationManager.location
-                print("lat \(currentLoc.coordinate.latitude)")
-                userLat = currentLoc.coordinate.latitude
-                print("long \(currentLoc.coordinate.longitude)\n\n\n\n")
-                userLong = currentLoc.coordinate.longitude
-            }else{
-                // TO DO: debug why is locationManager.location nil?
-                print("ERROR with LocationManager permissions")
-            }
         }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -98,16 +99,30 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    //MARK: LocationManager Update Locations
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
-        print("locations = \(locValue.latitude) \(locValue.longitude)")
-        userLat = locValue.latitude
-        userLong = locValue.longitude
+    //MARK: LocationManager DidUpdateLocations
+    func locationManager(
+        _ manager: CLLocationManager,
+        didUpdateLocations locations: [CLLocation]
+    ) {
+        if let location = locations.first {
+            let latitude = location.coordinate.latitude
+            let longitude = location.coordinate.longitude
+            // Handle location update
+            self.userLat = latitude
+            self.userLong = longitude
+            print("\nNew userLat and userLong")
+            print("userLat: \(self.userLat)")
+            print("userLong: \(self.userLong)\n")
+        }
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+
+    //MARK: LocationManager DidFailWithError
+    func locationManager(
+        _ manager: CLLocationManager,
+        didFailWithError error: Error
+    ) {
+        // Handle failure to get a user’s location
+        print(error)
     }
     
     // MARK: Indexing / Gestures
@@ -136,17 +151,23 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
     
     //MARK: checkLocation()
     func checkLocation() -> Bool {
+        print()
+        print(UTLocationList[locationIndex].locationName)
+        print(UTLocationList[locationIndex].locationAddress)
+        print(UTLocationList[locationIndex].locationLatitude)
+        print(UTLocationList[locationIndex].locationLongitude)
+        
         // Set range of UTLocation Pin
         // Latitude
-        return true
-        let UTLocationLatitudeMinus = (UTLocationList[locationIndex].locationLatitude - (UTLocationList[locationIndex].locationLatitude - 0.000000000000200))
+        let UTLocationLatitudeMinus = (UTLocationList[locationIndex].locationLatitude -  0.001000)
 
-        let UTLocationLatitudePlus = (UTLocationList[locationIndex].locationLatitude + (UTLocationList[locationIndex].locationLatitude + 0.000000000000200))
+        
+        let UTLocationLatitudePlus = (UTLocationList[locationIndex].locationLatitude + 0.001000)
 
         //Longitude
-        let UTLocationLongitudeMinus = (UTLocationList[locationIndex].locationLongitude - (UTLocationList[locationIndex].locationLongitude - 0.000000000000200))
+        let UTLocationLongitudeMinus = (UTLocationList[locationIndex].locationLongitude + 0.001500)
 
-        let UTLocationLongitudePlus = (UTLocationList[locationIndex].locationLongitude + (UTLocationList[locationIndex].locationLongitude + 0.000000000000200))
+        let UTLocationLongitudePlus = (UTLocationList[locationIndex].locationLongitude -  0.001500)
 
         print("______________________Long______________________")
         print("\nlower bound: \(UTLocationLongitudeMinus)")
@@ -161,6 +182,12 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
         if ((self.userLat >= UTLocationLatitudeMinus) && (self.userLat <= UTLocationLatitudePlus)){
             print("User is in range of lat")
             // Made abs to check --> look for other options
+            
+            print("HERE!")
+            print(abs(UTLocationLongitudeMinus))
+            print(abs(self.userLong))
+            print(abs(self.userLong))
+            print()
             if ((abs(self.userLong) >= abs(UTLocationLongitudeMinus)) && (abs(self.userLong) <= abs(UTLocationLongitudePlus))){
                 print("User is in range of long")
                 print("User is at the location")

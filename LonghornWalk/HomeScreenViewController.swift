@@ -72,6 +72,14 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         var formattedDate = formatter.string(from: currentDate)
         
         if appDelegate.currentUser?.lastUpdate as! String != currentDate as? String {
+            let alert = UIAlertController(
+                title: "New Day!",
+                message: "We refreshed your list!\nGo get more points!",
+                preferredStyle: .alert)
+            alert.addAction(UIAlertAction(
+                title: "OK",
+                style: .default))
+            self.present(alert, animated: true)
             clearCoreData()
         }
         
