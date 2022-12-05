@@ -1,4 +1,5 @@
 import UIKit
+import SwiftUI
 import CoreLocation
 import CoreData
 
@@ -229,5 +230,9 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
                 style: .default))
             self.present(alert, animated: true)
         }
+    }
+    
+    @IBSegueAction func swiftUIAction(_ coder: NSCoder) -> UIViewController? {
+        return UIHostingController(coder: coder, rootView: MapSwiftUIView())
     }
 }

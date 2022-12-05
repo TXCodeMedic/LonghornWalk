@@ -13,6 +13,10 @@
 		46777E9B29380018005C0BF9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46777E9A29380018005C0BF9 /* SettingsViewController.swift */; };
 		46777E9D2938006A005C0BF9 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46777E9C2938006A005C0BF9 /* SettingsTableViewCell.swift */; };
 		46777E9F29380073005C0BF9 /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46777E9E29380073005C0BF9 /* SwitchTableViewCell.swift */; };
+		467F3796293C8DE20087F8A4 /* popupLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467F3795293C8DE20087F8A4 /* popupLocationViewController.swift */; };
+		467F379A293D1A5F0087F8A4 /* MapSwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467F3799293D1A5F0087F8A4 /* MapSwiftUIView.swift */; };
+		469F4B89293D2F620087B403 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469F4B88293D2F620087B403 /* MapViewController.swift */; };
+		469F4B8B293D626D0087B403 /* DirectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469F4B8A293D626C0087B403 /* DirectionsViewController.swift */; };
 		A24E406C29216238004717B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24E406B29216238004717B2 /* AppDelegate.swift */; };
 		A24E406E29216238004717B2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24E406D29216238004717B2 /* SceneDelegate.swift */; };
 		A24E407329216238004717B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A24E407129216238004717B2 /* Main.storyboard */; };
@@ -46,6 +50,10 @@
 		46777E9A29380018005C0BF9 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		46777E9C2938006A005C0BF9 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		46777E9E29380073005C0BF9 /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchTableViewCell.swift; sourceTree = "<group>"; };
+		467F3795293C8DE20087F8A4 /* popupLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = popupLocationViewController.swift; sourceTree = "<group>"; };
+		467F3799293D1A5F0087F8A4 /* MapSwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSwiftUIView.swift; sourceTree = "<group>"; };
+		469F4B88293D2F620087B403 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		469F4B8A293D626C0087B403 /* DirectionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsViewController.swift; sourceTree = "<group>"; };
 		A24E406829216238004717B2 /* LonghornWalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LonghornWalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A24E406B29216238004717B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A24E406D29216238004717B2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -123,6 +131,10 @@
 				465AC2392939594800FF2649 /* LaunchScreenViewController.swift */,
 				A24E407929216239004717B2 /* LaunchScreen.storyboard */,
 				A24E407129216238004717B2 /* Main.storyboard */,
+				469F4B88293D2F620087B403 /* MapViewController.swift */,
+				467F3799293D1A5F0087F8A4 /* MapSwiftUIView.swift */,
+				467F3795293C8DE20087F8A4 /* popupLocationViewController.swift */,
+				469F4B8A293D626C0087B403 /* DirectionsViewController.swift */,
 				A24E407729216239004717B2 /* Assets.xcassets */,
 				A24E407C29216239004717B2 /* Info.plist */,
 				A24E407429216238004717B2 /* LonghornWalk.xcdatamodeld */,
@@ -228,9 +240,12 @@
 				CE03AA762931DB7D0091783C /* EditProfileViewController.swift in Sources */,
 				F34237552935C11A009A477B /* myCellTableViewCell.swift in Sources */,
 				A24E40832921677E004717B2 /* LoginAndRegistrationViewController.swift in Sources */,
+				467F379A293D1A5F0087F8A4 /* MapSwiftUIView.swift in Sources */,
 				A24E406C29216238004717B2 /* AppDelegate.swift in Sources */,
 				A24E4087292167BD004717B2 /* RankingViewController.swift in Sources */,
 				46777E9D2938006A005C0BF9 /* SettingsTableViewCell.swift in Sources */,
+				469F4B89293D2F620087B403 /* MapViewController.swift in Sources */,
+				467F3796293C8DE20087F8A4 /* popupLocationViewController.swift in Sources */,
 				A24E406E29216238004717B2 /* SceneDelegate.swift in Sources */,
 				A24E408D29218917004717B2 /* HomeScreenViewController.swift in Sources */,
 				A24E407629216238004717B2 /* LonghornWalk.xcdatamodeld in Sources */,
@@ -238,6 +253,7 @@
 				465AC23A2939594800FF2649 /* LaunchScreenViewController.swift in Sources */,
 				A24E408B292167D6004717B2 /* UserProfileViewController.swift in Sources */,
 				CEAED7D1292DDECF007D87D2 /* UserProfile.swift in Sources */,
+				469F4B8B293D626D0087B403 /* DirectionsViewController.swift in Sources */,
 				465AC2362939587000FF2649 /* SoundSwitchTableViewCell.swift in Sources */,
 				A24E4089292167C8004717B2 /* LocationViewController.swift in Sources */,
 				46777E9B29380018005C0BF9 /* SettingsViewController.swift in Sources */,
