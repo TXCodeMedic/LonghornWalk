@@ -14,6 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var currentUser: UserProfile?
     var userProtocol: UserLoadProtocol?
+    var photoProtocol: PhotoLoadProtocol?
 //    let currentUser = User(userEmail: "", username: "", password: "", displayName: "")
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {

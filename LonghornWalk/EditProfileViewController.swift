@@ -13,8 +13,13 @@ import FirebaseCore
 import FirebaseStorage
 import FirebaseFirestore
 
+protocol PhotoLoadProtocol {
+    func photoLoaded()
+}
 
-class EditProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
+class EditProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, PhotoLoadProtocol {
+    
     
 
     let picker = UIImagePickerController()
@@ -138,10 +143,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         appDelegate.currentUser?.displayName = displayNameText.text!
     }
     
-    @IBAction func saveChangesPressed(_ sender: Any) {
-        appDelegate.currentUser?.displayName = displayNameText.text!
-        appDelegate.currentUser?.profilePic = chosenImage
-        uploadPhoto(image: chosenImage as! UIImage)
+    func photoLoaded() {
         appDelegate.currentUser?.saveUser()
         let alert = UIAlertController(
             title: "Success",
@@ -151,6 +153,14 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             title: "OK",
             style: .default))
         present(alert, animated: true)
+    }
+    
+    @IBAction func saveChangesPressed(_ sender: Any) {
+        appDelegate.currentUser?.displayName = displayNameText.text!
+        appDelegate.currentUser?.profilePic = chosenImage
+        uploadPhoto(image: chosenImage!)
+        appDelegate.photoProtocol?.photoLoaded()
+        
     }
     
     // save to core data
