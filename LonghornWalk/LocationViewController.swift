@@ -24,10 +24,10 @@ let PCL = UTLocation(name:"Perry-Castañeda Library", address:"101 E 21st St, Au
 let ART = UTLocation(name: "Department of Art and Art History", address: "2301 San Jacinto Blvd, Austin, TX, 78705", latitude: 30.2856605, longitude: -97.7334386)
 let MAI = UTLocation(name: "The University of Texas at Austin Main Building", address: "110 Inner Campus Drive, Austin, TX, 78712", latitude: 30.2859129, longitude: -97.7393780)
 let RLM = UTLocation(name: "Physics, Math, and Astronomy Building", address: "2515 Speedway, Austin, TX, 78712", latitude:30.2890428, longitude:-97.7366309)
-let UNB = UTLocation(name: "Texas Union", address: "2308 Whitis Ave, Austin, TX 78712", latitude: 30.2866300, longitude: -97.7410396)
+let UNB = UTLocation(name: "Texas Union", address: "2308 Whitis Ave, Austin, TX, 78712", latitude: 30.2866300, longitude: -97.7410396)
 let GRE = UTLocation(name: "Gregory Gym", address: "2101 Speedway, Austin, TX, 78712", latitude: 30.2842791, longitude: -97.7367789)
 let BUR = UTLocation(name: "Burdine Hall", address: "2505 University Ave, Austin, TX 78712", latitude: 30.2888324, longitude: -97.7383031)
-let WEL = UTLocation(name: "Robert A. Welch Hall", address: "105 E 24th St, Austin, TX, 78712", latitude: 30.2870189, longitude: -97.7375652)
+let WEL = UTLocation(name: "Robert A. Welch Hall", address: "105 E 24th St Austin, TX 78712", latitude: 30.2870189, longitude: -97.7375652)
 let RSC = UTLocation(name: "Recreational Sports Center", address: "2001 San Jacinto Blvd, Austin, TX, 78712", latitude: 30.2816054, longitude: -97.7327600)
 let CPE = UTLocation(name: "McKetta Department of Chemical Engineering", address: "200 E Dean Keeton St", latitude: 30.2901878, longitude: -97.7364628)
 let BCR = UTLocation(name: "Bulko's Classroom", address: "2317 Speedway, Austin, TX 78712", latitude: 30.2864251, longitude: -97.7365888)
@@ -94,7 +94,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is MapViewController {
             let vc = segue.destination as? MapViewController
-            vc?.address = UTLocationList[locationIndex].locationAddress
+            vc?.coordinate = CLLocationCoordinate2D(latitude: UTLocationList[locationIndex].locationLatitude, longitude: UTLocationList[locationIndex].locationLongitude)
         }
     }
     

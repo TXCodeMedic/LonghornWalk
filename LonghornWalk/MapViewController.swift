@@ -19,7 +19,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     var directions: [String] = []
     
-    var address = ""
+    var coordinate = CLLocationCoordinate2D()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,15 +48,16 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     func getAddress() {
-        let geoCoder = CLGeocoder()
-        geoCoder.geocodeAddressString(address) { (placemarks, error) in
-            guard let placemarks = placemarks, let location = placemarks.first?.location else {
-                print("No Location Found")
-                return
-            }
-            print(location)
-            self.mapThis(destinationCord: location.coordinate)
-        }
+//        let geoCoder = CLGeocoder()
+//        geoCoder.geocodeAddressString(address) { (placemarks, error) in
+//            guard let placemarks = placemarks, let location = placemarks.first?.location else {
+//                print("No Location Found")
+//                return
+//            }
+//            print(location)
+//            self.mapThis(destinationCord: location.coordinate)
+//        }
+        self.mapThis(destinationCord: coordinate)
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -97,7 +98,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let render = MKPolylineRenderer(overlay: overlay as! MKPolyline)
         render.strokeColor = .systemOrange
-        render.lineWidth = 3
+        render.lineWidth = 8
         return render
     }
 

@@ -14,7 +14,7 @@ protocol ModalViewControllerDelegate
 
 class DirectionsViewController: UIViewController {
 
-    @IBOutlet weak var directionsLabel: UILabel!
+    @IBOutlet weak var directionsLabel: UITextView!
     
     var directions: [String] = []
     
