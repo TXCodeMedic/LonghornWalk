@@ -13,7 +13,7 @@ class popupLocationViewController: UIViewController {
     
     @IBOutlet weak var locationName: UILabel!
     
-    @IBOutlet weak var locationAddress: UILabel!
+   // @IBOutlet weak var locationAddress: UILabel!
     
     var image = UIImage()
     var name = ""
@@ -26,7 +26,7 @@ class popupLocationViewController: UIViewController {
         print(name)
         imageView.image = image
         locationName.text = name
-        locationAddress.text = address
+       // locationAddress.text = address
     }
 
 }

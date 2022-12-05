@@ -22,7 +22,7 @@ class DirectionsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        directionsLabel.text = directions.joined(separator: "\n\n\n\n\n\n\n\n")
+        directionsLabel.text = directions.joined(separator: "\n\n\n")
     }
 
 }
