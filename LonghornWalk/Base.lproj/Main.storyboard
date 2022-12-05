@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Map view configurations" minToolsVersion="14.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -251,6 +252,16 @@
             </objects>
             <point key="canvasLocation" x="3023.6641221374043" y="-14.788732394366198"/>
         </scene>
+        <!--Hosting Controller-->
+        <scene sceneID="b2W-6z-NdI">
+            <objects>
+                <hostingController id="2sX-Al-arA" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="AAG-wr-khS"/>
+                </hostingController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NNq-t6-WGf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1974" y="843"/>
+        </scene>
         <!--Location View Controller-->
         <scene sceneID="Xqh-SO-qPM">
             <objects>
@@ -289,6 +300,15 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="82y-Bn-RFg">
+                                <rect key="frame" x="146" y="656" width="102" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="Directions"/>
+                                <connections>
+                                    <segue destination="aw4-Lr-WWI" kind="show" id="YE3-14-FUb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="qGt-Vy-Cye"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -304,6 +324,80 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8T0-2B-fR3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3023.6641221374043" y="829.57746478873241"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="oRK-F6-h27">
+            <objects>
+                <viewController id="aw4-Lr-WWI" customClass="MapViewController" customModule="LonghornWalk" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ekZ-K1-4zU">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z6b-ns-pLW">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="766"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <standardMapConfiguration key="preferredConfiguration"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cIJ-5r-VET">
+                                <rect key="frame" x="123" y="783" width="148" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Show Directions"/>
+                                <connections>
+                                    <action selector="getDirectionsTapped:" destination="aw4-Lr-WWI" eventType="touchUpInside" id="7gu-DY-9s0"/>
+                                    <segue destination="wih-Ak-GVZ" kind="presentation" id="QJz-XX-ZFh"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="kR6-hP-zpI"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="7yJ-CO-4V2"/>
+                    <connections>
+                        <outlet property="getDirectionsButton" destination="cIJ-5r-VET" id="KTM-jz-5NL"/>
+                        <outlet property="map" destination="z6b-ns-pLW" id="2oM-vL-yQa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QE5-0n-doS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3023.6641221374043" y="1529.5774647887324"/>
+        </scene>
+        <!--Directions View Controller-->
+        <scene sceneID="fAc-bN-AkQ">
+            <objects>
+                <viewController storyboardIdentifier="DirectionsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wih-Ak-GVZ" customClass="DirectionsViewController" customModule="LonghornWalk" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JD5-0c-yuO">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="xNl-XW-FhM">
+                                <rect key="frame" x="0.0" y="59" width="393" height="724"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SgG-k3-XWy" customClass="directions">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="724"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Su4-EJ-cci"/>
+                        <color key="backgroundColor" red="0.98039215690000003" green="0.7843137255" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Su4-EJ-cci" firstAttribute="bottom" secondItem="xNl-XW-FhM" secondAttribute="bottom" id="Dm5-dA-b7f"/>
+                            <constraint firstItem="xNl-XW-FhM" firstAttribute="top" secondItem="Su4-EJ-cci" secondAttribute="top" id="J0H-Oa-8DR"/>
+                            <constraint firstItem="Su4-EJ-cci" firstAttribute="trailing" secondItem="xNl-XW-FhM" secondAttribute="trailing" id="Qd3-QI-1QQ"/>
+                            <constraint firstItem="xNl-XW-FhM" firstAttribute="leading" secondItem="Su4-EJ-cci" secondAttribute="leading" id="g0k-R5-7aM"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="directionsLabel" destination="SgG-k3-XWy" id="EJI-OZ-dSP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xf0-Td-fuU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3937" y="1530"/>
         </scene>
         <!--User Profile View Controller-->
         <scene sceneID="SwI-Li-eSI">
