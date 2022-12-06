@@ -217,7 +217,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     
     func uploadPhoto(image:UIImage){
         // This method will take the image and upload it to Firebase Storage
-        let storageRef = storage.reference().child("profilePictures\(appDelegate.currentUser?.userEmail as! String).jpg")
+        let storageRef = storage.reference().child("profilePictures/\(appDelegate.currentUser?.userEmail as! String).jpg")
         let resizedImage = image
         let data = resizedImage.jpegData(compressionQuality: 0.2)
         let metadata = StorageMetadata()
@@ -227,7 +227,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                         if let error = error {
                         }
                         if let metadata = metadata {
-                            appDelegate.currentUser?.profilePicturePath = "profilePictures\(appDelegate.currentUser?.userEmail as! String).jpg"
+                            appDelegate.currentUser?.profilePicturePath = "profilePictures/\(appDelegate.currentUser?.userEmail as! String).jpg"
                             appDelegate.currentUser?.saveUser()
                         }
                 }

@@ -14,7 +14,6 @@
 		46777E9D2938006A005C0BF9 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46777E9C2938006A005C0BF9 /* SettingsTableViewCell.swift */; };
 		46777E9F29380073005C0BF9 /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46777E9E29380073005C0BF9 /* SwitchTableViewCell.swift */; };
 		467F3796293C8DE20087F8A4 /* popupLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467F3795293C8DE20087F8A4 /* popupLocationViewController.swift */; };
-		467F379A293D1A5F0087F8A4 /* MapSwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467F3799293D1A5F0087F8A4 /* MapSwiftUIView.swift */; };
 		469F4B89293D2F620087B403 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469F4B88293D2F620087B403 /* MapViewController.swift */; };
 		469F4B8B293D626D0087B403 /* DirectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469F4B8A293D626C0087B403 /* DirectionsViewController.swift */; };
 		A24E406C29216238004717B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24E406B29216238004717B2 /* AppDelegate.swift */; };
@@ -50,7 +49,6 @@
 		46777E9C2938006A005C0BF9 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		46777E9E29380073005C0BF9 /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchTableViewCell.swift; sourceTree = "<group>"; };
 		467F3795293C8DE20087F8A4 /* popupLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = popupLocationViewController.swift; sourceTree = "<group>"; };
-		467F3799293D1A5F0087F8A4 /* MapSwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSwiftUIView.swift; sourceTree = "<group>"; };
 		469F4B88293D2F620087B403 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		469F4B8A293D626C0087B403 /* DirectionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsViewController.swift; sourceTree = "<group>"; };
 		A24E406829216238004717B2 /* LonghornWalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LonghornWalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -129,7 +127,6 @@
 				A24E407929216239004717B2 /* LaunchScreen.storyboard */,
 				A24E407129216238004717B2 /* Main.storyboard */,
 				469F4B88293D2F620087B403 /* MapViewController.swift */,
-				467F3799293D1A5F0087F8A4 /* MapSwiftUIView.swift */,
 				467F3795293C8DE20087F8A4 /* popupLocationViewController.swift */,
 				469F4B8A293D626C0087B403 /* DirectionsViewController.swift */,
 				A24E407729216239004717B2 /* Assets.xcassets */,
@@ -237,7 +234,6 @@
 				CE03AA762931DB7D0091783C /* EditProfileViewController.swift in Sources */,
 				F34237552935C11A009A477B /* myCellTableViewCell.swift in Sources */,
 				A24E40832921677E004717B2 /* LoginAndRegistrationViewController.swift in Sources */,
-				467F379A293D1A5F0087F8A4 /* MapSwiftUIView.swift in Sources */,
 				A24E406C29216238004717B2 /* AppDelegate.swift in Sources */,
 				46777E9D2938006A005C0BF9 /* SettingsTableViewCell.swift in Sources */,
 				469F4B89293D2F620087B403 /* MapViewController.swift in Sources */,
@@ -399,7 +395,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = Y7X7HL35W3;
+				DEVELOPMENT_TEAM = UB7L88227Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LonghornWalk/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app wants to use your camera";
@@ -417,7 +413,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Team-10.LonghornWalkY";
+				PRODUCT_BUNDLE_IDENTIFIER = "Team-10.LonghornWalkY123";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -432,7 +428,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8LQVQY95GT;
+				DEVELOPMENT_TEAM = UB7L88227Z;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LonghornWalk/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app wants to use your camera";
