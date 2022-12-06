@@ -124,14 +124,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 UIApplication.shared.open(url)
             }),
             .staticCell(model:SettingsOption(title: "Learn More", icon: (UIImage(systemName: "graduationcap.fill")), iconBackgroundColor: .systemOrange) {
-                let controller = UIAlertController(
-                    title: "Learn More",
-                    message: "blah blah blah",
-                    preferredStyle: .alert)
-                controller.addAction(UIAlertAction(
-                    title: "Dismiss",
-                    style: .cancel))
-                self.present(controller, animated: true)
+                guard let url = URL(string: "https://docs.google.com/document/d/17euX84xqyz7PUrl-D6doyXf4wF6XbH9NCq9NyeGi8No/edit?usp=sharing") else { return }
+                UIApplication.shared.open(url)
             })
         ]))
     }
