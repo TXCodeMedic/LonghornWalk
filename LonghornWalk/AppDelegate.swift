@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //    let currentUser = User(userEmail: "", username: "", password: "", displayName: "")
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        UserDefaults.standard.register(defaults:["sound": true])
         // Override point for customization after application launch.
         FirebaseApp.configure()
         //currentUser = UserProfile.loadUser()

@@ -77,7 +77,7 @@ class SoundSwitchTableViewCell: UITableViewCell {
         iconImageView.image = nil
         label.text = nil
         iconContainer.backgroundColor = nil
-        mySwitch.isOn = false
+        mySwitch.isOn = true
     }
     
     public func configure(with model: SettingsSwitchOption) {

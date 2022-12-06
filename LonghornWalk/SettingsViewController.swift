@@ -117,18 +117,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             .staticCell(model: SettingsOption(title: "Terms of Service", icon: (UIImage(systemName: "text.badge.checkmark")), iconBackgroundColor: .systemPink) {
                 let controller = UIAlertController(
                     title: "Terms of Service",
-                    message: "blah blah blah",
-                    preferredStyle: .alert)
-                controller.addAction(UIAlertAction(
-                    title: "Dismiss",
-                    style: .cancel))
-                
-                self.present(controller, animated: true)
-            }),
-            .staticCell(model:SettingsOption(title: "Privacy Policy", icon: (UIImage(systemName: "lock.shield")), iconBackgroundColor: .link) {
-                let controller = UIAlertController(
-                    title: "Privacy Policy",
-                    message: "blah blah blah",
+                    message: "Don't share account information with others because that's cheating!",
                     preferredStyle: .alert)
                 controller.addAction(UIAlertAction(
                     title: "Dismiss",
