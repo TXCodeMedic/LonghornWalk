@@ -139,7 +139,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
     
     //MARK: checkLocation()
     func checkLocation() -> Bool {
-        return true
+//        return true
         
         // Set range of UTLocation Pin
         // Latitude
