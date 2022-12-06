@@ -151,6 +151,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
     
     //MARK: checkLocation()
     func checkLocation() -> Bool {
+        return true
         print()
         print(UTLocationList[locationIndex].locationName)
         print(UTLocationList[locationIndex].locationAddress)

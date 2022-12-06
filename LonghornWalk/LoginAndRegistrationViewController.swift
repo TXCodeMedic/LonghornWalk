@@ -316,7 +316,7 @@ class LoginAndRegistrationViewController: UIViewController, UserLoadProtocol {
         if errorCode == 17007{
             let alert = UIAlertController(
                 title: "User is already registered",
-                message: "Email is alreayd registered to another account",
+                message: "Email is already registered to another account",
                 preferredStyle: .alert)
             alert.addAction(UIAlertAction(
                 title: "OK",

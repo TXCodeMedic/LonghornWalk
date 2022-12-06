@@ -70,8 +70,7 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         var formatter = DateFormatter()
         formatter.dateFormat = "dd-MM-yy"
         var formattedDate = formatter.string(from: currentDate)
-        
-        if appDelegate.currentUser?.lastUpdate as! String != currentDate as? String {
+        if appDelegate.currentUser?.lastUpdate as! String != formattedDate as? String {
             let alert = UIAlertController(
                 title: "New Day!",
                 message: "We refreshed your list!\nGo get more points!",
@@ -81,13 +80,10 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
                 style: .default))
             self.present(alert, animated: true)
             clearCoreData()
+            appDelegate.currentUser?.lastUpdate = formattedDate
+            appDelegate.currentUser?.saveUser()
         }
         
-        print("\nlook here")
-        print("\nUser:\(appDelegate.currentUser)")
-        print("email:\(appDelegate.currentUser?.userEmail)")
-        print("displayName:\(appDelegate.currentUser?.displayName)")
-        print("score:\(appDelegate.currentUser?.points)")
         
         
         
@@ -158,11 +154,6 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
                 NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
             }
         }
-    }
-    
-    func checkDate(){
-        // if date is different on Firestore, clear CoreData
-        
     }
     
     //retrieve from core data
