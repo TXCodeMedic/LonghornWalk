@@ -95,7 +95,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is MapViewController {
             let vc = segue.destination as? MapViewController
-            vc?.address = UTLocationList[locationIndex].locationAddress
+            vc?.coordinate = CLLocationCoordinate2D(latitude: UTLocationList[locationIndex].locationLatitude, longitude: UTLocationList[locationIndex].locationLongitude)
         }
     }
     
