@@ -271,8 +271,6 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBAction func onLogoutPressed(_ sender: Any) {
         do {
-            // clear this user's locations visited
-            clearCoreData()
             // sign out of firebase auth
             try Auth.auth().signOut()
             self.dismiss(animated: true)
