@@ -186,8 +186,17 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         else if score >= 150 && score < 200 {
             return "Neil deGrasse Tyson"
         }
-        else if score >= 200 {
+        else if score >= 200 && score < 250{
             return "Matthew McConaughey"
+        }
+        else if score >= 250 && score < 300{
+            return "Farrah Fawcett"
+        }
+        else if score >= 300 && score < 350{
+            return "Kevin Durant"
+        }
+        else if score >= 350{
+            return "Bill Bulko"
         }
         return ""
     }

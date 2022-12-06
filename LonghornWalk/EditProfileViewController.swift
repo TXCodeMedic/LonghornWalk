@@ -122,6 +122,13 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     
     func photoLoaded() {
         appDelegate.currentUser?.saveUser()
+    }
+    
+    @IBAction func saveChangesPressed(_ sender: Any) {
+        appDelegate.currentUser?.displayName = displayNameText.text!
+        appDelegate.currentUser?.profilePic = profilePic.image
+        uploadPhoto(image: profilePic.image as! UIImage)
+        appDelegate.photoProtocol?.photoLoaded()
         let alert = UIAlertController(
             title: "Success",
             message: "Your changes are saved",
@@ -130,13 +137,6 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             title: "OK",
             style: .default))
         present(alert, animated: true)
-    }
-    
-    @IBAction func saveChangesPressed(_ sender: Any) {
-        appDelegate.currentUser?.displayName = displayNameText.text!
-        appDelegate.currentUser?.profilePic = chosenImage
-        uploadPhoto(image: chosenImage!)
-        appDelegate.photoProtocol?.photoLoaded()
     }
     
     // save to core data
