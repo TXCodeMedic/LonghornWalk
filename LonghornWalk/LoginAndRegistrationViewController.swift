@@ -273,6 +273,10 @@ class LoginAndRegistrationViewController: UIViewController, UserLoadProtocol {
             return "Passwords don't match"
         }
         
+        if (!checkForPasswordLength(passwordField: passwordTextField.text!)){
+            return "Password less than 6 characters"
+        }
+        
         if (!checkForUTEmail(userEmail: emailTextField.text!)) {
             return "Email must be a UT email"
         }
@@ -298,9 +302,13 @@ class LoginAndRegistrationViewController: UIViewController, UserLoadProtocol {
         return false
     }
 
+    func checkForPasswordLength(passwordField:String) -> Bool{
+        return passwordField.count >= 6
+    }
+    
     func checkForSamePassword(passwordField1:String!, passwordField2:String!) -> Bool{
         // Make sure password entries are the same and fulfill FireBase standards
-        return ( (passwordField1 == passwordField2) && (passwordField1.count >= 6) && (passwordField2.count >= 6) )
+        return  (passwordField1 == passwordField2)
     }
 
     func checkForFilledFields(textFields: UITextField...) -> Bool{
