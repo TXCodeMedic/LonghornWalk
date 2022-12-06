@@ -4,6 +4,9 @@
 //
 //  Created by Matthew Galvez on 11/13/22.
 //
+// Filename: LonghornWalk
+// Team: 10
+// Course: CS329E
 
 import UIKit
 import FirebaseCore

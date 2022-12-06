@@ -4,36 +4,32 @@
 //
 //  Created by Matthew Galvez on 11/13/22.
 //
+// Filename: LonghornWalk
+// Team: 10
+// Course: CS329E
 
 import UIKit
 import CoreData
 import CoreMedia
 import FirebaseAuth
 
-
 let appDelegate = UIApplication.shared.delegate as! AppDelegate
 let context = appDelegate.persistentContainer.viewContext
-
 // identifier for a cell from tableView
 let textCellIdentifier = "textCellIdentifier"
-
 // segue identifier for Location VC
 let locationSegue = "locationVCsegue"
 
 public class Location {
     var locationName: String
     init(){
-        
         locationName = ""
-        
     }
 }
 
 protocol addtoCoreData{
     func storeLocation(location:UTLocation)
-    
     func refreshTable()
-    
     func isRepeatingLocation(location:UTLocation)-> Bool
     
 }
@@ -57,15 +53,12 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
 
     
     //Variables
-
     var delegate: UIViewController!
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        
         var currentDate = Date()
         var formatter = DateFormatter()
         formatter.dateFormat = "dd-MM-yy"
@@ -83,20 +76,14 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
             appDelegate.currentUser?.lastUpdate = formattedDate
             appDelegate.currentUser?.saveUser()
         }
-        
-        
-        
-        
         var score = appDelegate.currentUser?.points
         var displayName = appDelegate.currentUser?.displayName
         var userStatus = setStatus(score: score!)
         score = Int(score!)
-        print(score)
         scoreLabel.text = "Score: \(score!)"
         displayNameLabel.text = "\(displayName!)"
         levelLabel.text = "Status Level: \(userStatus)"
         profilePic.image = appDelegate.currentUser?.profilePic
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -114,14 +101,10 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     // CORE DATA:
-    
     // store location in core data
     func storeLocation(location: UTLocation) {
-        print("storing a location")
         let newLoc = NSEntityDescription.insertNewObject(forEntityName: "Locations", into: context)
-    
         newLoc.setValue(location.locationName, forKey: "locationName")
-//        newLoc.setValue(location.locationAddress, forKey: "locationAddress")
         //commit the changes
         saveContext()
     }
@@ -129,18 +112,15 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     func refreshTable() {
         self.tableView.reloadData()
     }
-    
     // check if location is already in tableview
     func isRepeatingLocation(location: UTLocation) -> Bool {
         let fetchedResults = retrieveLocation()
         var itemIsRepeated = false
-        
         for item in fetchedResults {
             if item.value(forKey: "locationName") as! String == location.locationName{
                 itemIsRepeated = true
             }
         }
-        print("item is repeated = \(itemIsRepeated)")
         return itemIsRepeated
     }
     
@@ -158,10 +138,8 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     
     //retrieve from core data
     func retrieveLocation() -> [NSManagedObject] {
-        
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Locations")
         var fetchedResults:[NSManagedObject]? = nil
-        
         do {
             try fetchedResults = context.fetch(request) as? [NSManagedObject]
         } catch {
@@ -170,36 +148,27 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
             NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
             abort()
         }
-//        print("fetchedResults")
-//        print((fetchedResults)!)
-        
         return(fetchedResults)!
     }
     
     // clear core data
     func clearCoreData() {
-        
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Locations")
         var fetchedResults:[NSManagedObject]
-        
         do {
             try fetchedResults = context.fetch(request) as! [NSManagedObject]
-            
             if fetchedResults.count > 0 {
                 for result:AnyObject in fetchedResults {
                     context.delete(result as! NSManagedObject)
-                    print("\(result.value(forKey: "locationName")!) has been deleted")
                 }
             }
             saveContext()
-            
         } catch {
             // if an error occurs
             let nserror = error as NSError
             NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
             abort()
         }
-        
     }
     
     //MARK: Set Status
@@ -223,13 +192,10 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         return ""
     }
 
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == locationSegue,
            let nextVC = segue.destination as? LocationViewController{
-            
             nextVC.delegate = self
-            
         }
     }
     
@@ -240,22 +206,15 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         return fetchedResults.count
     }
     
-
-    
-    
     // display of the cell contents
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let fetchedResults = retrieveLocation()
-        
         let row = indexPath.row
         let cell = tableView.dequeueReusableCell(withIdentifier: textCellIdentifier, for: indexPath) as! myCellTableViewCell
-        
-        
         cell.locationName.text = "\(fetchedResults[row].value(forKey: "locationName")!)"
         cell.iconImageView.image = UIImage(named: "\(fetchedResults[row].value(forKey: "locationName")!)")
         return cell
     }
-    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //Change the selected background view of the cell.
@@ -275,7 +234,6 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
             try Auth.auth().signOut()
             self.dismiss(animated: true)
         } catch {
-            print("Sign Out error")
         }
     }
     

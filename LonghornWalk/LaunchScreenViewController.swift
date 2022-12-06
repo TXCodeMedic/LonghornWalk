@@ -4,6 +4,9 @@
 //
 //  Created by Yousuf Din on 12/1/22.
 //
+// Filename: LonghornWalk
+// Team: 10
+// Course: CS329E
 
 import UIKit
 import AVFoundation
@@ -23,7 +26,6 @@ extension UIViewController {
 }
 
 class LaunchScreenViewController: UIViewController {
-    
     var imageView: UIImageView = {
         let imageView = UIImageView(frame: CGRect(x: 20,
                                                   y: 259,
@@ -36,7 +38,7 @@ class LaunchScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
-        
+
         if UserDefaults.standard.bool(forKey: "darkMode") == false {
             UIApplication.shared.windows.first?.overrideUserInterfaceStyle = .light
         } else {
@@ -84,7 +86,6 @@ class LaunchScreenViewController: UIViewController {
             let size = self.view.frame.size.width * 2
             let xposition = size - self.view.frame.width
             let yposition = self.view.frame.height - size
-            
             self.imageView.frame = CGRect(x: -(xposition/2),
                                           y: yposition/2,
                                           width: size,
@@ -95,24 +96,13 @@ class LaunchScreenViewController: UIViewController {
     
     func playSound() {
         guard let url = Bundle.main.url(forResource: "launchSound", withExtension: "wav") else { return }
-
         do {
             try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
             try AVAudioSession.sharedInstance().setActive(true)
-
-            /* The following line is required for the player to work on iOS 11. Change the file type accordingly*/
             player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
-
-            /* iOS 10 and earlier require the following line:
-            player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileTypeMPEGLayer3) */
-
             guard let player = player else { return }
-
             player.play()
-
         } catch let error {
-            print(error.localizedDescription)
         }
     }
-
 }

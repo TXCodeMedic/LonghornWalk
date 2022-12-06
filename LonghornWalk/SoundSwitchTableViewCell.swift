@@ -4,6 +4,9 @@
 //
 //  Created by Yousuf Din on 12/1/22.
 //
+// Filename: LonghornWalk
+// Team: 10
+// Course: CS329E
 
 import UIKit
 
@@ -89,7 +92,6 @@ class SoundSwitchTableViewCell: UITableViewCell {
     }
     
     @objc func switched(sender: UISwitch) {
-        // let appDelegate = UIApplication.shared.windows.first
         if sender.isOn {
             UserDefaults.standard.set(true, forKey: "sound")
         } else {

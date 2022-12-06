@@ -4,6 +4,9 @@
 //
 //  Created by Yousuf Din on 12/4/22.
 //
+// Filename: LonghornWalk
+// Team: 10
+// Course: CS329E
 
 import MapKit
 import SwiftUI
@@ -32,9 +35,7 @@ struct MapSwiftUIView: View {
                     .font(.largeTitle)
                     .bold()
                     .padding()
-                
                 Divider().background(Color.blue)
-                
                 List {
                     ForEach(0..<self.directions.count, id: \.self) { i in
                         Text(self.directions[i])
@@ -87,7 +88,6 @@ struct MapView: UIViewRepresentable {
                                       animated: true)
             self.directions = route.steps.map { $0.instructions }.filter { !$0.isEmpty }
         }
-        
         return mapView
     }
     

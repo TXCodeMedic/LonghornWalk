@@ -4,6 +4,9 @@
 //
 //  Created by Yousuf Din on 11/29/22.
 //
+// Filename: LonghornWalk
+// Team: 10
+// Course: CS329E
 
 import UIKit
 
@@ -34,14 +37,11 @@ struct SettingsOption {
 }
 
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate {
-    
     private let tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
         table.register(SettingsTableViewCell.self, forCellReuseIdentifier: SettingsTableViewCell.self.identifier)
         table.register(SwitchTableViewCell.self, forCellReuseIdentifier: SwitchTableViewCell.self.identifier)
         table.register(SoundSwitchTableViewCell.self, forCellReuseIdentifier: SoundSwitchTableViewCell.self.identifier)
-
-
         return table
     }()
         
@@ -60,13 +60,9 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     func configure() {
         models.append(Section(title: "General", options: [
             .switchCell(model: SettingsSwitchOption(title: "Dark Mode", icon: (UIImage(systemName: "moon.circle")), iconBackgroundColor: .systemIndigo, handler: {
-                print("Switch")
             }, isOn: UserDefaults.standard.bool(forKey: "darkMode"))),
-            
             .soundSwitchCell(model: SettingsSwitchOption(title: "Sound", icon: (UIImage(systemName: "speaker.wave.3.fill")), iconBackgroundColor: .systemPink, handler: {
-                print("Switch")
             }, isOn: UserDefaults.standard.bool(forKey: "sound")))
-            
         ]))
         
         models.append(Section(title: "Fonts", options: [
@@ -108,7 +104,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 controller.addAction(UIAlertAction(
                 title: "Cancel",
                 style: .cancel, handler: nil))
-                
                 self.present(controller, animated: true)
             })
         ]))
@@ -122,7 +117,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 controller.addAction(UIAlertAction(
                     title: "Dismiss",
                     style: .cancel))
-                
                 self.present(controller, animated: true)
             }),
             .staticCell(model:SettingsOption(title: "Course Website", icon: (UIImage(systemName: "desktopcomputer")), iconBackgroundColor: .systemGreen) {
@@ -137,7 +131,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 controller.addAction(UIAlertAction(
                     title: "Dismiss",
                     style: .cancel))
-                
                 self.present(controller, animated: true)
             })
         ]))
@@ -158,7 +151,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = models[indexPath.section].options[indexPath.row]
-        
         switch model.self {
         case .staticCell(let model):
             guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingsTableViewCell.identifier, for: indexPath) as? SettingsTableViewCell else {
@@ -193,6 +185,4 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             model.handler()
         }
     }
-    
 }
-

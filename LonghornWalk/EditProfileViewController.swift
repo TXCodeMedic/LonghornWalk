@@ -4,6 +4,9 @@
 //
 //  Created by Katrina Aliashkevich on 11/25/22.
 //
+// Filename: LonghornWalk
+// Team: 10
+// Course: CS329E
 
 import UIKit
 import AVFoundation
@@ -17,11 +20,8 @@ protocol PhotoLoadProtocol {
     func photoLoaded()
 }
 
-
 class EditProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, PhotoLoadProtocol {
     
-    
-
     let picker = UIImagePickerController()
     
     let db = Firestore.firestore()
@@ -32,13 +32,10 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     
     @IBOutlet weak var displayNameText: UITextField!
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.hideKeyboardWhenTappedAround()
-
         profilePic.backgroundColor = .systemGray6
         profilePic.layer.borderWidth = 1
         profilePic.layer.masksToBounds = false
@@ -46,27 +43,16 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         profilePic.layer.cornerRadius = profilePic.frame.height/2
         profilePic.clipsToBounds = true
         profilePic.image = appDelegate.currentUser?.profilePic
-//        if appDelegate.currentUser?.profilePic != nil {
-//            profilePic.image = appDelegate.currentUser?.profilePic
-//        }
         picker.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
-//        profilePic.image = appDelegate.currentUser?.profilePic
         displayNameText.text = appDelegate.currentUser?.displayName
-        
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         chosenImage = info[.originalImage] as? UIImage
-//        profilePic.contentMode = .scaleAspectFit
         profilePic.image = chosenImage
-        
-//        appDelegate.currentUser?.profilePic = chosenImage
-//        uploadPhoto(image: chosenImage)
-        
-
         dismiss(animated: true)
     }
     
@@ -79,7 +65,6 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             title: "Choose your Profile Photo",
             message: "Take from:",
             preferredStyle: .actionSheet)
-        // if regular cheese option is selected, make that the cheese type of the pizza object
         let Camera = UIAlertAction(
             title: "Camera",
             style: .default,
@@ -98,17 +83,13 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                         break
                     default:
                         // we know we don't have access
-                        print("Access denied")
                         return
                     }
                 self.picker.allowsEditing = false
                 self.picker.sourceType = .camera
                 self.picker.cameraCaptureMode = .photo
                 self.present(self.picker, animated: true)
-                
                 } else {
-                    // no rear camera is available
-                    
                     let alertVC = UIAlertController(
                         title: "No camera",
                         message: "Sorry, this device has no rear camera",
@@ -121,9 +102,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                 }
             }
         )
-        
             controller.addAction(Camera)
-        // if no cheese option is selected, make that the cheese type of the pizza object
         let Library = UIAlertAction(
             title: "Photo Library",
             style: .default,
@@ -134,13 +113,11 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                 
             })
         controller.addAction(Library)
-        
         present(controller, animated: true)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        appDelegate.currentUser?.displayName = displayNameText.text!
     }
     
     func photoLoaded() {
@@ -160,7 +137,6 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         appDelegate.currentUser?.profilePic = chosenImage
         uploadPhoto(image: chosenImage!)
         appDelegate.photoProtocol?.photoLoaded()
-        
     }
     
     // save to core data
@@ -181,11 +157,9 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         var fetchedResults:[NSManagedObject]
         do {
             try fetchedResults = context.fetch(request) as! [NSManagedObject]
-            
             if fetchedResults.count > 0 {
                 for result:AnyObject in fetchedResults {
                     context.delete(result as! NSManagedObject)
-                    print("\(result.value(forKey: "locationName")!) has been deleted")
                 }
             }
             saveContext()
@@ -197,15 +171,12 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         }
     }
     
-    // TODO: remove from firestore too
     @IBAction func deleteProfilePressed(_ sender: Any) {
         // brings up an Alert where user chooses crust type from 2 buttons
         let controller = UIAlertController(
             title: "Are you sure about deleting your account?",
             message: "This action cannot be undone.",
             preferredStyle: .alert)
-        // if thin crust button is selected, make that the crust type of the pizza object
-        // if thick crust button is selected, make that the crust type of the pizza object
         controller.addAction(UIAlertAction(
             title: "Cancel",
             style: .default
@@ -226,7 +197,6 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                             self.db.collection("users").whereField("email", isEqualTo: appDelegate.currentUser?.userEmail).getDocuments {
                                 (querySnapshot, error) in
                                 if error != nil {
-                                    print(error)
                                 } else {
                                     for document in querySnapshot!.documents {
                                         document.reference.delete()
@@ -237,7 +207,6 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                             try Auth.auth().signOut()
                             self.dismiss(animated: true)
                         } catch {
-                            print("Sign Out error")
                         }
                     }
                 }
@@ -248,29 +217,20 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     
     func uploadPhoto(image:UIImage){
         // This method will take the image and upload it to Firebase Storage
-        print("\nuploadPhoto\n")
         let storageRef = storage.reference().child("profilePictures\(appDelegate.currentUser?.userEmail as! String).jpg")
-        
         let resizedImage = image
         let data = resizedImage.jpegData(compressionQuality: 0.2)
-        
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpg"
-        
         if let data = data {
                 storageRef.putData(data, metadata: metadata) { (metadata, error) in
                         if let error = error {
-                            print("Error while uploading file: ", error)
                         }
-
                         if let metadata = metadata {
-                            print("Metadata: ", metadata)
                             appDelegate.currentUser?.profilePicturePath = "profilePictures\(appDelegate.currentUser?.userEmail as! String).jpg"
-                            print(appDelegate.currentUser?.profilePicturePath)
                             appDelegate.currentUser?.saveUser()
                         }
                 }
         }
     }
-    
 }

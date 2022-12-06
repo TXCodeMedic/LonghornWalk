@@ -4,6 +4,9 @@
 //
 //  Created by Yousuf Din on 12/4/22.
 //
+// Filename: LonghornWalk
+// Team: 10
+// Course: CS329E
 
 import UIKit
 
@@ -13,20 +16,14 @@ class popupLocationViewController: UIViewController {
     
     @IBOutlet weak var locationName: UILabel!
     
-   // @IBOutlet weak var locationAddress: UILabel!
-    
     var image = UIImage()
     var name = ""
     var address = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
-        print(name)
         imageView.image = image
         locationName.text = name
-       // locationAddress.text = address
     }
-
 }
